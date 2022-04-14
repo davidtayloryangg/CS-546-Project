@@ -4,15 +4,15 @@
 
 1. Database: Yue Qin
    - User: Wenjing Zhou
-   - Activitiy:
+   - Activitiy: David Yang
    - Appointment:
    - Comment: Yue Qin
    - Review: Yue Qin
-   - Park:
+   - Park: David Yang
 2. Route:
    - Appointments:
    - Comments: Yue Qin
-   - Home:
+   - Home: 
    - Login:
    - Logout:
    - Notification:
