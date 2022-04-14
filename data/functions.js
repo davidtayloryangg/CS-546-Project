@@ -30,8 +30,21 @@ function checkPassword(string) {
     throw "not a string";
   }
 }
+function computeRating(park) {
+  let rating = 0;
+  let num = park.comments.length;
+  if (num === 0) {
+    return rating;
+  }
+  for (let a of park.comments) {
+    rating += a.rating;
+  }
+  return rating / num;
+}
+
 module.exports = {
   checkUserName,
   checkEmail,
-  checkPassword
+  checkPassword,
+  computeRating
 }
