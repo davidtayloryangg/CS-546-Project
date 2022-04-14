@@ -65,7 +65,7 @@ module.exports = {
     if (!ObjectId.isValid(parkId)) throw 'invalid park ID';
     
     const parkCollection = await parks();
-    const parkList = await parkCollection.find({ _id: ObjectId(parkId) }, { projection: { albums: 1 } }).toArray();
+    const parkList = await parkCollection.find({ _id: ObjectId(parkId) }, { projection: { comments: 1 } }).toArray();
     if (!parkList || parkList === null) throw 'no park with that id';
     return parkList;
   }
