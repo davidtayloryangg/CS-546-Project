@@ -10,15 +10,35 @@
    - Review: Yue Qin
    - Park:
 2. Route:
-   - Appointments:
-   - Comments: Yue Qin
-   - Home:
+   - Home: 
+     - get('/home')
    - Login:
+     - get('/login')
+     - post('/login')
    - Logout:
-   - Notification:
-   - Parks:
+     - get('/logout')
    - Signup:
+     - get('/signup')
+     - post('/signup')
+   - Parks:
+     - get('/parks')
+     - get('/parks/search')
+     - get('/parks/recommendation')
+     - get('/parks/allParks')
+     - get('/parks/comments')
+     - post('/parks/comments')
+     - get('/parks/activities')
+     - post('/parks/activities')
+     - get('/parks/activities/appointments')
+     - post('/parks/activities/appointments')
    - Users:
+     - get('/users')
+     - get('/users/reviews')
+     - post('/users/reviews')
+     - get('/users/notification')
+     - get('/users/profile')
+     - post('/users/profile')
+   
 3. Frontend:
    - Landing Page:
    - Park List Page:

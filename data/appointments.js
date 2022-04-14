@@ -20,7 +20,7 @@ module.exports = {
       parkId: parkId,
       acitivityId: acitivityId,
       date: newDate,
-      time: time,
+      appointmentTime: time,
       approvement: false,
       status: "not matched"
     };
