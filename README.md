@@ -2,10 +2,10 @@
 
 ## Task: Select your task and add your name
 
-1. Database: YueQin
-2. User:Wenjing Zhou
+1. Database: Yue Qin
+2. User: Wenjing Zhou
 3. Appointment:
-4. Comment:
+4. Comment: Yue Qin
 5. Frontend:
    - Landing Page:
    - Park List Page:
