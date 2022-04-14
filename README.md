@@ -3,21 +3,23 @@
 ## Task: Select your task and add your name
 
 1. Database: Yue Qin
-2. User: Wenjing Zhou
-3. Activitiy:
-4. Appointment:
-5. Comment: Yue Qin
-6. Route:
-   - appointments:
-   - comments: Yue Qin
-   - home:
-   - login:
-   - logout:
-   - notification:
-   - parks:
-   - signup:
-   - users:
-7. Frontend:
+   - User: Wenjing Zhou
+   - Activitiy:
+   - Appointment:
+   - Comment: Yue Qin
+   - Review: Yue Qin
+   - Park: 
+2. Route:
+   - Appointments:
+   - Comments: Yue Qin
+   - Home:
+   - Login:
+   - Logout:
+   - Notification:
+   - Parks:
+   - Signup:
+   - Users:
+3. Frontend:
    - Landing Page:
    - Park List Page:
    - User Profile Page:
