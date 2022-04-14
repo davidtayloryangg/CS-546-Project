@@ -4,9 +4,10 @@
 
 1. Database: Yue Qin
 2. User: Wenjing Zhou
-3. Appointment:
-4. Comment: Yue Qin
-5. Routes:
+3. Activitiy:
+4. Appointment:
+5. Comment: Yue Qin
+6. Route:
    - appointments:
    - comments: Yue Qin
    - home:
@@ -16,7 +17,7 @@
    - parks:
    - signup:
    - users:
-6. Frontend:
+7. Frontend:
    - Landing Page:
    - Park List Page:
    - User Profile Page:
