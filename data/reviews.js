@@ -12,7 +12,8 @@ module.exports = {
     let newReview = {
       _id: newId,
       userId: userId,
-      userReviews: userReviews
+      userReviews: userReviews,
+      reviewsReply: []
     };
     
     const userCollection = await users();
