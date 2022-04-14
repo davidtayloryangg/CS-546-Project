@@ -11,33 +11,33 @@
    - Park: David Yang
 2. Route:
    - Home:
-     - get('/home')
+     - ('/home').get
    - Login:
-     - get('/login')
-     - post('/login')
+     - ('/login').get
+     - ('/login').post
    - Logout:
-     - get('/logout')
+     - ('/logout').get
    - Signup:
-     - get('/signup')
-     - post('/signup')
+     - ('/signup').get
+     - ('/signup').post
    - Parks:
-     - get('/parks')
-     - get('/parks/search')
-     - get('/parks/recommendation')
-     - get('/parks/allParks')
-     - get('/parks/comments')
-     - post('/parks/comments')
-     - get('/parks/activities')
-     - post('/parks/activities')
-     - get('/parks/activities/appointments')
-     - post('/parks/activities/appointments')
+     - ('/parks').get
+     - ('/parks/search').get
+     - ('/parks/recommendation').get
+     - ('/parks/allParks').get
+     - ('/parks/comments').get
+     - ('/parks/comments').post
+     - ('/parks/activities').get
+     - ('/parks/activities').post
+     - ('/parks/activities/appointments').get
+     - ('/parks/activities/appointments').post
    - Users:
-     - get('/users')
-     - get('/users/reviews')
-     - post('/users/reviews')
-     - get('/users/notification')
-     - get('/users/profile')
-     - post('/users/profile')
+     - ('/users').get
+     - ('/users/reviews').get
+     - ('/users/reviews').post
+     - ('/users/notification').get
+     - ('/users/profile').get
+     - ('/users/profile').post
 
 3. Frontend:
    - Landing Page:
@@ -70,4 +70,4 @@ Before following the installation instructions below, your system will need node
 
 ## Github Repository
 
-https://github.com/davidtayloryangg/CS-546-Project
+[https://github.com/davidtayloryangg/CS-546-Project]

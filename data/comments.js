@@ -6,8 +6,8 @@ const parks = mongoCollections.parks;
 
 
 module.exports = {
-  async createComment(parkId, rating, parkReviews) {
-    if (!userId || !rating || !parkReviews)
+  async createComment(parkId, rating, parkReview) {
+    if (!userId || !rating || !parkReview)
       throw 'please provide all inputs';
     if (!ObjectId.isValid(parkId)) throw 'invalid park ID';
 
@@ -16,7 +16,7 @@ module.exports = {
       _id: newId,
       parkId: parkId,
       rating: rating,
-      parkReviews: parkReviews
+      parkReview: parkReview
     };
     
     const parkCollection = await parks();

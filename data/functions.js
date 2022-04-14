@@ -41,10 +41,33 @@ function computeRating(park) {
   }
   return rating / num;
 }
-
+function checkId(string) {
+  return ObjectId.isValid(string);
+}
+function checkRating(val) {
+  if (typeof val !== "number")
+    return false;
+  if (isNaN(val))
+    return false;
+  return !(val < 0 || val > 5);
+}
+function checkString(string) {
+  if (!string)
+    return false;
+  if (typeof string === 'string' || string instanceof String) {
+    if (string.trim().length === 0)
+      return false;
+  } else {
+    return false;
+  }
+  return true;
+}
 module.exports = {
   checkUserName,
   checkEmail,
   checkPassword,
-  computeRating
+  computeRating,
+  checkId,
+  checkRating,
+  checkString
 }
