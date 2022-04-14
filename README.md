@@ -5,7 +5,7 @@
 1. Database: Yue Qin
    - User: Wenjing Zhou
    - Activitiy: David Yang
-   - Appointment:
+   - Appointment: YuTong Wei
    - Comment: Yue Qin
    - Review: Yue Qin
    - Park: David Yang
