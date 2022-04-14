@@ -6,7 +6,17 @@
 2. User: Wenjing Zhou
 3. Appointment:
 4. Comment: Yue Qin
-5. Frontend:
+5. Routes:
+   - appointments:
+   - comments: Yue Qin
+   - home:
+   - login:
+   - logout:
+   - notification:
+   - parks:
+   - signup:
+   - users:
+6. Frontend:
    - Landing Page:
    - Park List Page:
    - User Profile Page:
