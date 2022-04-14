@@ -10,7 +10,7 @@
    - Review: Yue Qin
    - Park: David Yang
 2. Route:
-   - Home: 
+   - Home:
      - get('/home')
    - Login:
      - get('/login')
@@ -38,7 +38,7 @@
      - get('/users/notification')
      - get('/users/profile')
      - post('/users/profile')
-   
+
 3. Frontend:
    - Landing Page:
    - Park List Page:
