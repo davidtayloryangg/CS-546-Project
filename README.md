@@ -12,8 +12,6 @@
 2. Route:
    - Home:
      - ('/home').get
-   - Appointments: Yuheng Xiao
-   - Comments: Yue Qin
    - Login:
      - ('/login').get
      - ('/login').post
@@ -27,12 +25,12 @@
      - ('/parks/search').get
      - ('/parks/recommendation').get
      - ('/parks/allParks').get
-     - ('/parks/comments').get
-     - ('/parks/comments').post
+     - ('/parks/comments').get Yue Qin
+     - ('/parks/comments').post Yue Qin
      - ('/parks/activities').get
      - ('/parks/activities').post
-     - ('/parks/activities/appointments').get
-     - ('/parks/activities/appointments').post
+     - ('/parks/activities/appointments').get Yuheng Xiao
+     - ('/parks/activities/appointments').post Yuheng Xiao
    - Users: Yuheng Xiao
      - ('/users').get
      - ('/users/reviews').get
