@@ -5,13 +5,15 @@
 1. Database: Yue Qin
    - User: Wenjing Zhou
    - Activitiy: David Yang
-   - Appointment: YuTong Wei
+   - Appointment: YuTong Wei Yuheng Xiao
    - Comment: Yue Qin
    - Review: Yue Qin
    - Park: David Yang
 2. Route:
    - Home:
      - ('/home').get
+   - Appointments: Yuheng Xiao
+   - Comments: Yue Qin
    - Login:
      - ('/login').get
      - ('/login').post
@@ -31,7 +33,7 @@
      - ('/parks/activities').post
      - ('/parks/activities/appointments').get
      - ('/parks/activities/appointments').post
-   - Users:
+   - Users: Yuheng Xiao
      - ('/users').get
      - ('/users/reviews').get
      - ('/users/reviews').post
@@ -42,7 +44,7 @@
 3. Frontend:
    - Landing Page:
    - Park List Page:
-   - User Profile Page:
+   - User Profile Page: Yuheng Xiao
    - Park activities management Page:
    - Activity Page:
    - Park Activities Recommendation Page:
