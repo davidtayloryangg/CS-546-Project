@@ -5,20 +5,42 @@
 1. Database: Yue Qin
    - User: Wenjing Zhou
    - Activitiy: David Yang
-   - Appointment: Yuheng Xiao
+   - Appointment: YuTong Wei Yuheng Xiao
    - Comment: Yue Qin
    - Review: Yue Qin
    - Park: David Yang
 2. Route:
+   - Home:
+     - ('/home').get
    - Appointments: Yuheng Xiao
    - Comments: Yue Qin
-   - Home: 
    - Login:
+     - ('/login').get
+     - ('/login').post
    - Logout:
-   - Notification:
-   - Parks:
+     - ('/logout').get
    - Signup:
+     - ('/signup').get
+     - ('/signup').post
+   - Parks:
+     - ('/parks').get
+     - ('/parks/search').get
+     - ('/parks/recommendation').get
+     - ('/parks/allParks').get
+     - ('/parks/comments').get
+     - ('/parks/comments').post
+     - ('/parks/activities').get
+     - ('/parks/activities').post
+     - ('/parks/activities/appointments').get
+     - ('/parks/activities/appointments').post
    - Users: Yuheng Xiao
+     - ('/users').get
+     - ('/users/reviews').get
+     - ('/users/reviews').post
+     - ('/users/notification').get
+     - ('/users/profile').get
+     - ('/users/profile').post
+
 3. Frontend:
    - Landing Page:
    - Park List Page:
@@ -50,4 +72,4 @@ Before following the installation instructions below, your system will need node
 
 ## Github Repository
 
-https://github.com/davidtayloryangg/CS-546-Project
+[https://github.com/davidtayloryangg/CS-546-Project]

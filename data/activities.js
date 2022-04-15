@@ -15,7 +15,6 @@ module.exports = {
       numberOfCourts: numberOfCourts,
       maxPeople: maxPeople,
       appointmens: [],
-      comments: [],
       reviews: []
     };
     
