@@ -5,12 +5,12 @@
 1. Database: Yue Qin
    - User: Wenjing Zhou
    - Activitiy: David Yang
-   - Appointment:
+   - Appointment: Yuheng Xiao
    - Comment: Yue Qin
    - Review: Yue Qin
    - Park: David Yang
 2. Route:
-   - Appointments:
+   - Appointments: Yuheng Xiao
    - Comments: Yue Qin
    - Home: 
    - Login:
@@ -18,11 +18,11 @@
    - Notification:
    - Parks:
    - Signup:
-   - Users:
+   - Users: Yuheng Xiao
 3. Frontend:
    - Landing Page:
    - Park List Page:
-   - User Profile Page:
+   - User Profile Page: Yuheng Xiao
    - Park activities management Page:
    - Activity Page:
    - Park Activities Recommendation Page:
