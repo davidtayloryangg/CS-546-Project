@@ -8,7 +8,7 @@
    - Appointment: YuTong Wei Yuheng Xiao
    - Comment: Yue Qin :white_check_mark:
    - Review: Yue Qin :white_check_mark:
-   - Park: David Yang
+   - Park: David Yang :white_check_mark:
 2. Route:
    - Home:
      - ('/home').get
