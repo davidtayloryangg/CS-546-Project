@@ -3,7 +3,7 @@
 ## Task: Select your task and add your name
 
 1. Database: Yue Qin
-   - User: Wenjing Zhou
+   - User: Wenjing Zhou :white_check_mark:
    - Activitiy: David Yang
    - Appointment: YuTong Wei Yuheng Xiao
    - Comment: Yue Qin :white_check_mark:
@@ -11,15 +11,14 @@
    - Park: David Yang :white_check_mark:
 2. Route:
    - Home:
-     - ('/home').get
+     - ('/home').get Wenjing Zhou :white_check_mark:
    - Login:
-     - ('/login').get
-     - ('/login').post
+     - ('/login').post Wenjing Zhou :white_check_mark:
    - Logout:
-     - ('/logout').get
+     - ('/logout').get Wenjing Zhou :white_check_mark:
    - Signup:
-     - ('/signup').get
-     - ('/signup').post
+     - ('/signup').get Wenjing Zhou :white_check_mark:
+     - ('/signup').post Wenjing Zhou :white_check_mark:
    - Parks:
      - ('/parks').get
      - ('/parks/search').get
@@ -32,11 +31,11 @@
      - ('/parks/activities/appointments').get Yuheng Xiao
      - ('/parks/activities/appointments').post Yuheng Xiao
    - Users: Yuheng Xiao
-     - ('/users').get
+     - ('/users').get Wenjing Zhou :white_check_mark:
      - ('/users/reviews').get
      - ('/users/reviews').post
      - ('/users/notification').get
-     - ('/users/profile').get
+     - ('/users/profile').get Wenjing Zhou :white_check_mark:
      - ('/users/profile').post
 
 3. Frontend:
@@ -50,9 +49,13 @@
 ## Team Members
 
 David Yang
+
 Yue Qin
+
 Yutong Wei
+
 Yuheng Xiao
+
 Wenjing Zhou
 
 ## Introduction
