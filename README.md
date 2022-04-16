@@ -6,8 +6,8 @@
    - User: Wenjing Zhou
    - Activitiy: David Yang
    - Appointment: YuTong Wei Yuheng Xiao
-   - Comment: Yue Qin
-   - Review: Yue Qin
+   - Comment: Yue Qin :white_check_mark:
+   - Review: Yue Qin :white_check_mark:
    - Park: David Yang
 2. Route:
    - Home:
@@ -25,8 +25,8 @@
      - ('/parks/search').get
      - ('/parks/recommendation').get
      - ('/parks/allParks').get
-     - ('/parks/comments').get Yue Qin
-     - ('/parks/comments').post Yue Qin
+     - ('/parks/comments').get Yue Qin :white_check_mark:
+     - ('/parks/comments').post Yue Qin :white_check_mark:
      - ('/parks/activities').get
      - ('/parks/activities').post
      - ('/parks/activities/appointments').get Yuheng Xiao

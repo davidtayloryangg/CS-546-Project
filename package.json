@@ -15,8 +15,8 @@
     "cookie-parser": "^1.4.5",
     "express": "^4.17.3",
     "express-handlebars": "^6.0.5",
-    "express-session": "^1.17.0",
-    "handlebars": "^4.7.3",
-    "mongodb": "^3.6.2"
+    "express-session": "^1.17.2",
+    "handlebars": "^4.7.7",
+    "mongodb": "^4.5.0"
   }
 }
