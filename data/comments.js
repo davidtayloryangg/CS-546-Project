@@ -1,5 +1,4 @@
-// Comments is a sub-document of park ?????
-// ?????????????????????
+// Comments is a sub-document of park
 const func = require('./functions');
 const mongoCollections = require('../config/mongoCollections');
 const parks = mongoCollections.parks;
