@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const data = require('../data');
-const userData = data.users;
+const userData = require('../data/users');
 const mongoCollections = require('../config/mongoCollections');
 const users = mongoCollections.users;
 
