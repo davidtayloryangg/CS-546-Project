@@ -1,6 +1,7 @@
 // Reviews is a sub-document of users
 const mongoCollections = require('../config/mongoCollections');
 const users = mongoCollections.users;
+const { ObjectId } = require('mongodb');
 
 module.exports = {
   async createReview(userId, userReview) {
@@ -38,7 +39,7 @@ module.exports = {
       throw 'Could not remove that a review';
     return true;
   },
-  async getAllreviews(userId) {
+  async getAllReviews(userId) {
     if (!userId) throw 'please provide user id';
     if (!ObjectId.isValid(userId)) throw 'invalid user ID';
     

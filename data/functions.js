@@ -1,4 +1,5 @@
 // This file provides validator functions
+const { ObjectId } = require('mongodb');
 
 function checkUserName(string) {
   if (typeof string === 'string' || string instanceof String) {
@@ -13,9 +14,9 @@ function checkUserName(string) {
 function checkEmail(string) {
   if (!string.includes('.'))
     throw 'email should have a dot';
-  if (!string.lastIndexOf('.') > (email.length - 3))
+  if (!string.lastIndexOf('.') > (string.length - 3))
     throw 'should have at least 2 letters after dot';
-  if (!string.indexOf('.') === 0 || email.indexOf('@') === 0)
+  if (!string.indexOf('.') === 0 || string.indexOf('@') === 0)
     throw 'email should start with letter';
   if (string.indexOf('@') === -1)
     throw 'email should have @';

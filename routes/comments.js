@@ -15,14 +15,14 @@ router
   })
   .post(async (req, res) => {
     let commentInfo = req.body;
-    if (!commentInfo.userId || !commentInfo.rating || !commentInfo.parkReviews) throw 'please provide all inputs';
-    if (!func.checkId || !func.checkRating || !func.checkString)
+    if (!commentInfo.parkId || !commentInfo.rating || !commentInfo.parkComment) throw 'please provide all inputs';
+    if (!func.checkId(commentInfo.parkId) || !func.checkRating(commentInfo.rating) || !func.checkString(commentInfo.parkComment))
       res.status(400).json({ error: 'invalid inputs' });
     try {
       const comment = await data.createComment(
         commentInfo.parkId,
         commentInfo.rating,
-        commentInfo.parkReviews
+        commentInfo.parkComment
       );
       res.status(200).json(comment);
     } catch (e) {

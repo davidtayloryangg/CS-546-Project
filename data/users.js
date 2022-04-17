@@ -56,9 +56,42 @@ module.exports = {
       throw 'Either the username or password is invalid';
   },
 
-  async modifyUserProfile(email, gender, city, state, age, description) {
-    //TODO
-    return 0;
-  }
+  async modifyUserProfile(id, email, gender, city, state, age, description) {
+    if (arguments.length!=6) throw 'the number of parameter is false';
+    if (!id) throw 'You must provide an id to search for';
+    func.checkId(id)
+    func.checkEmail(email)
+    const userCollection = await users();
+    const modifyuser = {
+      email:email,
+      gender:gender, 
+      city:city, 
+      state:state, 
+      age:age, 
+      description:description
+    };
+    try {
+        await this.get(id);
+    } catch (e) {
+        throw (e);
+    }
+
+    const updatedInfo = await userCollection.updateOne(
+      { _id: ObjectId(id) },
+      { $set: modifyuser }
+    );
+    if (updatedInfo.modifiedCount === 0) {
+      throw 'could not update user successfully';
+    }
+    return await this.get(id);
+  },
   
+  async get(id){
+    func.checkId(id)
+    const userCollection=await users()
+    const user = await userCollection.findOne({ _id: ObjectId(id) });
+    if (user === null) throw 'No user with that id';
+    user._id=user._id.toString();
+    return user;
+  }
 }
