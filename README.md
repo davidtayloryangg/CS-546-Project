@@ -32,8 +32,8 @@
      - ('/parks/activities/appointments').post Yuheng Xiao
    - Users: Yuheng Xiao
      - ('/users').get Wenjing Zhou :white_check_mark:
-     - ('/users/reviews').get :white_check_mark:
-     - ('/users/reviews').post :white_check_mark:
+     - ('/users/reviews').get Yue Qin :white_check_mark:
+     - ('/users/reviews').post Yue Qin :white_check_mark:
      - ('/users/notification').get
      - ('/users/profile').get Wenjing Zhou :white_check_mark:
      - ('/users/profile').post
