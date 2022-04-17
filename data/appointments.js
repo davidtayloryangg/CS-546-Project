@@ -44,8 +44,7 @@ module.exports = {
     );
     if (!updateActivity.matchedCount && !updateActivity.modifiedCount)
       throw 'Could not add a new appintment to Activity';
-
-    return true;
+    return newAppointment;
   },
 
   async getAllAppointmentsByActivityId(activityId) {

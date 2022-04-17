@@ -25,9 +25,9 @@ module.exports = {
       averageRating: 0
     };
     const insertInfo = await parkCollection.insertOne(newPark);
-    if (!insertInfo.acknowledged || !insertInfo.insertedId)
-      throw 'Could not add a park';
-    return true;
+    if (!insertInfo.acknowledged || !insertInfo.insertedId) throw 'Could not add a park';
+    newPark = await parkCollection.findOne(newPark);
+    return newPark;
   },
   async removePark(id) {
     if (!id) throw 'please provide park ID';

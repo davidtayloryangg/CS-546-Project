@@ -35,9 +35,9 @@ module.exports = {
       appointments: []
     };
     const insertInfo = await userCollection.insertOne(newUser);
-    if (!insertInfo.acknowledged || !insertInfo.insertedId)
-      throw 'Could not add user';
-    return true;
+    if (!insertInfo.acknowledged || !insertInfo.insertedId) throw 'Could not add user';
+    newUser = await userCollection.findOne(newUser);
+    return newUser;
   },
 
   async checkUser(email, password) {

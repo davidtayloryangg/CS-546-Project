@@ -3,6 +3,8 @@ const users = require("../data/users");
 const parks = require("../data/parks");
 const activities = require("../data/activities");
 const appointments = require("../data/appointments");
+const comments = require("../data/comments");
+const reviews = require("../data/reviews");
 
 const dbConnection = require('../config/mongoConnection');
 const { getPark, getParkByName } = require("../data/parks");
@@ -10,56 +12,32 @@ const { getPark, getParkByName } = require("../data/parks");
 async function test() {
   const db = await dbConnection.connectToDb();
   await db.dropDatabase();
-  console.log('---------Init Users----------');
-  try {
-    // create a new user:
-    await users.createUser("Yuheng", "Xiao", "yxiao38@stevens.edu", "Xyh123456");
-    console.log('create a new user successfully');
-  } catch (e) {
-    console.error(e);
-  }
-  console.log('---------Init Parks----------');
-  try {
-    // create a new park:
-    await parks.createPark("Stevens", "9", "5", "Hoboken");
-    console.log('create a new park successfully');
-  } catch (e) {
-    console.error(e);
-  }
-  console.log('---------Init Activities----------');
-  try {
-    // create a new activities:
-    const park = await parks.getParkByName("Stevens");
-    await activities.createActivity(
-      park._id,
-      "Tennis",
-      4,
-      8,
-      "good"
-    );
-    console.log('create a new activities successfully');
-  } catch (e) {
-    console.error(e);
-  }
-  console.log('---------Init Appointments----------');
-  try {
-    // create a new appointment:
-    const user = await users.getUserByEmail("yxiao38@stevens.edu");
-    const park = await parks.getParkByName("Stevens");
-    const acitivity = await activities.get()
-    await appointments.createAppointment(
-      user._id,
-      park._id,
-      "2022",
-      "4",
-      "16",
-      "5",
-      "20"
-    );
-    console.log('create a new appointment successfully');
-  } catch (e) {
-    console.error(e);
-  }
+
+  console.log('------------Init Users------------');
+  const user1 = await users.createUser("Yuheng", "Xiao", "yxiao38@stevens.edu", "Xyh123456");
+  const user2 = await users.createUser("Yue", "Qin", "qinyue12345@gmail.com", "qinyue12345");
+  console.log('------------create users successfully------------');
+
+  console.log('------------Init Parks------------');
+  const park1 = await parks.createPark("Stevens", "9", "5", "Hoboken");
+  console.log('------------create parks successfully------------');
+
+  console.log('------------Init Activities------------');
+  // create a new activities:
+  const activity1 = await activities.createActivity(park1._id, "Tennis", 4, 8);
+  console.log('------------create activities successfully------------');
+
+  console.log('------------Init Appointments------------');
+  const appointment1 = await appointments.createAppointment(user1._id, park1._id, activity1._id, "2022", "4", "16", "5", "20");
+  console.log('------------create appointments successfully------------');
+
+  console.log('------------Init Comments------------');
+  const comment1 = await comments.createComment(park1._id, 4.55, "nice park!");
+  console.log('------------create comments successfully------------');
+
+  console.log('------------Init Reviews------------');
+  const review1 = await reviews.createReview(user1._id, "nice!!!!!");
+  console.log('------------create reviews successfully------------');
 
   // try {
   //   // get All Appointments By ActivityId:
@@ -94,7 +72,7 @@ async function test() {
   //   console.error(e);
   // }
 
-  await db.serverConfig.close();
+  await dbConnection.closeConnection();
 }
 
 test();
