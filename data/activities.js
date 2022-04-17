@@ -11,18 +11,18 @@ function checkActivityId(activityId) {
 }
 
 module.exports = {
-  async createActivity(parkId, name, numberOfCourts, maxPeople, appointmens, comments, reviews) {
-    if (!parkId || !name || !numberOfCourts || !maxPeople || !appointmens || !comments || !reviews)
+  async createActivity(parkId, name, numberOfCourts, maxPeople, reviews) {
+    if (!parkId || !name || !numberOfCourts || !maxPeople || !reviews)
       throw 'please provide all inputs';
     if (!ObjectId.isValid(parkId)) throw 'invalid park ID';
 
     const newId = ObjectId();
     let newActivity = {
       _id: newId,
+      parkId: parkId,
       name: name,
       numberOfCourts: numberOfCourts,
       maxPeople: maxPeople,
-      appointmens: [],
       reviews: []
     };
 
@@ -62,12 +62,12 @@ module.exports = {
     // if (!ObjectId.isValid(id)) throw 'Invalid Object ID';
     const parkCollection = await parks();
     const updateactivities = {
-      parkId, 
-      name, 
-      numberOfCourts, 
-      maxPeople, 
-      appointmens, 
-      comments, 
+      parkId,
+      name,
+      numberOfCourts,
+      maxPeople,
+      appointmens,
+      comments,
       reviews
     };
 

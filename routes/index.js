@@ -6,7 +6,7 @@ const logout = require('./logout');
 const users = require('./users');
 const parks = require('./parks');
 const notification = require('./notification');
-const comment = require('./comment');
+const comment = require('./comments');
 
 const constructorMethod = (app) => {
   // app.uses go here
@@ -18,7 +18,7 @@ const constructorMethod = (app) => {
   // app.use('/parks', parks);
   // app.use('/appointments', appointments);
   // app.use('/notification', notification);
-  
+
   app.all('*', (req, res) => {
     res.status(404).json('Error 404: Site path not found');
   });
