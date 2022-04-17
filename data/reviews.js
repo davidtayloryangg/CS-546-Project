@@ -38,7 +38,7 @@ module.exports = {
       throw 'Could not remove that a review';
     return true;
   },
-  async getAllreviews(userId) {
+  async getAllReviews(userId) {
     if (!userId) throw 'please provide user id';
     if (!ObjectId.isValid(userId)) throw 'invalid user ID';
     
