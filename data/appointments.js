@@ -87,7 +87,7 @@ module.exports = {
     // parkId = ObjectId(parkId);
 
     const userCollection = await users();
-    const avalibleappointment = await userCollection.findOne({ "appointments.activityId": activityId, "appointments.parkId": parkId, "appointments.year": year, "appointments.month": month, "appointments.day": day, "appointments.hour": hour, "appointments.approvement": false });
+    const avalibleappointment = await userCollection.findOne({ "appointments.activityId": activityId, "appointments.year": year, "appointments.month": month, "appointments.day": day, "appointments.approvement": false });
     if (avalibleappointment === null) throw 'No avalible appointment, you can creat a new appointment!';
     return avalibleappointment;
   },
