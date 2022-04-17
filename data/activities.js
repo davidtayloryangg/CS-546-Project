@@ -23,6 +23,7 @@ module.exports = {
       name: name,
       numberOfCourts: numberOfCourts,
       maxPeople: maxPeople,
+      appointmens: [],
       reviews: []
     };
 

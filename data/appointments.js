@@ -5,10 +5,11 @@ const parks = mongoCollections.parks;
 let { ObjectId } = require('mongodb');
 
 module.exports = {
-  async createAppointment(userOneId, parkId, year, month, day, hour, minute) {
-    if (!userOneId || !parkId || !year || !month || !day || !hour || !minute) throw 'please provide all inputs';
+  async createAppointment(userOneId, parkId, activityId, year, month, day, hour, minute) {
+    if (!userOneId || !parkId || !activityId || !year || !month || !day || !hour || !minute) throw 'please provide all inputs';
     if (!ObjectId.isValid(userOneId)) throw 'invalid user ID';
     if (!ObjectId.isValid(parkId)) throw 'invalid park ID';
+    if (!ObjectId.isValid(activityId)) throw 'invalid park ID';
     if (typeof year !== 'string' || year.trim().length === 0 || isNaN(parseInt(year)) || parseInt(year) < new Date().getFullYear()) throw "invalid year or the year was past";
     if (typeof month !== 'string' || month.trim().length === 0 || isNaN(parseInt(month)) || parseInt(month) < new Date().getMonth()) throw "invalid month or the month was past";
     if (typeof day !== 'string' || day.trim().length === 0 || isNaN(parseInt(day)) || parseInt(day) < new Date().getDay()) throw "invalid day or the day was past";
@@ -20,6 +21,7 @@ module.exports = {
       appointmentId: newId,
       userOneId: userOneId,
       parkId: parkId,
+      activityId: activityId,
       year: year,
       month: month,
       day: day,
@@ -36,12 +38,12 @@ module.exports = {
     if (!updateUser.matchedCount && !updateUser.modifiedCount)
       throw 'Could not add a new appintment to User';
 
-    // const parkCollection = await parks();
-    // const updateActivity = await parkCollection.updateOne({ "activities._id": ObjectId(activityId) },
-    //   { $addToSet: { appointments: newAppointment } }
-    // );
-    // if (!updateActivity.matchedCount && !updateActivity.modifiedCount)
-    //   throw 'Could not add a new appintment to Activity';
+    const parkCollection = await parks();
+    const updateActivity = await parkCollection.updateOne({ "activities._id": ObjectId(activityId) },
+      { $addToSet: { appointments: newAppointment } }
+    );
+    if (!updateActivity.matchedCount && !updateActivity.modifiedCount)
+      throw 'Could not add a new appintment to Activity';
 
     return true;
   },
