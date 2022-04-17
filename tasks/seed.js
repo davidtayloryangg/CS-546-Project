@@ -29,9 +29,9 @@ async function test() {
   console.log('---------Init Activities----------');
   try {
     // create a new activities:
-    const park1 = await parks.getParkByName("Stevens");
+    const park = await parks.getParkByName("Stevens");
     await activities.createActivity(
-      park1._id,
+      park._id,
       "Tennis",
       4,
       8,
@@ -44,8 +44,17 @@ async function test() {
   console.log('---------Init Appointments----------');
   try {
     // create a new appointment:
-    const user1 = await
-      await appointments.createAppointment("625c0c1d5a60f8da56935094", "625c0c41798d88629ab8fa80", "625c0c2878f2546bb4d9fa5a", "2022", "4", "16", "5", "20");
+    const user = await users.getUserByEmail("yxiao38@stevens.edu");
+    const park = await parks.getParkByName("Stevens");
+    await appointments.createAppointment(
+      user._id,
+      park._id,
+      "2022",
+      "4",
+      "16",
+      "5",
+      "20"
+    );
     console.log('create a new appointment successfully');
   } catch (e) {
     console.error(e);

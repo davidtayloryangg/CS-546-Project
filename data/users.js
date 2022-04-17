@@ -6,7 +6,7 @@ const func = require('./functions');
 
 module.exports = {
   async createUser(firstname, lastname, email, password) {
-    if (!firstname|| !lastname || !email || !password)
+    if (!firstname || !lastname || !email || !password)
       throw 'Please provide firstname, lastname, email address and password';
     func.checkUserName(firstname);
     func.checkUserName(lastname);
@@ -14,7 +14,7 @@ module.exports = {
     func.checkPassword(password);
 
     const userCollection = await users();
-    const user = await userCollection.findOne({ email: email.toLowerCase()});
+    const user = await userCollection.findOne({ email: email.toLowerCase() });
     if (user !== null) throw 'this email has been registered!';
 
     const saltRounds = 16;
@@ -47,9 +47,9 @@ module.exports = {
     func.checkPassword(password);
 
     const userCollection = await users();
-    const user = await userCollection.findOne({ email: email.toLowerCase()});
+    const user = await userCollection.findOne({ email: email.toLowerCase() });
     if (user === null) throw 'Either the email address or password is invalid';
-    let comparePassword = bcrypt.compare( password, user.password);
+    let comparePassword = bcrypt.compare(password, user.password);
     if (comparePassword)
       return true;
     else
@@ -57,23 +57,23 @@ module.exports = {
   },
 
   async modifyUserProfile(id, email, gender, city, state, age, description) {
-    if (arguments.length!=6) throw 'the number of parameter is false';
+    if (arguments.length != 6) throw 'the number of parameter is false';
     if (!id) throw 'You must provide an id to search for';
     func.checkId(id)
     func.checkEmail(email)
     const userCollection = await users();
     const modifyuser = {
-      email:email,
-      gender:gender, 
-      city:city, 
-      state:state, 
-      age:age, 
-      description:description
+      email: email,
+      gender: gender,
+      city: city,
+      state: state,
+      age: age,
+      description: description
     };
     try {
-        await this.get(id);
+      await this.get(id);
     } catch (e) {
-        throw (e);
+      throw (e);
     }
 
     const updatedInfo = await userCollection.updateOne(
@@ -85,13 +85,22 @@ module.exports = {
     }
     return await this.get(id);
   },
-  
-  async get(id){
+
+  async getUserById(id) {
     func.checkId(id)
-    const userCollection=await users()
+    const userCollection = await users()
     const user = await userCollection.findOne({ _id: ObjectId(id) });
     if (user === null) throw 'No user with that id';
-    user._id=user._id.toString();
+    user._id = user._id.toString();
     return user;
-  }
+  },
+
+  async getUserByEmail(email) {
+
+    const userCollection = await users()
+    const user = await userCollection.findOne({ email: email });
+    if (user === null) throw 'No user with that id';
+    user._id = user._id.toString();
+    return user;
+  },
 }
