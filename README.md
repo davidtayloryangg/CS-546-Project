@@ -5,7 +5,7 @@
 1. Database: Yue Qin
    - User: Wenjing Zhou :white_check_mark:
    - Activitiy: David Yang
-   - Appointment: YuTong Wei Yuheng Xiao
+   - Appointment: Yuheng Xiao :white_check_mark:
    - Comment: Yue Qin :white_check_mark:
    - Review: Yue Qin :white_check_mark:
    - Park: David Yang :white_check_mark:
@@ -32,8 +32,8 @@
      - ('/parks/activities/appointments').post Yuheng Xiao
    - Users: Yuheng Xiao
      - ('/users').get Wenjing Zhou :white_check_mark:
-     - ('/users/reviews').get
-     - ('/users/reviews').post
+     - ('/users/reviews').get :white_check_mark:
+     - ('/users/reviews').post :white_check_mark:
      - ('/users/notification').get
      - ('/users/profile').get Wenjing Zhou :white_check_mark:
      - ('/users/profile').post
