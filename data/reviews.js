@@ -1,6 +1,7 @@
 // Reviews is a sub-document of users
 const mongoCollections = require('../config/mongoCollections');
 const users = mongoCollections.users;
+const { ObjectId } = require('mongodb');
 
 module.exports = {
   async createReview(userId, userReview) {

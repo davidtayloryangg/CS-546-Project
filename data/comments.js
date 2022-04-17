@@ -2,7 +2,7 @@
 const func = require('./functions');
 const mongoCollections = require('../config/mongoCollections');
 const parks = mongoCollections.parks;
-
+const { ObjectId } = require('mongodb');
 
 module.exports = {
   async createComment(parkId, rating, parkComment) {

@@ -1,4 +1,5 @@
 // This file provides validator functions
+const { ObjectId } = require('mongodb');
 
 function checkUserName(string) {
   if (typeof string === 'string' || string instanceof String) {

@@ -1,6 +1,7 @@
 // Activities is a sub-document of park
 const mongoCollections = require('../config/mongoCollections');
 const parks = mongoCollections.parks;
+const { ObjectId } = require('mongodb');
 
 module.exports = {
   async createActivity(parkId, name, numberOfCourts, maxPeople, appointmens, comments, reviews) {
