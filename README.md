@@ -26,8 +26,8 @@
      - ('/parks/allParks').get
      - ('/parks/comments').get Yue Qin :white_check_mark:
      - ('/parks/comments').post Yue Qin :white_check_mark:
-     - ('/parks/activities').get
-     - ('/parks/activities').post
+     - ('/parks/activities').get Yutong Wei :white_check_mark:
+     - ('/parks/activities').post Yutong Wei :white_check_mark:
      - ('/parks/activities/appointments').get Yuheng Xiao
      - ('/parks/activities/appointments').post Yuheng Xiao
    - Users: Yuheng Xiao
