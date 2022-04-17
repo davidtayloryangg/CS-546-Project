@@ -2,10 +2,10 @@
 const func = require('./functions');
 const mongoCollections = require('../config/mongoCollections');
 const parks = mongoCollections.parks;
-
+const { ObjectId } = require('mongodb');
 
 module.exports = {
-  async createComment(parkId, rating, parkReview) {
+  async createComment(parkId, rating, parkComment) {
     if (!userId || !rating || !parkReview)
       throw 'please provide all inputs';
     if (!ObjectId.isValid(parkId)) throw 'invalid park ID';
@@ -15,7 +15,7 @@ module.exports = {
       _id: newId,
       parkId: parkId,
       rating: rating,
-      parkReview: parkReview
+      parkComment: parkComment
     };
     
     const parkCollection = await parks();

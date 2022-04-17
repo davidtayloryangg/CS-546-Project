@@ -1,6 +1,7 @@
 // Activities is a sub-document of park
 const mongoCollections = require('../config/mongoCollections');
 const parks = mongoCollections.parks;
+const { ObjectId } = require('mongodb');
 
 function checkActivityId(activityId) {
   if (arguments.length !== 1) throw 'paramater is wrong';
