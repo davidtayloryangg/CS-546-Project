@@ -12,3 +12,14 @@ router
         res.status(500).json(e);
     }
 })
+
+router
+.route('/parks/search')
+.get(async (req, res) => {
+    try{
+        const searchParks = await data.getParkByName();
+        res.json(searchParks);
+    }catch (e) {
+        res.status(500).json(e);
+    }
+})

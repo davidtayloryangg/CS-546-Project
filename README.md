@@ -21,9 +21,9 @@
      - ('/signup').post Wenjing Zhou :white_check_mark:
    - Parks:
      - ('/parks').get
-     - ('/parks/search').get
+     - ('/parks/search').get Yutong Wei :white_check_mark:
      - ('/parks/recommendation').get
-     - ('/parks/allParks').get
+     - ('/parks/allParks').get Yutong Wei :white_check_mark:
      - ('/parks/comments').get Yue Qin :white_check_mark:
      - ('/parks/comments').post Yue Qin :white_check_mark:
      - ('/parks/activities').get Yutong Wei :white_check_mark:
