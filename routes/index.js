@@ -16,7 +16,7 @@ const constructorMethod = (app) => {
   // app.use('/logout', logout);
   // app.use('/users', users);
   app.use('/parks', parks);
-  // app.use('/appointments', appointments);
+  app.use('/appointments', appointments);
   // app.use('/notification', notification);
 
   app.all('*', (req, res) => {
