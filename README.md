@@ -22,7 +22,7 @@
    - Parks:
      - ('/parks').get
      - ('/parks/search').get Yutong Wei :white_check_mark:
-     - ('/parks/recommendation').get
+     - ('/parks/recommendation').get Yuheng Xiao
      - ('/parks/allParks').get Yutong Wei :white_check_mark:
      - ('/parks/comments').get Yue Qin :white_check_mark:
      - ('/parks/comments').post Yue Qin :white_check_mark:
