@@ -30,7 +30,7 @@
      - ('/parks/activities').post Yutong Wei :white_check_mark:
      - ('/parks/activities/appointments').get Yuheng Xiao
      - ('/parks/activities/appointments').post Yuheng Xiao
-   - Users: Yuheng Xiao
+   - Users:
      - ('/users').get Wenjing Zhou :white_check_mark:
      - ('/users/reviews').get Yue Qin :white_check_mark:
      - ('/users/reviews').post Yue Qin :white_check_mark:
@@ -41,10 +41,10 @@
 3. Frontend:
    - Landing Page:
    - Park List Page:
-   - User Profile Page: Yuheng Xiao
+   - User Profile Page:
    - Park activities management Page:
    - Activity Page:
-   - Park Activities Recommendation Page:
+   - Park Activities Recommendation Page: Yuheng Xiao
 
 ## Team Members
 
