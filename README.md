@@ -22,8 +22,6 @@
    - Parks:
      - ('/parks').get
      - ('/parks/search').get Yutong Wei :white_check_mark:
-     - ('/appointments/recommendation').get Yuheng Xiao
-     - ('/appointments/recommendation').post Yuheng Xiao
      - ('/parks/allParks').get Yutong Wei :white_check_mark:
      - ('/parks/comments').get Yue Qin :white_check_mark:
      - ('/parks/comments').post Yue Qin :white_check_mark:
@@ -31,6 +29,8 @@
      - ('/parks/activities').post Yutong Wei :white_check_mark:
      - ('/appointments').get Yuheng Xiao
      - ('/appointments').post Yuheng Xiao
+     - ('/appointments/recommendation').get Yuheng Xiao
+     - ('/appointments/recommendation').post Yuheng Xiao
    - Users:
      - ('/users').get Wenjing Zhou :white_check_mark:
      - ('/users/reviews').get Yue Qin :white_check_mark:
