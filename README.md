@@ -22,14 +22,15 @@
    - Parks:
      - ('/parks').get
      - ('/parks/search').get Yutong Wei :white_check_mark:
-     - ('/parks/recommendation').get Yuheng Xiao
+     - ('/appointments/recommendation').get Yuheng Xiao
+     - ('/appointments/recommendation').post Yuheng Xiao
      - ('/parks/allParks').get Yutong Wei :white_check_mark:
      - ('/parks/comments').get Yue Qin :white_check_mark:
      - ('/parks/comments').post Yue Qin :white_check_mark:
      - ('/parks/activities').get Yutong Wei :white_check_mark:
      - ('/parks/activities').post Yutong Wei :white_check_mark:
-     - ('/parks/activities/appointments').get Yuheng Xiao
-     - ('/parks/activities/appointments').post Yuheng Xiao
+     - ('/appointments').get Yuheng Xiao
+     - ('/appointments').post Yuheng Xiao
    - Users:
      - ('/users').get Wenjing Zhou :white_check_mark:
      - ('/users/reviews').get Yue Qin :white_check_mark:
