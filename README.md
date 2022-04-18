@@ -29,7 +29,6 @@
      - ('/parks/activities').post Yutong Wei :white_check_mark:
      - ('/appointments').get Yuheng Xiao
      - ('/appointments').post Yuheng Xiao
-     - ('/appointments/recommendation').get Yuheng Xiao
      - ('/appointments/recommendation').post Yuheng Xiao
    - Users:
      - ('/users').get Wenjing Zhou :white_check_mark:
