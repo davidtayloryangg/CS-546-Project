@@ -1,0 +1,59 @@
+* {
+	box-sizing: border-box;
+}
+
+html {
+    text-align: center;
+    padding: 100px 50px;
+}
+
+body {
+	font-size: 14pt;
+}
+
+body {
+	background: #dedede;
+	font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+main {
+	max-width: 75%;
+	margin: auto;
+}
+
+header {
+	border-bottom: 1px solid #afafaf;
+}
+
+h1 {
+	font-size: 2rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+}
+
+h3 {
+	font-size: 1.5rem;
+}
+
+p {
+	font-size: 1rem;
+	line-height: 2;
+}
+
+label {
+	font-weight: bold;
+}
+
+ul {
+    width: 400px;
+    text-align: left;
+    margin: 0 auto;
+    list-style: none;
+}
+
+li {
+    margin: 0 auto;
+    padding-left: 10px;
+}
