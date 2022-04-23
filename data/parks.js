@@ -12,13 +12,13 @@ module.exports = {
     if (park !== null) throw 'this park has been registered!';
 
     const newId = ObjectId();
-    const newOpentime = new Date(opentime);
-    const newClosetime = new Date(closetime);
+    // const newOpentime = new Date();
+    // const newClosetime = new Date();
     let newPark = {
       _id: newId,
       name: name,
-      openTime: newOpentime,
-      closeTime: newClosetime,
+      openTime: opentime,
+      closeTime: closetime,
       location: location,
       activities: [],
       comments: [],
@@ -35,7 +35,7 @@ module.exports = {
 
     const parkCollection = await parks();
     const deletionInfo = await parkCollection.deleteOne({ _id: ObjectId(id) });
-    if (deletionInfo.deletedCount === 0) throw `Could not delete park with id of ${id}`;
+    if (deletionInfo.deletedCount === 0) throw `Could not delete park with id of ${id} `;
     return true;
   },
   async updatePark(id, name, opentime, closetime, location) {
