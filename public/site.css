@@ -1,59 +1,220 @@
-* {
-	box-sizing: border-box;
+*{
+	/* Universal reset: */
+	margin:0;
+	padding:0;
 }
 
-html {
-    text-align: center;
-    padding: 100px 50px;
+header{
+  text-align: center;
 }
 
-body {
-	font-size: 14pt;
+body{
+	/* Setting the default text color, size, page background and a font stack: */
+	text-align: center;
+  font-size:0.825em;
+	color:#fcfcfc;
+	background-color:#355664;
+	font-family:Arial, Helvetica, sans-serif;
 }
 
-body {
-	background: #dedede;
-	font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+/* Hyperlink Styles: */
+
+a, a:visited {
+	color:#0196e3;
+	text-decoration:none;
+	outline:none;
 }
 
-main {
-	max-width: 75%;
-	margin: auto;
+a:hover{
+	text-decoration:underline;
 }
 
-header {
-	border-bottom: 1px solid #afafaf;
+a img{
+	border:none;
 }
 
-h1 {
-	font-size: 2rem;
+/* Headings: */
+
+h1,h2,h3{
+	font-family:"Myriad Pro","Helvetica Neue",Helvetica,Arial,Sans-Serif;
+	text-shadow:0 1px 1px black;
 }
 
-h2 {
-	font-size: 1.5rem;
+h1{
+	/* The logo text */
+	font-size:3.5em;
+	padding:0.5em 0 0;
+	text-transform:uppercase;
 }
 
-h3 {
-	font-size: 1.5rem;
+h3{
+	/* The slogan text */
+	font-family:forte,"Myriad Pro","Helvetica Neue",Helvetica,Arial,Sans-Serif;
+	font-size:2em;
+	font-weight:normal;
+	margin:0 0 1em;
 }
 
-p {
-	font-size: 1rem;
-	line-height: 2;
+
+h2{
+	font-size:2.2em;
+	font-weight:normal;
+	letter-spacing:0.01em;
+	text-transform:uppercase;
 }
 
-label {
-	font-weight: bold;
+p{
+	line-height:1.5em;
+	padding-bottom:1em;
 }
 
-ul {
-    width: 400px;
-    text-align: left;
-    margin: 0 auto;
-    list-style: none;
+.line{
+	/* The dividing line: */
+	height:1px;
+	background-color:#24404c;
+	border-bottom:1px solid #416371;
+	margin:1em 0;
+	overflow:hidden;
 }
 
-li {
-    margin: 0 auto;
-    padding-left: 10px;
+/* The form styling */
+input[type=text], select {
+  width: 61.8%;
+  padding: 12px 20px;
+  margin: 20px 0;
+  display: inline-block;
+  border: none;
+  border-radius: 10px;
+  box-sizing: border-box;
+  font-size: 16px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+  width: 70%;
+}
+
+/* The button styling */
+.button {
+  display: inline-block;
+  background-color: #4CAF50; /* Green */
+  border: none;
+  border-radius: 10px;
+  box-sizing: border-box;
+  color: white;
+  text-align: center;
+  font-size: 16px;
+  padding: 12px 20px;
+  width: 125px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 20px 0;
+}
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '»';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+/* The clearfix hack to clear the floats: */
+.clear:after{
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+/* The navigation styling: */
+
+
+/* Article styles: */
+
+#page{
+	width:960px;
+	margin:0 auto;
+	position:relative;
+}
+
+article{
+	margin:3em 0;
+	padding:20px;
+	
+	text-shadow:0 2px 0 black;
+}
+
+figure{
+	border:3px solid #142830;
+	float:right;
+	height:300px;
+	margin-left:15px;
+	overflow:hidden;
+	width:500px;
+}
+
+figure:hover{
+	-moz-box-shadow:0 0 2px #4D7788;
+	-webkit-box-shadow:0 0 2px #4D7788;
+	box-shadow:0 0 2px #4D7788;
+}
+
+figure img{
+	margin-left:-60px;
+}
+
+/* Footer styling: */
+
+footer{
+	margin-bottom:30px;
+	text-align:center;
+	font-size:0.825em;
+}
+
+
+footer p{
+	margin-bottom:-2.5em;
+	position:relative;
+}
+
+footer a,footer a:visited{
+	color:#cccccc;
+	background-color:#213e4a;
+	display:block;
+	padding:2px 4px;
+	z-index:100;
+	position:relative;
+}
+
+footer a:hover{
+	text-decoration:none;
+	background-color:#142830;
+}
+
+footer a.by{
+	float:left;
+
+}
+
+footer a.up{
+	float:right;
 }

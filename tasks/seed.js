@@ -19,7 +19,7 @@ async function test() {
   console.log('------------create users successfully------------');
 
   console.log('------------Init Parks------------');
-  const park1 = await parks.createPark("Stevens", "9", "5", "Hoboken");
+  const park1 = await parks.createPark("Stevens", "9:00", "17:00", "Hoboken");
   console.log('------------create parks successfully------------');
 
   console.log('------------Init Activities------------');

@@ -61,7 +61,9 @@ module.exports = {
   },
   async getAllParks() {
     const parkCollection = await parks();
-    const parkList = await parkCollection.find({}, { projection: { _id: 1, name: 1 } }).toArray();
+    const parkList = await parkCollection.find({}, {
+      // projection: { _id: 1, name: 1 }
+    }).toArray();
     if (!parkList) throw 'could not get all parks';
     return parkList;
   },
