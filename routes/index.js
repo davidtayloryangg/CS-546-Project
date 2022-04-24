@@ -1,8 +1,5 @@
 const home = require('./home');
 const appointments = require('./appointments');
-const signup = require('./signup');
-const login = require('./login');
-const logout = require('./logout');
 const users = require('./users');
 const parks = require('./parks');
 const notification = require('./notification');
@@ -11,10 +8,7 @@ const comment = require('./comments');
 const constructorMethod = (app) => {
   // app.uses go here
   app.use('/', home);
-  // app.use('/signup', signup);
-  // app.use('/login', login);
-  // app.use('/logout', logout);
-  // app.use('/users', users);
+  app.use('/users', users);
   app.use('/parks', parks);
   app.use('/appointments', appointments);
   // app.use('/notification', notification);

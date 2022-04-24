@@ -7,7 +7,6 @@
       success: function (res) {
         var list = $("#ParkRecommentdationList");
         console.log(res);
-        console.log("ddasdsadasdasdawdawdawd");
         for (const element of res) {
           var li = document.createElement("li");
           li.innerHTML = `

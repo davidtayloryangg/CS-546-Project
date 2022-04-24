@@ -68,6 +68,13 @@ p{
 	padding-bottom:1em;
 }
 
+label{
+  font-size:1.5em;
+  display: inline-block;
+  width: 200px;
+  text-align: right;
+}
+
 .line{
 	/* The dividing line: */
 	height:1px;
@@ -78,8 +85,19 @@ p{
 }
 
 /* The form styling */
-input[type=text], select {
-  width: 61.8%;
+.textInput {
+  width: 16.5%;
+  padding: 12px 20px;
+  margin: 20px 0;
+  display: inline-block;
+  border: none;
+  border-radius: 10px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.search{
+  width: 50%;
   padding: 12px 20px;
   margin: 20px 0;
   display: inline-block;
@@ -91,8 +109,8 @@ input[type=text], select {
   transition: width 0.4s ease-in-out;
 }
 
-input[type=text]:focus {
-  width: 70%;
+.search:focus {
+  width: 61.8%;
 }
 
 /* The button styling */
@@ -146,7 +164,34 @@ input[type=text]:focus {
 }
 
 /* The navigation styling: */
+ul.topnav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #f3f3f3;
+}
 
+ul.topnav li {float: left;}
+
+ul.topnav li a {
+    display: block;
+    color: #100;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+ul.topnav li a:hover:not(.active) {
+   font-weight:bold;
+}
+
+ul.topnav li.right {float: right;}
+
+@media screen and (max-width: 600px){
+    ul.topnav li.right, 
+    ul.topnav li {float: none;}
+}
 
 /* Article styles: */
 

@@ -39,7 +39,8 @@
      - ('/users/profile').post
 
 3. Frontend:
-   - Landing Page:
+   - Home Page: Yue Qin :white_check_mark:
+   - Login/Signup Page: Yue Qin :white_check_mark:
    - Park List Page:
    - User Profile Page:
    - Park activities management Page:

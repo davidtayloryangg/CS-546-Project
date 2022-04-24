@@ -1,0 +1,51 @@
+<header>
+    <div>
+        <ul class="topnav">
+            <li><a href="/">HOME</a></li>
+            <li><a href="">ACTIVITIES</a></li>
+            <li class="right"><a href="">ABOUT</a></li>
+            <li class="right"><a href="/users">USER</a></li>
+        </ul>
+    </div>
+    
+    <h1>
+        Login
+    </h1>
+</header>
+
+<div >
+    <form action="/users/login" method="POST" id="login-form">
+        <div class="login">
+            <label for="firstname">First Name:</label>
+            <input type="text" name="firstname" id="firstname" class="textInput"/>
+        </div> 
+        <div class="login">
+            <label for="lastname">Last Name:</label>
+            <input type="text" name="lastname" id="lastname" class="textInput" />
+        </div>
+        <div class="login">
+            <label for="email">Email Address:</label>
+            <input type="text" name="email" id="email" class="textInput"/>
+        </div>
+        <div class="login">
+            <label for="Password">Password:</label>
+            <input type="password" name="password" id="password" class="textInput"/>
+        </div>
+        <div>
+            <button type="submit" class="button">Login</button>
+        </div>
+    </form>
+    {{#if send}}
+	    <p >{{send}}</p>
+	  {{/if}}
+    {{#if error}}
+	    <p >{{error}}</p>
+	  {{/if}}
+    {{#if status}}
+        <p>{{status}}</p>
+    {{else}}
+        <p>{{message}}</p>
+    {{/if}}
+    <hr>
+    <a href="/users/signup"> Need to register? Click here to sign-up </a>
+</div>

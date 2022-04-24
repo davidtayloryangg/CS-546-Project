@@ -49,7 +49,7 @@ module.exports = {
     const userCollection = await users();
     const user = await userCollection.findOne({ email: email.toLowerCase() });
     if (user === null) throw 'Either the email address or password is invalid';
-    let comparePassword = bcrypt.compare(password, user.password);
+    let comparePassword = bcrypt.compare(password, user.hashedPassword);
     if (comparePassword)
       return true;
     else
