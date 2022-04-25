@@ -4,6 +4,7 @@ const users = require('./users');
 const parks = require('./parks');
 const notification = require('./notification');
 const comment = require('./comments');
+const img = require('./image');
 
 const constructorMethod = (app) => {
   // app.uses go here
@@ -11,6 +12,7 @@ const constructorMethod = (app) => {
   app.use('/users', users);
   app.use('/parks', parks);
   app.use('/appointments', appointments);
+  app.use('/img', img);
   // app.use('/notification', notification);
 
   app.all('*', (req, res) => {

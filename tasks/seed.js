@@ -19,8 +19,6 @@ async function test() {
   console.log('------------create users successfully------------');
 
   console.log('------------Init Parks------------');
-  const park1 = await parks.createPark("Stevens", "9:00", "17:00", "Hoboken");
-
   //Parks
   const columbus = await parks.createPark(
     "Columbus Park",

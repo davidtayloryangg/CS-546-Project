@@ -18,15 +18,16 @@ body{
 }
 
 /* Hyperlink Styles: */
-
-a, a:visited {
-	color:#0196e3;
-	text-decoration:none;
-	outline:none;
+a:link{
+  text-decoration:none;
 }
-
 a:hover{
+  color: #fffafa;
+  font-weight: bold;
 	text-decoration:underline;
+}
+a:visited {
+	text-decoration:none;
 }
 
 a img{
@@ -34,7 +35,6 @@ a img{
 }
 
 /* Headings: */
-
 h1,h2,h3{
 	font-family:"Myriad Pro","Helvetica Neue",Helvetica,Arial,Sans-Serif;
 	text-shadow:0 1px 1px black;
@@ -44,6 +44,7 @@ h1{
 	/* The logo text */
 	font-size:3.5em;
 	padding:0.5em 0 0;
+  color:#fffafa; 
 	text-transform:uppercase;
 }
 
@@ -64,8 +65,9 @@ h2{
 }
 
 p{
-	line-height:1.5em;
+	line-height:2em;
 	padding-bottom:1em;
+  font-weight:bold;
 }
 
 label{
@@ -83,8 +85,67 @@ label{
 	margin:1em 0;
 	overflow:hidden;
 }
+
 .txt{
   font-size: 16px;
+}
+
+/* For ALL list */
+.list{
+  text-align: left;
+}
+
+
+/* For Recommendation List */
+.searchDivStyle{
+  /* margin:0.5em 55em; */
+    margin: 0 auto;
+    width: 400px;
+    height: 400px;
+    padding: 0 100px;
+  border: none;
+  border-radius: 20px;
+  column-count: 2;
+}
+.searchDivStyleLeft, .searchDivStyleRight{
+  float: left;
+  overflow: hidden;
+  position: relative;
+  height: 400px;
+}
+.searchDivStyleLeft{
+  margin-left: -100px;
+  width: 350px;
+  left: -100px;
+}
+.searchDivStyleRight{
+  margin-left: -100px;
+  width: 350px;
+  right: -100px;
+  height: 300px;
+  text-align: left;
+}
+
+div.searchDivStyle a:link{
+  text-decoration:none;
+}
+
+div.searchDivStyle a:hover{
+	text-decoration:underline;
+}
+
+div.searchDivStyle a:visited {
+	text-decoration:none;
+}
+div.searchDivStyle a img{
+  width: 400px;
+  height: auto;
+  vertical-align:middle;
+}
+div.searchDivStyle a p {
+  color:#fffafa; 
+  /* display: inline-block;  */
+  vertical-align: middle;
 }
 
 /* The form styling */
@@ -105,7 +166,7 @@ label{
   margin: 20px 0;
   display: inline-block;
   border: none;
-  border-radius: 10px;
+  border-radius: 20px;
   box-sizing: border-box;
   font-size: 16px;
   -webkit-transition: width 0.4s ease-in-out;
@@ -121,7 +182,7 @@ label{
   display: inline-block;
   background-color: #4CAF50; /* Green */
   border: none;
-  border-radius: 10px;
+  border-radius: 20px;
   box-sizing: border-box;
   color: white;
   text-align: center;
@@ -197,12 +258,6 @@ ul.topnav li.right {float: right;}
 }
 
 /* Article styles: */
-
-#page{
-	width:960px;
-	margin:0 auto;
-	position:relative;
-}
 
 article{
 	margin:3em 0;

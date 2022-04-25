@@ -10,13 +10,20 @@
         for (const element of res) {
           var li = document.createElement("li");
           li.innerHTML = `
-            <a href=""><h1>Recommentdation</h1></a>
-            <br/>
-            <p>${element.name}</p>
-            <b>Open Time</b>
-            <p>${element.openTime}</p>
-            <b>Close Time</b>
-            <p>${element.closeTime}</p>
+          <div class="searchDivStyle">
+            <a href="../" class="a">
+              <div class="searchDivStyleLeft">
+                <img src="" onerror="this.src='https://blog.nscsports.org/wp-content/uploads/2014/10/default-img.gif'">
+              </div>
+              <div class="searchDivStyleRight">
+                <p>${element.name}</p>
+                <p>Open Time: ${element.openTime}</p>
+                <p>Close Time: ${element.closeTime}</p>
+                <p>Address: ${element.location}</p>
+                <br/>
+              </div>
+            </a>
+          </div>
           `;
           list.append(li);
         }
