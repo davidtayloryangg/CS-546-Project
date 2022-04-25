@@ -11,7 +11,7 @@
           var li = document.createElement("li");
           li.innerHTML = `
             <a href=""><h1>Recommentdation</h1></a>
-            <br />
+            <br/>
             <p>${element.name}</p>
             <b>Open Time</b>
             <p>${element.openTime}</p>
