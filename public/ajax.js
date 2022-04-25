@@ -5,27 +5,47 @@
       type: "get",
       dataType: "json",
       success: function (res) {
-        var list = $("#ParkRecommentdationList");
+        var imgList = $("#homeRecommendationImgList");
+        var txtList = $("#homeRecommendationTxtList");
         console.log(res);
         for (const element of res) {
-          var li = document.createElement("li");
-          li.innerHTML = `
-          <div class="searchDivStyle">
-            <a href="../" class="a">
-              <div class="searchDivStyleLeft">
-                <img src="/public/img/default_img.gif" onerror="this.src='https://blog.nscsports.org/wp-content/uploads/2014/10/default-img.gif'">
-              </div>
-              <div class="searchDivStyleRight">
-                <p>${element.name}</p>
-                <p>Open Time: ${element.openTime}</p>
-                <p>Close Time: ${element.closeTime}</p>
-                <p>Address: ${element.location}</p>
-                <br/>
-              </div>
-            </a>
-          </div>
+          var imgLi = document.createElement("li");
+          imgLi.innerHTML = `
+            <div class="homeRecommendationImgListItem">
+              <img src=${element.imgUrl} onerror="this.src='https://blog.nscsports.org/wp-content/uploads/2014/10/default-img.gif'">
+            </div>
           `;
-          list.append(li);
+          imgList.append(imgLi);
+          var txtLi = document.createElement("li");
+          var rating = (element.averageRating / 5) * 100;
+          txtLi.innerHTML = `
+            <div class="homeRecommendationTxtListItem">
+              <a href="/" class="a">
+                  <p>${element.name}</p>
+                   <div class="star-rating">
+                      <div class="star-rating-top" style="width:${rating}%">
+                          <span>★</span>
+                          <span>★</span>
+                          <span>★</span>
+                          <span>★</span>
+                          <span>★</span>
+                      </div>
+                      <div class="star-rating-bottom">
+                          <span>★</span>
+                          <span>★</span>
+                          <span>★</span>
+                          <span>★</span>
+                          <span>★</span>
+                      </div>
+                  </div>
+                  <p>Open Time: ${element.openTime}</p>
+                  <p>Close Time: ${element.closeTime}</p>
+                  <p>Address: ${element.location}</p>
+                  <br/>
+              </a>
+            </div>
+          `;
+          txtList.append(txtLi);
         }
       }
     })

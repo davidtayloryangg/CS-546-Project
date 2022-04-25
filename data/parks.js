@@ -22,7 +22,8 @@ module.exports = {
       location: location,
       activities: [],
       comments: [],
-      averageRating: 0
+      averageRating: 0,
+      imgUrl: "/public/img/default_img.gif"
     };
     const insertInfo = await parkCollection.insertOne(newPark);
     if (!insertInfo.acknowledged || !insertInfo.insertedId) throw 'Could not add a park';
@@ -42,13 +43,29 @@ module.exports = {
     if (!id || !name || !opentime || !closetime || !location) throw 'please provide all inputs';
     if (!ObjectId.isValid(id)) throw 'invalid park ID';
 
-    const newOpentime = new Date(opentime);
-    const newClosetime = new Date(closetime);
+    // const newOpentime = new Date(opentime);
+    // const newClosetime = new Date(closetime);
     let parkUpdateInfo = {
       name: name,
-      openTime: newOpentime,
-      closeTime: newClosetime,
+      openTime: opentime,
+      closeTime: closetime,
       location: location,
+    };
+    const parkCollection = await parks();
+    const updateInfo = await parkCollection.updateOne(
+      { _id: ObjectId(id) },
+      { $set: parkUpdateInfo }
+    );
+    if (!updateInfo.matchedCount && !updateInfo.modifiedCount)
+      throw 'Update park failed';
+    return true;
+  },
+  async updateParkImg(id, url) {
+    if (!id || !url) throw 'please provide all inputs';
+    if (!ObjectId.isValid(id)) throw 'invalid park ID';
+
+    let parkUpdateInfo = {
+      imgUrl: url
     };
     const parkCollection = await parks();
     const updateInfo = await parkCollection.updateOne(
@@ -77,7 +94,7 @@ module.exports = {
     return park;
   },
   async getParkByName(name) {
-    if (!name) throw 'please provide park ID';
+    if (!name) throw 'please provide park name';
 
     const parkCollection = await parks();
     const park = await parkCollection.findOne({ name: name });

@@ -8,6 +8,32 @@ header{
   text-align: center;
 }
 
+/* Article styles: */
+article{
+	margin:3em 0;
+	padding:20px;
+	text-shadow:0 2px 0 black;
+}
+
+figure{
+	border:3px solid #142830;
+	float:right;
+	height:300px;
+	margin-left:15px;
+	overflow:hidden;
+	width:500px;
+}
+
+figure:hover{
+	-moz-box-shadow:0 0 2px #4D7788;
+	-webkit-box-shadow:0 0 2px #4D7788;
+	box-shadow:0 0 2px #4D7788;
+}
+
+figure img{
+	margin-left:-60px;
+}
+
 body{
 	/* Setting the default text color, size, page background and a font stack: */
 	text-align: center;
@@ -22,17 +48,12 @@ a:link{
   text-decoration:none;
 }
 a:hover{
-  color: #fffafa;
-  font-weight: bold;
-	text-decoration:underline;
+  text-decoration:underline;
 }
 a:visited {
 	text-decoration:none;
 }
 
-a img{
-	border:none;
-}
 
 /* Headings: */
 h1,h2,h3{
@@ -77,75 +98,84 @@ label{
   text-align: right;
 }
 
-.line{
-	/* The dividing line: */
-	height:1px;
-	background-color:#24404c;
-	border-bottom:1px solid #416371;
-	margin:1em 0;
-	overflow:hidden;
-}
-
-.txt{
-  font-size: 16px;
-}
-
 /* For ALL list */
-.list{
-  text-align: left;
+ul li{
+  list-style: none;
 }
 
 
 /* For Recommendation List */
-.searchDivStyle{
-  /* margin:0.5em 55em; */
-    margin: 0 auto;
-    width: 400px;
-    height: 400px;
-    padding: 0 100px;
-  border: none;
-  border-radius: 20px;
-  column-count: 2;
+.homeRecommendationDiv{
+  margin: 0 auto;
+  width: 1000px;
+  height: 1000px;
+  padding: 5% 20% 20% 20%;
 }
-.searchDivStyleLeft, .searchDivStyleRight{
+.homeRecommendationImg{
   float: left;
-  overflow: hidden;
-  position: relative;
-  height: 400px;
+  width: 50%;
 }
-.searchDivStyleLeft{
-  margin-left: -100px;
-  width: 350px;
-  left: -100px;
-}
-.searchDivStyleRight{
-  margin-left: -100px;
-  width: 350px;
-  right: -100px;
+.homeRecommendationImgList li{
+  width: 500px;
   height: 300px;
+  padding: 20px 0;
+}
+.homeRecommendationImgList li img{
+  border-radius: 20px;
+  width: 500px;
+  height: 300px;
+  object-fit: cover;
+}
+.homeRecommendationTxt{
+  margin-left: 50%;
+  width: 50%;
+}
+.homeRecommendationTxtList li{
+  width: 700px;
+  height: 300px;
+  padding: 20px 20px;
+}
+.homeRecommendationTxtListItem{
+  padding: 40px 0;
+}
+.homeRecommendationTxtList li div a p {
+	color: #fcfcfc;
   text-align: left;
+
 }
 
-div.searchDivStyle a:link{
-  text-decoration:none;
+.star-rating {
+  unicode-bidi: bidi-override;
+  color: #ddd;
+  font-size: 0;
+  height: 25px;
+  position: relative;
+  display: table;
+  padding: 0 0 12px 0;
+  text-shadow: 0px 1px 0 #a2a2a2;
 }
 
-div.searchDivStyle a:hover{
-	text-decoration:underline;
+.star-rating span {
+  padding: 2px;
+  font-size: 20px;
 }
 
-div.searchDivStyle a:visited {
-	text-decoration:none;
+.star-rating-top {
+  color: #FFD700;
+  padding: 0;
+  position: absolute;
+  z-index: 1;
+  display: block;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  white-space: nowrap;
 }
-div.searchDivStyle a img{
-  width: 400px;
-  height: auto;
-  vertical-align:middle;
-}
-div.searchDivStyle a p {
-  color:#fffafa; 
-  /* display: inline-block;  */
-  vertical-align: middle;
+
+.star-rating-bottom {
+  padding: 0;
+  display: block;
+  z-index: 0;
 }
 
 /* The form styling */
@@ -218,14 +248,6 @@ div.searchDivStyle a p {
   right: 0;
 }
 
-/* The clearfix hack to clear the floats: */
-.clear:after{
-	content: ".";
-	display: block;
-	height: 0;
-	clear: both;
-	visibility: hidden;
-}
 
 /* The navigation styling: */
 ul.topnav {
@@ -255,34 +277,6 @@ ul.topnav li.right {float: right;}
 @media screen and (max-width: 600px){
     ul.topnav li.right, 
     ul.topnav li {float: none;}
-}
-
-/* Article styles: */
-
-article{
-	margin:3em 0;
-	padding:20px;
-	
-	text-shadow:0 2px 0 black;
-}
-
-figure{
-	border:3px solid #142830;
-	float:right;
-	height:300px;
-	margin-left:15px;
-	overflow:hidden;
-	width:500px;
-}
-
-figure:hover{
-	-moz-box-shadow:0 0 2px #4D7788;
-	-webkit-box-shadow:0 0 2px #4D7788;
-	box-shadow:0 0 2px #4D7788;
-}
-
-figure img{
-	margin-left:-60px;
 }
 
 /* Footer styling: */

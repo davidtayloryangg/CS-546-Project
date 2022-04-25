@@ -69,7 +69,14 @@ async function test() {
     "22:00",
     "340 Sinatra Dr, Hoboken, NJ 07030"
   ); //Activities: Soccer
-
+  await parks.updateParkImg(columbus._id, "/public/img/columbus.jpg");
+  await parks.updateParkImg(churchSquare._id, "/public/img/church.jpg");
+  await parks.updateParkImg(madison._id, "/public/img/madison.jpg");
+  await parks.updateParkImg(sinatra._id, "/public/img/sinatra.jpg");
+  await parks.updateParkImg(stevens._id, "/public/img/stevens.jpg");
+  await parks.updateParkImg(CP._id, "/public/img/castlePoint.jpg");
+  await parks.updateParkImg(PC._id, "/public/img/pierC.jpg");
+  await parks.updateParkImg(PA._id, "/public/img/1600park.jpg");
   console.log('------------create parks successfully------------');
 
   console.log('------------Init Activities------------');
@@ -99,7 +106,9 @@ async function test() {
   console.log('------------create appointments successfully------------');
 
   console.log('------------Init Comments------------');
-  const comment1 = await comments.createComment(churchSquare._id, 4.55, "nice park!");
+  await comments.createComment(churchSquare._id, 4.55, "nice park!");
+  await comments.createComment(columbus._id, 4.75, "amazing!");
+  await comments.createComment(madison._id, 4.75, "god!");
   console.log('------------create comments successfully------------');
 
   console.log('------------Init Reviews------------');
