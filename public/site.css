@@ -8,6 +8,32 @@ header{
   text-align: center;
 }
 
+/* Article styles: */
+article{
+	margin:3em 0;
+	padding:20px;
+	text-shadow:0 2px 0 black;
+}
+
+figure{
+	border:3px solid #142830;
+	float:right;
+	height:300px;
+	margin-left:15px;
+	overflow:hidden;
+	width:500px;
+}
+
+figure:hover{
+	-moz-box-shadow:0 0 2px #4D7788;
+	-webkit-box-shadow:0 0 2px #4D7788;
+	box-shadow:0 0 2px #4D7788;
+}
+
+figure img{
+	margin-left:-60px;
+}
+
 body{
 	/* Setting the default text color, size, page background and a font stack: */
 	text-align: center;
@@ -18,23 +44,18 @@ body{
 }
 
 /* Hyperlink Styles: */
-
-a, a:visited {
-	color:#0196e3;
-	text-decoration:none;
-	outline:none;
+a:link{
+  text-decoration:none;
 }
-
 a:hover{
-	text-decoration:underline;
+  text-decoration:underline;
+}
+a:visited {
+	text-decoration:none;
 }
 
-a img{
-	border:none;
-}
 
 /* Headings: */
-
 h1,h2,h3{
 	font-family:"Myriad Pro","Helvetica Neue",Helvetica,Arial,Sans-Serif;
 	text-shadow:0 1px 1px black;
@@ -44,6 +65,7 @@ h1{
 	/* The logo text */
 	font-size:3.5em;
 	padding:0.5em 0 0;
+  color:#fffafa; 
 	text-transform:uppercase;
 }
 
@@ -64,8 +86,9 @@ h2{
 }
 
 p{
-	line-height:1.5em;
+	line-height:2em;
 	padding-bottom:1em;
+  font-weight:bold;
 }
 
 label{
@@ -75,16 +98,84 @@ label{
   text-align: right;
 }
 
-.line{
-	/* The dividing line: */
-	height:1px;
-	background-color:#24404c;
-	border-bottom:1px solid #416371;
-	margin:1em 0;
-	overflow:hidden;
+/* For ALL list */
+ul li{
+  list-style: none;
 }
-.txt{
-  font-size: 16px;
+
+
+/* For Recommendation List */
+.homeRecommendationDiv{
+  margin: 0 auto;
+  width: 1000px;
+  height: 1000px;
+  padding: 5% 20% 20% 20%;
+}
+.homeRecommendationImg{
+  float: left;
+  width: 50%;
+}
+.homeRecommendationImgList li{
+  width: 500px;
+  height: 300px;
+  padding: 20px 0;
+}
+.homeRecommendationImgList li img{
+  border-radius: 20px;
+  width: 500px;
+  height: 300px;
+  object-fit: cover;
+}
+.homeRecommendationTxt{
+  margin-left: 50%;
+  width: 50%;
+}
+.homeRecommendationTxtList li{
+  width: 700px;
+  height: 300px;
+  padding: 20px 20px;
+}
+.homeRecommendationTxtListItem{
+  padding: 40px 0;
+}
+.homeRecommendationTxtList li div a p {
+	color: #fcfcfc;
+  text-align: left;
+
+}
+
+.star-rating {
+  unicode-bidi: bidi-override;
+  color: #ddd;
+  font-size: 0;
+  height: 25px;
+  position: relative;
+  display: table;
+  padding: 0 0 12px 0;
+  text-shadow: 0px 1px 0 #a2a2a2;
+}
+
+.star-rating span {
+  padding: 2px;
+  font-size: 20px;
+}
+
+.star-rating-top {
+  color: #FFD700;
+  padding: 0;
+  position: absolute;
+  z-index: 1;
+  display: block;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.star-rating-bottom {
+  padding: 0;
+  display: block;
+  z-index: 0;
 }
 
 /* The form styling */
@@ -105,7 +196,7 @@ label{
   margin: 20px 0;
   display: inline-block;
   border: none;
-  border-radius: 10px;
+  border-radius: 20px;
   box-sizing: border-box;
   font-size: 16px;
   -webkit-transition: width 0.4s ease-in-out;
@@ -121,7 +212,7 @@ label{
   display: inline-block;
   background-color: #4CAF50; /* Green */
   border: none;
-  border-radius: 10px;
+  border-radius: 20px;
   box-sizing: border-box;
   color: white;
   text-align: center;
@@ -157,14 +248,6 @@ label{
   right: 0;
 }
 
-/* The clearfix hack to clear the floats: */
-.clear:after{
-	content: ".";
-	display: block;
-	height: 0;
-	clear: both;
-	visibility: hidden;
-}
 
 /* The navigation styling: */
 ul.topnav {
@@ -186,7 +269,7 @@ ul.topnav li a {
 }
 
 ul.topnav li a:hover:not(.active) {
-   font-weight:bold;
+   color: #4CAF50;
 }
 
 ul.topnav li.right {float: right;}
@@ -194,40 +277,6 @@ ul.topnav li.right {float: right;}
 @media screen and (max-width: 600px){
     ul.topnav li.right, 
     ul.topnav li {float: none;}
-}
-
-/* Article styles: */
-
-#page{
-	width:960px;
-	margin:0 auto;
-	position:relative;
-}
-
-article{
-	margin:3em 0;
-	padding:20px;
-	
-	text-shadow:0 2px 0 black;
-}
-
-figure{
-	border:3px solid #142830;
-	float:right;
-	height:300px;
-	margin-left:15px;
-	overflow:hidden;
-	width:500px;
-}
-
-figure:hover{
-	-moz-box-shadow:0 0 2px #4D7788;
-	-webkit-box-shadow:0 0 2px #4D7788;
-	box-shadow:0 0 2px #4D7788;
-}
-
-figure img{
-	margin-left:-60px;
 }
 
 /* Footer styling: */
