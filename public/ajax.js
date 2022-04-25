@@ -13,7 +13,7 @@
           <div class="searchDivStyle">
             <a href="../" class="a">
               <div class="searchDivStyleLeft">
-                <img src="" onerror="this.src='https://blog.nscsports.org/wp-content/uploads/2014/10/default-img.gif'">
+                <img src="/public/img/default_img.gif" onerror="this.src='https://blog.nscsports.org/wp-content/uploads/2014/10/default-img.gif'">
               </div>
               <div class="searchDivStyleRight">
                 <p>${element.name}</p>

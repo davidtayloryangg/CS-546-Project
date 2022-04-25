@@ -74,7 +74,6 @@ async function test() {
 
   console.log('------------Init Activities------------');
   // create a new activities:
-  const activity1 = await activities.createActivity(park1._id, "Tennis", 4, 8);
   const playgroundColumbus = await activities.createActivity(
     columbus._id.toString(),
     "Playground Columbus Park",
@@ -96,11 +95,11 @@ async function test() {
   console.log('------------create activities successfully------------');
 
   console.log('------------Init Appointments------------');
-  const appointment1 = await appointments.createAppointment(user1._id, park1._id, activity1._id, "2022", "4", "16", "5", "20");
+  const appointment1 = await appointments.createAppointment(user1._id, churchSquare._id, playgroundColumbus._id, "2022", "4", "16", "5", "20");
   console.log('------------create appointments successfully------------');
 
   console.log('------------Init Comments------------');
-  const comment1 = await comments.createComment(park1._id, 4.55, "nice park!");
+  const comment1 = await comments.createComment(churchSquare._id, 4.55, "nice park!");
   console.log('------------create comments successfully------------');
 
   console.log('------------Init Reviews------------');
