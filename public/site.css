@@ -83,6 +83,9 @@ label{
 	margin:1em 0;
 	overflow:hidden;
 }
+.txt{
+  font-size: 16px;
+}
 
 /* The form styling */
 .textInput {

@@ -35,17 +35,8 @@
             <button type="submit" class="button">Sign Up</button>
         </div>
     </form>
-    {{#if send}}
-	    <p >{{send}}</p>
-	  {{/if}}
     {{#if error}}
 	    <p >{{error}}</p>
 	  {{/if}}
-    {{#if status}}
-        <p>{{status}}</p>
-    {{else}}
-        <p>{{message}}</p>
-    {{/if}}
-    <hr>
-    <a href="/users/login"> Already have an account? Click here to log-in </a>
+    <a href="/users/login" class="txt"> Already have an account? Click here to log-in </a>
 </div>
