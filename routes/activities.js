@@ -3,18 +3,18 @@ const router = express.Router();
 const data = require('../data/activities');
 
 router
-.route('/parks/activities')
-.get(async (req, res) => {
+  .route('/')
+  .get(async (req, res) => {
     try {
-        const activities = await data.getAllActivity();
-        res.json(activities);
+      const activities = await data.getAllActivity();
+      res.render('function/Activity');
     } catch (e) {
-        res.status(500).json(e);
+      res.status(500).json(e);
     }
-})
-.post(async (req, res) => {
+  })
+  .post(async (req, res) => {
     let activityInfo = req.body;
-    if (!activityInfo.parkId || !activityInfo.name || !activityInfo.numberOfCourts|| !activityInfo.maxPeople|| !activityInfo.appointmens|| !activityInfo.comments|| !activityInfo.reviews) throw 'please provide all inputs';
+    if (!activityInfo.parkId || !activityInfo.name || !activityInfo.numberOfCourts || !activityInfo.maxPeople || !activityInfo.appointmens || !activityInfo.comments || !activityInfo.reviews) throw 'please provide all inputs';
     // if (typeof activityInfo.parkId != 'string'|| activityInfo.parkId.trim() == 0)
     //     res.status(400).json({ error: 'invalid parkId' });
     // if (typeof activityInfo.name != 'string'|| activityInfo.name.trim() == 0)
@@ -37,6 +37,6 @@ router
     } catch (e) {
       res.status(400).json(e);
     }
-})
+  })
 
 module.exports = router;
