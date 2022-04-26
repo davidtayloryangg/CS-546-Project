@@ -45,7 +45,7 @@
    - User Profile Page:
    - Park activities management Page:
    - Activity Page:
-   - Park Activities Recommendation Page: Yuheng Xiao
+   - Park Activities Appointment Page: Yuheng Xiao
 
 ## Team Members
 
