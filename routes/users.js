@@ -58,14 +58,14 @@ router.post('/login', async (req, res) => {
   }
 });
 
-router.get('/private', async (req, res) => {
-  const userCollection = await users();
-  const userList = await userCollection.find({}).toArray();
-  let name;
-  for (i = 0; i < userList.length; i++) {
-    if (req.session.user.username.toLowerCase() == userList[i].username.toLowerCase()) { name = userList[i].username; break; }
-  };
-  res.render('users/private', { username: name });
+router.get('/profile', async (req, res) => {
+  if (req.session && req.session.user) {
+    const username = req.session.user;
+    const user = await userData.getUserByEmail(username);
+    res.render('function/UserProfile', { user });
+  } else {
+    res.status(400).render('function/Login', { error: "You are not logged in" });
+  }
 });
 
 router.get('/modify', async (req, res) => {
