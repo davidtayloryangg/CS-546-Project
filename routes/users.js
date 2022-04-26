@@ -67,6 +67,16 @@ router.get('/profile', async (req, res) => {
     res.status(400).render('function/Login', { error: "You are not logged in" });
   }
 });
+router.post('/profile', async (req, res) => {
+  if (req.session && req.session.user) {
+    var body = req.body;
+    const email = body.email;
+    console.log(body);
+    // const updated = await userData.modifyUserProfile();
+  } else {
+    res.status(400).render('function/Login', { error: "You are not logged in" });
+  }
+});
 
 router.get('/modify', async (req, res) => {
   try {
