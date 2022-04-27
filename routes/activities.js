@@ -1,13 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const data = require('../data/activities');
-
+const parkdata = require('../data/parks');
 router
   .route('/')
   .get(async (req, res) => {
     try {
-      const activities = await data.getAllActivity();
-      res.render('function/Activity');
+      const park = await parkdata.getParkById("62688456dd26d3c2eba0cb43");
+      const activities = await data.getAllActivity(park._id);
+      console.log(activities);
+      res.render('function/Activity', {activities, park});
     } catch (e) {
       res.status(500).json(e);
     }

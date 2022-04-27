@@ -1,10 +1,11 @@
 // Reviews is a sub-document of users
 const mongoCollections = require('../config/mongoCollections');
 const users = mongoCollections.users;
+const parks = mongoCollections.parks;
 const { ObjectId } = require('mongodb');
 
 module.exports = {
-  async createReview(userId, userReview) {
+  async createReview(userId, activityId, userReview) {
     if (!userId || !userReview) throw 'please provide all inputs';
     if (!ObjectId.isValid(userId)) throw 'invalid user ID';
 
@@ -20,8 +21,16 @@ module.exports = {
     const updateInfo = await userCollection.updateOne({ _id: ObjectId(userId) },
       { $addToSet: { reviews: newReview } }
     );
+
+    const parkCollection = await parks();
+    const updateInfo2 = await parkCollection.update({ "activities._id": ObjectId(activityId) },
+      { "$push": { "activities.$.reviews": newReview}}
+    );
+
     if (!updateInfo.matchedCount && !updateInfo.modifiedCount)
-      throw 'Could not add a review';
+      throw 'Could not add a review to user';
+    if (!updateInfo2.matchedCount && !updateInfo2.modifiedCount)
+      throw 'Could not add a review to activity';
     return true;
   },
   async removeReview(reviewId) {

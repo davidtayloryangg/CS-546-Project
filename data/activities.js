@@ -104,10 +104,9 @@ module.exports = {
   async getAllActivity(parkId) {
     if (arguments.length !== 1) throw 'paramater is wrong';
     if (!parkId) throw 'paramater is not exist';
-    if (typeof parkId !== 'string' || parkId.trim().length === 0) throw 'paramater must be a string and it could not be empty';
     if (!ObjectId.isValid(parkId)) throw 'Invalid Object parkId';
     const parkCollection = await parks();
-    const park = await parkCollection.find({
+    const park = await parkCollection.findOne({
       _id: ObjectId(parkId)
     }, {
       projection: {
