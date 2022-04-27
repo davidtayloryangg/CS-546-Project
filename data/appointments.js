@@ -47,9 +47,65 @@ module.exports = {
     return newAppointment;
   },
 
+  async getUserIdbyEmail(email) {
+    if (typeof email === 'undefined') throw "email is undefined!";
+    if (typeof email !== 'string') throw "email is not a string!"
+    if (typeof email === 'string' && email.trim().length === 0) throw "email is an empty string!";
+
+    const userCollection = await users();
+    let allappointments = await userCollection.find({ "email": email }).toArray();
+    if (allappointments === null) throw 'No user with that email!';
+    // for (let x of allbands){
+    //     x._id = x._id.toString();
+    // }
+    return allappointments[0]._id;
+  },
+
   async getAllAppointmentsByActivityId(activityId) {
+    if (typeof activityId === 'undefined') throw "activityId is undefined!";
+    if (!ObjectId.isValid(activityId) && typeof activityId !== 'string') throw "activityId is not a string or objectKey!"
+    if (typeof activityId === 'string' && activityId.trim().length === 0) throw "activityId is an empty string!";
+    if (!ObjectId.isValid(activityId)) {
+      throw "activityId doesn't exist!";
+    } else {
+      activityId = ObjectId(activityId);
+    }
+
     const parkCollection = await parks();
     let allappointments = await parkCollection.find({ "activities._id": ObjectId(activityId) }).toArray();
+    // for (let x of allbands){
+    //     x._id = x._id.toString();
+    // }
+    return allappointments;
+  },
+
+  async getAllAppointmentsByUserId(userId) {
+    if (typeof userId === 'undefined') throw "userId is undefined!";
+    if (!ObjectId.isValid(userId) && typeof userId !== 'string') throw "userId is not a string or objectKey!"
+    if (typeof userId === 'string' && userId.trim().length === 0) throw "userId is an empty string!";
+    if (!ObjectId.isValid(userId)) {
+      throw "userId doesn't exist!";
+    } else {
+      userId = ObjectId(userId);
+    }
+
+    const userCollection = await users();
+    let allappointments = await userCollection.find({ "_id": ObjectId(userId) }).toArray();
+    if (allappointments === null) throw 'No user with that userId!';
+    // for (let x of allbands){
+    //     x._id = x._id.toString();
+    // }
+    return allappointments;
+  },
+
+  async getAllAppointmentsByCookies(email) {
+    if (typeof email === 'undefined') throw "email is undefined!";
+    if (typeof email !== 'string') throw "email is not a string!"
+    if (typeof email === 'string' && email.trim().length === 0) throw "email is an empty string!";
+
+    const userCollection = await users();
+    let allappointments = await userCollection.find({ "email": email }).toArray();
+    if (allappointments === null) throw 'No user with that email!';
     // for (let x of allbands){
     //     x._id = x._id.toString();
     // }
@@ -91,7 +147,7 @@ module.exports = {
     return avalibleappointment;
   },
 
-  async updateAppointment(appointmentId) {
+  async updateAppointment(appointmentId, currentUserId) {
     if (typeof appointmentId === 'undefined') throw "appointmentId is undefined!";
     if (!ObjectId.isValid(appointmentId) && typeof appointmentId !== 'string') throw "appointmentId is not a string or objectKey!"
     if (typeof appointmentId === 'string' && appointmentId.trim().length === 0) throw "appointmentId is an empty string!";
@@ -99,6 +155,14 @@ module.exports = {
       throw "appointmentId doesn't exist!";
     } else {
       appointmentId = ObjectId(appointmentId);
+    }
+    if (typeof currentUserId === 'undefined') throw "currentUserId is undefined!";
+    if (!ObjectId.isValid(currentUserId) && typeof currentUserId !== 'string') throw "currentUserId is not a string or objectKey!"
+    if (typeof currentUserId === 'string' && currentUserId.trim().length === 0) throw "currentUserId is an empty string!";
+    if (!ObjectId.isValid(currentUserId)) {
+      throw "currentUserId doesn't exist!";
+    } else {
+      currentUserId = ObjectId(currentUserId);
     }
 
     // const userCollection = await users();
@@ -111,6 +175,8 @@ module.exports = {
     const userCollection = await users();
     let user = await userCollection.findOne({ "appointments.appointmentId": ObjectId(appointmentId) });
     if (user === null) throw 'No appointment with that appointmentId';
+    if (user._id.equals(user.appointment.userOneId)) throw "You cannot register your own appointment!"
+
     userCollection.updateOne(
       { "appointments.appointmentId": ObjectId(appointmentId) },
       { $set: { "appointments.$[filter].approvement": true } },
@@ -120,6 +186,20 @@ module.exports = {
       { "appointments.appointmentId": ObjectId(appointmentId) },
       { $set: { "appointments.$[filter].status": "Full" } },
       { arrayFilters: [{ "filter.appointmentId": ObjectId(appointmentId) }] }
+    );
+
+    let newuser = await userCollection.findOne({ "appointments.appointmentId": ObjectId(appointmentId) });
+    if (newuser === null) throw 'No appointment with that appointmentId';
+    let newAppointment;
+    let allAppointments = newuser.appointments;
+    for (let x of allAppointments){
+      if (x.appointmentId.equals(appointmentId)){
+        newAppointment = x;
+        break;
+      }
+    }
+    const updatesecondUser = await userCollection.updateOne({ _id: ObjectId(currentUserId) },
+      { $addToSet: { appointments: newAppointment } }
     );
 
     const parkCollection = await parks();
