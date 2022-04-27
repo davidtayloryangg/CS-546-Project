@@ -1,0 +1,37 @@
+<body>
+  <div class="userProfileTitle">
+    <h1>Welcome!!! {{user.firstname}} {{user.lastname}}</h1>
+    <h2>Your Public Profile</h2>
+    
+  </div>
+  <div class = "userProfile">
+    <hr>
+    <p> </p>
+    <form action="/users/profile" method="POST" id="profileform">
+      <p> Firstname </p>
+      <input type="text" id="userfirstname" name="firstname" value="{{user.firstname}}" size="30"/>
+      <p> Lastname </p>
+      <input type="text" id="userlastname" name="lastname" value="{{user.lastname}}" size="30"/>
+      <p> Email Address </p>
+      <input type="text" id="useremail" name="email" value="{{user.email}}" size="30"/>
+      <p> Gender </p>
+      <input type="text" id="usergender" name="gender" value="{{user.gender}}" size="30"/>
+      <p> City </p>
+      <input type="text" id="usercity" name="city" value="{{user.city}}" size="30"/>
+      <p> State </p>
+      <input type="text" id="userstate" name="state" value="{{user.state}}" size="30"/>
+      <p> Age </p>
+      <input type="text" id="userage" name="age" value="{{user.age}}" size="30"/>
+      <p> Description </p>
+      <input type="text" id="userdescription" name="description" value="{{user.description}}" size="30"/>
+      <p> Your Apointments </p>
+      <input type="text" id="userappointment" name="appointment" value="{{user.appointments}}" size="30"/>
+      
+      <div class="userProfileButton">
+        <button type="submit" class="button"><span>submit</span> </button>
+      </div>
+
+    </form>
+  </div>
+  
+</body>

@@ -34,7 +34,7 @@ app.use(
     secret: 'some secret string!',
     resave: false,
     saveUninitialized: true,
-    cookie: { maxAge: 60000 }
+    cookie: { maxAge: 600000 }
   }),
 );
 
