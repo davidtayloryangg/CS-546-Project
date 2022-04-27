@@ -1,0 +1,33 @@
+<header>
+    <div>
+        <ul class="topnav">
+            <li><a href="/">HOME</a></li>
+            <li><a href="/appointments">APPOINTMENTS</a></li>
+            <li class="right"><a href="">ABOUT</a></li>
+            <li class="right"><a href="/users">USER</a></li>
+        </ul>
+    </div>
+    
+    <h1>
+        APPOINTMENT MENU
+    </h1>
+</header>
+
+<div >
+    <form action="/appointments/myAppointment" method="GET" id="login-form">
+        <div class="login">
+            <button type="submit" class="button">My Appointment</button>
+        </div>
+    </form>
+    
+    <form action="/appointments/newAppointment" method="get" id="login-form">
+        <div class="login">
+            <button type="submit" class="button">Create A New Appointment</button>
+        </div>
+    </form>
+    
+
+    {{#if error}}
+	    <p >{{error}}</p>
+	{{/if}}
+</div>

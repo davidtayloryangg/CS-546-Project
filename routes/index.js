@@ -14,7 +14,7 @@ const constructorMethod = (app) => {
   // app.use('/notification', notification);
 
   app.all('*', (req, res) => {
-    res.status(404).json('Error 404: Site path not found');
+    res.status(404).json('Error 404: ');
   });
 };
 
