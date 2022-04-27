@@ -16,15 +16,15 @@ module.exports = {
       userReview: userReview,
       reviewReply: []
     };
-    
+
     const userCollection = await users();
     const updateInfo = await userCollection.updateOne({ _id: ObjectId(userId) },
       { $addToSet: { reviews: newReview } }
     );
 
     const parkCollection = await parks();
-    const updateInfo2 = await parkCollection.update({ "activities._id": ObjectId(activityId) },
-      { "$push": { "activities.$.reviews": newReview}}
+    const updateInfo2 = await parkCollection.updateOne({ "activities._id": ObjectId(activityId) },
+      { "$push": { "activities.$.reviews": newReview } }
     );
 
     if (!updateInfo.matchedCount && !updateInfo.modifiedCount)
@@ -41,7 +41,7 @@ module.exports = {
     let user = await userCollection.findOne({ "reviews.reviewId": ObjectId(reviewId) });
     if (user === null) throw 'No review with that id';
     const updateInfo = await userCollection.updateOne(
-      { _id: ObjectId(user._id)},
+      { _id: ObjectId(user._id) },
       { $pull: { reviews: { reviewId: ObjectId(reviewId) } } }
     );
     if (!updateInfo.matchedCount && !updateInfo.modifiedCount)
@@ -51,7 +51,7 @@ module.exports = {
   async getAllReviews(userId) {
     if (!userId) throw 'please provide user id';
     if (!ObjectId.isValid(userId)) throw 'invalid user ID';
-    
+
     const userCollection = await parks();
     const userList = await userCollection.find({ _id: ObjectId(userId) }, { projection: { reviews: 1 } }).toArray();
     if (!userList || userList === null) throw 'no user with that id';
@@ -72,8 +72,8 @@ module.exports = {
     let user = await userCollection.findOne({ "reviews._id": ObjectId(reviewId) });
     if (user === null) throw 'No review with that id';
     const updateInfo = await userCollection.updateOne(
-      { _id: ObjectId(user._id)},
-      { $addToSet: { reviews: { reviewReply : newReview} } }
+      { _id: ObjectId(user._id) },
+      { $addToSet: { reviews: { reviewReply: newReview } } }
     );
     if (!updateInfo.matchedCount && !updateInfo.modifiedCount)
       throw 'Could not reply that a review';

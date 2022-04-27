@@ -15,19 +15,10 @@ router
 
 router
   .route('/search')
-  .get(async (req, res) => {
-    try {
-      const info = req.body;
-      const searchParks = await data.getParkByName(info.parkName);
-      res.json(searchParks);
-    } catch (e) {
-      res.status(500).json(e);
-    }
-  })
   .post(async (req, res) => {
     try {
       const info = req.body;
-      const searchParks = await data.getParkByName(info.parkName);
+      const searchParks = await data.getParksByName(info.parkName);
       res.json(searchParks);
     } catch (e) {
       res.status(500).json(e);

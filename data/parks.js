@@ -93,12 +93,12 @@ module.exports = {
     if (park === null) throw 'could not get that parks';
     return park;
   },
-  async getParkByName(name) {
-    if (!name) throw 'please provide park name';
-
+  async getParksByName(parkname) {
+    if (!parkname) throw 'please provide park name';
     const parkCollection = await parks();
-    const park = await parkCollection.findOne({ name: name });
-    if (park === null) throw 'could not get that parks';
-    return park;
+    var reg = new RegExp(parkname, "i");
+    const parkList = await parkCollection.find({ "name": { $regex: reg } }).toArray();
+    if (!parkList) throw 'could not get that parks';
+    return parkList;
   }
 }
