@@ -189,7 +189,16 @@ module.exports = {
     const userCollection = await users();
     const appointment = await userCollection.findOne({ "appointments.appointmentId": ObjectId(appointmentId) });
     if (appointment === null) throw 'No appointment with that appointmentId!';
-    return appointment;
+    // return appointment;
+
+    let result;
+    for (x of appointment.appointments){
+      if ((x.appointmentId).equals(appointmentId)){
+        result = x;
+        break;
+      }
+    }
+    return result;
   },
 
   async autoMatchId(activityId, parkId, year, month, day, hour, minute) {
@@ -202,13 +211,21 @@ module.exports = {
     if (typeof hour !== 'string' || hour.trim().length === 0 || isNaN(parseInt(hour)) || parseInt(hour) < 0 || parseInt(hour) > 23) throw "invalid hour";
     if (typeof minute !== 'string' || minute.trim().length === 0 || parseInt(minute) < 0 || parseInt(minute) > 59) throw "invalid minute";
 
-    // activityId = ObjectId(activityId);
-    // parkId = ObjectId(parkId);
+    activityId = ObjectId(activityId);
+    parkId = ObjectId(parkId);
 
     const userCollection = await users();
     const avalibleappointment = await userCollection.findOne({ "appointments.activityId": activityId, "appointments.year": year, "appointments.month": month, "appointments.day": day, "appointments.approvement": false });
     if (avalibleappointment === null) throw 'No avalible appointment, you can creat a new appointment!';
-    return avalibleappointment;
+    // return avalibleappointment;
+
+    let appointmentId;
+    for (x of avalibleappointment.appointments){
+      if ((x.activityId).equals(activityId) && x.year == year && x.month == month && x.day == day && x.approvement == false){
+        appointmentId = x.appointmentId;
+      }
+    }
+    return appointmentId;
   },
 
   async updateAppointment(appointmentId, currentUserId) {
@@ -239,7 +256,7 @@ module.exports = {
     const userCollection = await users();
     let user = await userCollection.findOne({ "appointments.appointmentId": ObjectId(appointmentId) });
     if (user === null) throw 'No appointment with that appointmentId';
-    if (user._id.equals(user.appointment.userOneId)) throw "You cannot register your own appointment!"
+    if (user._id.equals(currentUserId)) throw "You cannot register your own appointment!"
 
     userCollection.updateOne(
       { "appointments.appointmentId": ObjectId(appointmentId) },

@@ -52,7 +52,7 @@ router.post('/searchAppointment', async (req, res) => {
         x.parkId = await data.getParknameByParkId(x.parkId);
         x.activityId = await data.getActivitynameByActivityId(x.activityId);
       }
-      res.status(404).render('function/Appointment_Searched',{ head: body.activity, title: "Searched", data: Appointments[0].appointments});
+      res.render('function/Appointment_Searched',{ head: body.activity, title: "Searched", data: Appointments[0].appointments});
     } catch (e) {
       res.status(404).render('function/Appointment_Error',{ error: e, title: "Error"});
     }
@@ -82,7 +82,7 @@ router.post('/creatNewAppointment', async (req, res) => {
       const hour = body.hour;
       const minute = body.minute;
       const Appointments = await data.createAppointment(userOneId, parkId, activityId, year, month, day, hour, minute);
-      res.status(404).render('function/Appointment_Created',{ result: "You have created a new appointment!", title: "Created"});
+      res.render('function/Appointment_Created',{ result: "You have created a new appointment!", title: "Created"});
     } catch (e) {
       res.status(404).render('function/Appointment_Error',{ error: e, title: "Error"});
     }
@@ -111,8 +111,12 @@ router.post('/matchNewAppointment', async (req, res) => {
       const day = body.day;
       const hour = body.hour;
       const minute = body.minute;
-      const Appointments = await data.autoMatchId(userOneId, , activityId, parkId, year, month, day, hour, minute);
-      res.status(404).render('function/Appointment_Created',{ result: "You have created a new appointment!", title: "Created"});
+      const AppointmentId = await data.autoMatchId(activityId, parkId, year, month, day, hour, minute);
+      const registerAppointment = await data.updateAppointment(AppointmentId, userOneId);
+      const Appointment = await data.getAppointmentbyappointmentId(AppointmentId);
+      Appointment.parkId = await data.getParknameByParkId(x.parkId);
+      Appointment.activityId = await data.getActivitynameByActivityId(x.activityId);
+      res.render('function/Appointment_Matched',{ data: Appointment, title: "Matched"});
     } catch (e) {
       res.status(404).render('function/Appointment_Error',{ error: e, title: "Error"});
     }
