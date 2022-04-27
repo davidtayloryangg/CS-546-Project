@@ -57,12 +57,12 @@ module.exports = {
   },
 
   async modifyUserProfile(id, email, gender, city, state, age, description) {
-    if (arguments.length != 6) throw 'the number of parameter is false';
+    if (arguments.length != 7) throw 'the number of parameter is false';
     if (!id) throw 'You must provide an id to search for';
     func.checkId(id)
     func.checkEmail(email)
     const userCollection = await users();
-    const modifyuser = {
+    let modifyuser = {
       email: email,
       gender: gender,
       city: city,
@@ -70,20 +70,15 @@ module.exports = {
       age: age,
       description: description
     };
-    try {
-      await this.get(id);
-    } catch (e) {
-      throw (e);
-    }
 
     const updatedInfo = await userCollection.updateOne(
       { _id: ObjectId(id) },
       { $set: modifyuser }
     );
-    if (updatedInfo.modifiedCount === 0) {
+    if (!updatedInfo.matchedCount && !updatedInfo.modifiedCount) {
       throw 'could not update user successfully';
     }
-    return await this.get(id);
+    return true;
   },
 
   async getUserById(id) {

@@ -5,11 +5,11 @@
     
   </div>
   <div class = "userProfile">
-    <hr>
     <p> </p>
     <form action="/users/profile" method="POST" id="profileform">
+      <input type="text" id="userid" name="id" value="{{user._id}}"hidden/>
       <p> Firstname </p>
-      <input type="text" id="userfirstname" name="firstname" value="{{user.firstname}}" size="30"/>
+      <input type="text" id="userfirstname" name="firstname" value="{{user.firstname}}" />
       <p> Lastname </p>
       <input type="text" id="userlastname" name="lastname" value="{{user.lastname}}" size="30"/>
       <p> Email Address </p>
@@ -25,12 +25,15 @@
       <p> Description </p>
       <input type="text" id="userdescription" name="description" value="{{user.description}}" size="30"/>
       <p> Your Apointments </p>
-      <input type="text" id="userappointment" name="appointment" value="{{user.appointments}}" size="30"/>
-      
+      {{#if user.appointments}}
+        <p>{{user.appointments}}</p>
+      {{else}}
+        <p> You have no appointment right now! </p>
+      {{/if}}
+
       <div class="userProfileButton">
         <button type="submit" class="button"><span>submit</span> </button>
       </div>
-
     </form>
   </div>
   
