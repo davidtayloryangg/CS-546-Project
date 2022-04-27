@@ -53,3 +53,12 @@
 
 
 })(jQuery);
+
+(function ($){
+  $(document).ready(function(){
+    $.ajax({
+      url: 'http://localhost:3000/parks/activities/reviews',
+      
+    })
+  })
+})

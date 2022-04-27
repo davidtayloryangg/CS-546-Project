@@ -112,7 +112,7 @@ async function test() {
   console.log('------------create comments successfully------------');
 
   console.log('------------Init Reviews------------');
-  const review1 = await reviews.createReview(user1._id, "nice!!!!!");
+  const review1 = await reviews.createReview(user1._id, BasketballColumbus._id, "nice!!!!!");
   console.log('------------create reviews successfully------------');
 
   await dbConnection.closeConnection();

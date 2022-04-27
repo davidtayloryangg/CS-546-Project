@@ -25,7 +25,7 @@ router.post('/signup', async (req, res) => {
     if (!firstname || !lastname || !email || !password)
       throw "must provide all inputs";
     let x = await userData.createUser(firstname, lastname, email, password)
-    if (x) res.redirect('/')
+    if (x) res.redirect('/login')
     else res.status(500).json({ error: "Internal Server Error" })
   } catch (e) {
     res.status(400).render('function/Signup', { error: e });
@@ -52,20 +52,38 @@ router.post('/login', async (req, res) => {
     let check = await userData.checkUser(email, password)
     if (check) req.session.user = email;
     else res.status(400).json({ error: "Didn't provide a valid username and/or password" })
-    res.redirect('/');
+    res.redirect('/users/profile');
   } catch (e) {
     res.status(400).render('function/Login', { error: e });
   }
 });
 
-router.get('/private', async (req, res) => {
-  const userCollection = await users();
-  const userList = await userCollection.find({}).toArray();
-  let name;
-  for (i = 0; i < userList.length; i++) {
-    if (req.session.user.username.toLowerCase() == userList[i].username.toLowerCase()) { name = userList[i].username; break; }
-  };
-  res.render('users/private', { username: name });
+router.get('/profile', async (req, res) => {
+  if (req.session && req.session.user) {
+    const username = req.session.user;
+    const user = await userData.getUserByEmail(username);
+    res.render('function/UserProfile', { user });
+  } else {
+    res.status(400).render('function/Login', { error: "You are not logged in" });
+  }
+});
+router.post('/profile', async (req, res) => {
+  if (req.session && req.session.user) {
+    var body = req.body;
+    const id = body.id;
+    const email = body.email;
+    const gender = body.gender;
+    const city = body.city;
+    const state = body.state;
+    const age = body.age;
+    const description = body.description;
+    const updated = await userData.modifyUserProfile(id, email, gender, city, state, age, description);
+    if (updated) {
+      res.redirect('/users/profile');
+    }
+  } else {
+    res.status(400).render('function/Login', { error: "Please logged in" });
+  }
 });
 
 router.get('/modify', async (req, res) => {

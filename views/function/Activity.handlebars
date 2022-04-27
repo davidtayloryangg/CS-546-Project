@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <title>ACTIVITES</title>
+    </head>
+    <body>
+        <h1>{{park.name}}</h1>
+        <div>
+            {{#each activities as |act|}}
+            <ul>
+                <li>Activity Name: {{act.name}}</li>
+                <li>Number of Count: {{act.numberOfCourts}}</li>
+                <li>Max People: {{act.maxPeople}}</li>
+                <li><a href="/activities/reviews">Review of this activity</a></li>
+            </ul>
+            <br>
+            <br>
+            <br>
+            {{/each}}
+        </div>
+    </body>
+</html>

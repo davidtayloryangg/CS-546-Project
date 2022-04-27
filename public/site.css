@@ -109,7 +109,6 @@ ul li{
   margin: 0 auto;
   width: 1000px;
   height: 1000px;
-  padding: 5% 20% 20% 20%;
 }
 .homeRecommendationImg{
   float: left;
@@ -279,8 +278,45 @@ ul.topnav li.right {float: right;}
     ul.topnav li {float: none;}
 }
 
-/* Footer styling: */
 
+/* For User Profile Page */
+.userProfileTitle h1{
+  padding: 5% 0 5% 0;
+}
+.userProfileTitle h2{
+  padding: 0% 0 2px 0;
+}
+
+.userProfile{
+  margin: auto;
+  width: 320px;
+  height: 800px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+}
+.userProfile h1{
+  padding-bottom: 50px;
+}
+.userProfile form p{
+  padding: 5px 0 0 2px;
+  text-align: left;
+}
+.userProfile form input{
+  border: 2px solid #a2a2a2;
+  border-radius: 5px;
+  background-color: #355664;
+  padding: 5px 5px 5px 10px;
+  color: #fcfcfc;
+  margin: 0 0 10px 0;
+  width: 300px;
+}
+
+
+/* Footer styling: */
+/* 
 footer{
 	margin-bottom:30px;
 	text-align:center;
@@ -314,4 +350,4 @@ footer a.by{
 
 footer a.up{
 	float:right;
-}
+} */
