@@ -61,6 +61,70 @@ module.exports = {
     return allappointments[0]._id;
   },
 
+  async getParknameByParkId(ParkId) {
+    if (typeof ParkId === 'undefined') throw "ParkId is undefined!";
+    if (!ObjectId.isValid(ParkId) && typeof ParkId !== 'string') throw "ParkId is not a string or objectKey!"
+    if (typeof ParkId === 'string' && ParkId.trim().length === 0) throw "ParkId is an empty string!";
+    if (!ObjectId.isValid(ParkId)) {
+      throw "ParkId doesn't exist!";
+    } else {
+      ParkId = ObjectId(ParkId);
+    }
+
+    const parkCollection = await parks();
+    let allappointments = await parkCollection.find({ "_id": ObjectId(ParkId) }).toArray();
+    // for (let x of allbands){
+    //     x._id = x._id.toString();
+    // }
+    return allappointments[0].name;
+  },
+
+  async getActivitynameByActivityId(activityId) {
+    if (typeof activityId === 'undefined') throw "activityId is undefined!";
+    if (!ObjectId.isValid(activityId) && typeof activityId !== 'string') throw "activityId is not a string or objectKey!"
+    if (typeof activityId === 'string' && activityId.trim().length === 0) throw "activityId is an empty string!";
+    if (!ObjectId.isValid(activityId)) {
+      throw "activityId doesn't exist!";
+    } else {
+      activityId = ObjectId(activityId);
+    }
+
+    const parkCollection = await parks();
+    let allappointments = await parkCollection.find({ "activities._id": ObjectId(activityId) }).toArray();
+    // for (let x of allbands){
+    //     x._id = x._id.toString();
+    // }
+    return allappointments[0].activities[0].name;
+  },
+
+  async getParkIdbyActivityname(Activityname) {
+    if (typeof Activityname === 'undefined') throw "Activityname is undefined!";
+    if (typeof Activityname !== 'string') throw "Activityname is not a string!"
+    if (typeof Activityname === 'string' && Activityname.trim().length === 0) throw "Activityname is an empty string!";
+
+    const parkCollection = await parks();
+    let allappointments = await parkCollection.find({ "activities.name": Activityname }).toArray();
+    if (allappointments === null) throw 'No park with that activity!';
+    // for (let x of allbands){
+    //     x._id = x._id.toString();
+    // }
+    return allappointments[0]._id;
+  },
+
+  async getActivityIdbyActivityname(Activityname) {
+    if (typeof Activityname === 'undefined') throw "Activityname is undefined!";
+    if (typeof Activityname !== 'string') throw "Activityname is not a string!"
+    if (typeof Activityname === 'string' && Activityname.trim().length === 0) throw "Activityname is an empty string!";
+
+    const parkCollection = await parks();
+    let allappointments = await parkCollection.find({ "activities.name": Activityname }).toArray();
+    if (allappointments === null) throw 'No park with that activity!';
+    // for (let x of allbands){
+    //     x._id = x._id.toString();
+    // }
+    return allappointments[0].activities[0]._id;
+  },
+
   async getAllAppointmentsByActivityId(activityId) {
     if (typeof activityId === 'undefined') throw "activityId is undefined!";
     if (!ObjectId.isValid(activityId) && typeof activityId !== 'string') throw "activityId is not a string or objectKey!"

@@ -25,14 +25,14 @@ async function test() {
     "06:00",
     "22:00",
     "900 Clinton St, Hoboken, NJ 07030"
-  ); //Activities: Basketball
+  ); //Activities: Tennis
   console.log(columbus._id + " : " + columbus._id);
   const churchSquare = await parks.createPark(
     "Church Square Park",
     "06:00",
     "23:00",
     "400 Garden St, Hoboken, NJ 07030"
-  ); //Activities: Walkdog
+  ); //Activities: Basketball
   const madison = await parks.createPark(
     "Madison Park",
     "06:00",
@@ -62,13 +62,13 @@ async function test() {
     "08:00",
     "22:00",
     "340 Sinatra Dr, Hoboken, NJ 07030"
-  ); //Activities: Pingpong
+  ); //Activities: Yoga
   const PA = await parks.createPark(
     "1600 Park",
     "07:00",
     "22:00",
     "340 Sinatra Dr, Hoboken, NJ 07030"
-  ); //Activities: Tennis
+  ); //Activities: Rugby
   await parks.updateParkImg(columbus._id, "/public/img/columbus.jpg");
   await parks.updateParkImg(churchSquare._id, "/public/img/church.jpg");
   await parks.updateParkImg(madison._id, "/public/img/madison.jpg");
@@ -81,15 +81,15 @@ async function test() {
 
   console.log('------------Init Activities------------');
   // create a new activities:
-  const BasketballColumbus = await activities.createActivity(
+  const TennisColumbus = await activities.createActivity(
     columbus._id.toString(),
-    "Basketball",
+    "Tennis",
     "1",
     "10"
   );
-  const WalkdogChurchSquare = await activities.createActivity(
+  const BasketballChurchSquare = await activities.createActivity(
     churchSquare._id.toString(),
-    "Walkdog",
+    "Basketball",
     "1",
     "30"
   );
@@ -101,7 +101,7 @@ async function test() {
   );
   const SoccorSinatra = await activities.createActivity(
     sinatra._id.toString(),
-    "Soccor",
+    "Soccer",
     "1",
     "22"
   );
@@ -117,22 +117,22 @@ async function test() {
     "1",
     "15"
   );
-  const PingpongPC = await activities.createActivity(
+  const YogaPC = await activities.createActivity(
     PC._id.toString(),
-    "Pingpong",
+    "Yoga",
     "2",
     "4"
   );
-  const TennisPA = await activities.createActivity(
+  const RugbyPA = await activities.createActivity(
     PA._id.toString(),
-    "Tennis",
+    "Rugby",
     "4",
     "16"
   );
   console.log('------------create activities successfully------------');
 
   console.log('------------Init Appointments------------');
-  const appointment1 = await appointments.createAppointment(user1._id, columbus._id, BasketballColumbus._id, "2022", "4", "16", "5", "20");
+  const appointment1 = await appointments.createAppointment(user1._id, columbus._id, TennisColumbus._id, "2022", "4", "16", "5", "20");
   console.log('------------create appointments successfully------------');
 
   console.log('------------Init Comments------------');
@@ -142,7 +142,7 @@ async function test() {
   console.log('------------create comments successfully------------');
 
   console.log('------------Init Reviews------------');
-  const review1 = await reviews.createReview(user1._id, BasketballColumbus._id, "nice!!!!!");
+  const review1 = await reviews.createReview(user1._id, TennisColumbus._id, "nice!!!!!");
   console.log('------------create reviews successfully------------');
 
   await dbConnection.closeConnection();

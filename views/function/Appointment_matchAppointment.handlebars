@@ -1,11 +1,11 @@
 <header>
     <h1>
-        CREATE A NEW APPOINTMENT
+        MATCH A NEW APPOINTMENT
     </h1>
 </header>
 
 <div >
-    <form action="/appointments/creatNewAppointment" method="POST" id="login-form">
+    <form action="/appointments/matchNewAppointment" method="POST" id="login-form">
         <div class="login">
             <label for="year">activity:</label>
             <select value="{{operation}}" name="activity">
@@ -41,7 +41,7 @@
         </div>
 
         <div>
-            <button type="submit" class="button">Create</button>
+            <button type="submit" class="button">Match</button>
         </div>
     </form>
     {{#if error}}
