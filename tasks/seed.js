@@ -40,20 +40,20 @@ async function test() {
     "06:00",
     "22:00",
     "900 Clinton St, Hoboken, NJ 07030"
-  ); //Activities: Playground, Tennis, Basketball
+  ); //Activities: Tennis
   console.log(columbus._id + " : " + columbus._id);
   const churchSquare = await parks.createPark(
     "Church Square Park",
     "06:00",
     "23:00",
     "400 Garden St, Hoboken, NJ 07030"
-  ); //Activities: Dog Park, Basketball
+  ); //Activities: Basketball
   const madison = await parks.createPark(
     "Madison Park",
     "06:00",
     "22:00",
     "305 Monroe St, Hoboken, NJ 07030"
-  ); //Activities: Playground
+  ); //Activities: Jog
   const sinatra = await parks.createPark(
     "Sinatra Park",
     "00:01",
@@ -77,13 +77,13 @@ async function test() {
     "08:00",
     "22:00",
     "340 Sinatra Dr, Hoboken, NJ 07030"
-  ); //Activities: Playground
+  ); //Activities: Yoga
   const PA = await parks.createPark(
     "1600 Park",
     "07:00",
     "22:00",
     "340 Sinatra Dr, Hoboken, NJ 07030"
-  ); //Activities: Soccer
+  ); //Activities: Rugby
   await parks.updateParkImg(columbus._id, "/public/img/columbus.jpg");
   await parks.updateParkImg(churchSquare._id, "/public/img/church.jpg");
   await parks.updateParkImg(madison._id, "/public/img/madison.jpg");
@@ -96,24 +96,54 @@ async function test() {
 
   console.log("------------Init Activities------------");
   // create a new activities:
-  //COLUMBUS PARK
-  const playgroundColumbus = await activities.createActivity(
-    columbus._id.toString(),
-    "Playground Columbus Park",
-    "1",
-    "20"
-  );
+
   const TennisColumbus = await activities.createActivity(
     columbus._id.toString(),
-    "Tennis Columbus Park",
+    "Tennis",
+    "1",
+    "10"
+  );
+  const BasketballChurchSquare = await activities.createActivity(
+    churchSquare._id.toString(),
+    "Basketball",
+    "1",
+    "30"
+  );
+  const JogMadison = await activities.createActivity(
+    madison._id.toString(),
+    "Jog",
+    "1",
+    "40"
+  );
+  const SoccorSinatra = await activities.createActivity(
+    sinatra._id.toString(),
+    "Soccer",
+    "1",
+    "22"
+  );
+  const BaseballStevens = await activities.createActivity(
+    stevens._id.toString(),
+    "Baseball",
+    "1",
+    "14"
+  );
+  const SkateCP = await activities.createActivity(
+    CP._id.toString(),
+    "Skate",
+    "1",
+    "15"
+  );
+  const YogaPC = await activities.createActivity(
+    PC._id.toString(),
+    "Yoga",
     "2",
     "4"
   );
-  const BasketballColumbus = await activities.createActivity(
-    columbus._id.toString(),
-    "Basketball Columbus Park",
-    "1",
-    "10"
+  const RugbyPA = await activities.createActivity(
+    PA._id.toString(),
+    "Rugby",
+    "4",
+    "16"
   );
   //CHURCH SQUARE PARK
   const dogParkChurch = await activities.createActivity(
@@ -171,7 +201,13 @@ async function test() {
     "20"
   );
 
+<<<<<<< HEAD
   console.log("------------create activities successfully------------");
+=======
+  console.log('------------Init Appointments------------');
+  const appointment1 = await appointments.createAppointment(user1._id, columbus._id, TennisColumbus._id, "2022", "4", "16", "5", "20");
+  console.log('------------create appointments successfully------------');
+>>>>>>> 4_27
 
   console.log("------------Init Appointments------------");
   const appointment1 = await appointments.createAppointment(
@@ -192,6 +228,7 @@ async function test() {
   await comments.createComment(madison._id, 4.75, "god!");
   console.log("------------create comments successfully------------");
 
+<<<<<<< HEAD
   console.log("------------Init Reviews------------");
   const review1 = await reviews.createReview(
     user1._id,
@@ -199,6 +236,11 @@ async function test() {
     "nice!!!!!"
   );
   console.log("------------create reviews successfully------------");
+=======
+  console.log('------------Init Reviews------------');
+  const review1 = await reviews.createReview(user1._id, TennisColumbus._id, "nice!!!!!");
+  console.log('------------create reviews successfully------------');
+>>>>>>> 4_27
 
   await dbConnection.closeConnection();
 }
