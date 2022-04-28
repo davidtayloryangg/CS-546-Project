@@ -217,9 +217,14 @@ async function test() {
   console.log("------------create appointments successfully------------");
 
   console.log("------------Init Comments------------");
-  await comments.createComment(churchSquare._id, 4.55, "nice park!");
-  await comments.createComment(columbus._id, 4.75, "amazing!");
-  await comments.createComment(madison._id, 4.75, "god!");
+  await comments.createComment(churchSquare._id, 3.5, "I love it!");
+  await comments.createComment(columbus._id, 4.6, "amazing!");
+  await comments.createComment(madison._id, 3.9, "free to play");
+  await comments.createComment(sinatra._id, 4.55, "nice view!");
+  await comments.createComment(stevens._id, 4.8, "amazing!");
+  await comments.createComment(CP._id, 4.95, "god!");
+  await comments.createComment(PC._id, 4.91, "nice park!");
+  await comments.createComment(PA._id, 4.2, "amazing!");
   console.log("------------create comments successfully------------");
 
   console.log("------------Init Reviews------------");
