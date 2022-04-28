@@ -26,6 +26,12 @@ async function test() {
     "qinyue12345@gmail.com",
     "qinyue12345"
   );
+  const user3 = await users.createUser(
+    "David",
+    "Yang",
+    "davidtayloryang@gmail.com",
+    "davidyang12345"
+  );
   console.log("------------create users successfully------------");
 
   console.log("------------Init Parks------------");
@@ -109,6 +115,62 @@ async function test() {
     "1",
     "10"
   );
+  //CHURCH SQUARE PARK
+  const dogParkChurch = await activities.createActivity(
+    churchSquare._id.toString(),
+    "Dog Park Church Square Park",
+    "1",
+    "20"
+  );
+  const BasketballChurch = await activities.createActivity(
+    churchSquare._id.toString(),
+    "Basketball Church Square Park",
+    "2",
+    "4"
+  );
+  //MADISON PARK
+  const playgroundMadison = await activities.createActivity(
+    madison._id.toString(),
+    "Playground Madison Park",
+    "1",
+    "20"
+  );
+  //SINATRA PARK
+  const soccerSinatra = await activities.createActivity(
+    sinatra._id.toString(),
+    "Soccer Sinatra Park",
+    "1",
+    "20"
+  );
+  //STEVENS PARK
+  const baseballStevens = await activities.createActivity(
+    stevens._id.toString(),
+    "Baseball Stevens Park",
+    "1",
+    "20"
+  );
+  //CASTLE POINT SKATEPARK
+  const skateCastlePoint = await activities.createActivity(
+    CP._id.toString(),
+    "Skate Castle Point Skatepark",
+    "1",
+    "20"
+  );
+  //PIER C PARK
+  const playgroundPierC = await activities.createActivity(
+    PC._id.toString(),
+    "Playground Pier C Park",
+    "1",
+    "20"
+  );
+  //1600 PARK
+  const soccer1600 = await activities.createActivity(
+    PA._id.toString(),
+    "Soccer 1600 Park",
+    "1",
+    "20"
+  );
+
   console.log("------------create activities successfully------------");
 
   console.log("------------Init Appointments------------");
