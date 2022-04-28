@@ -230,6 +230,8 @@ async function test() {
   // );
   console.log("------------create reviews successfully------------");
 
+  console.log("------------test------------");
+
   await dbConnection.closeConnection();
 }
 

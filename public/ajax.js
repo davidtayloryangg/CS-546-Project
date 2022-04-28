@@ -20,7 +20,7 @@
           var rating = (element.averageRating / 5) * 100;
           txtLi.innerHTML = `
             <div class="homeRecommendationTxtListItem">
-              <a href="/" class="a">
+              <a href="/parks/${element._id}" class="a">
                   <p>${element.name}</p>
                    <div class="star-rating">
                       <div class="star-rating-top" style="width:${rating}%">
@@ -54,11 +54,11 @@
 
 })(jQuery);
 
-(function ($){
-  $(document).ready(function(){
+(function ($) {
+  $(document).ready(function () {
     $.ajax({
       url: 'http://localhost:3000/parks/activities/reviews',
-      
+
     })
   })
 })
