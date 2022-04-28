@@ -176,7 +176,7 @@ async function test() {
     sinatra._id.toString(),
     "Soccer Sinatra Park",
     "1",
-    "20"
+    "22"
   );
   //STEVENS PARK
   const baseballStevens = await activities.createActivity(
@@ -204,7 +204,7 @@ async function test() {
     PA._id.toString(),
     "Soccer 1600 Park",
     "1",
-    "20"
+    "22"
   );
   console.log("------------create activities successfully------------");
 

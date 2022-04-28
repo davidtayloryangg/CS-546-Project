@@ -7,14 +7,14 @@ router
   .get(async (req, res) => {
     try {
 
-      const tennis = await parkdata.getAllParksByActivityName("Tennis");
-      const Basketball = await parkdata.getAllParksByActivityName("Basketball");
-      const Jog = await parkdata.getAllParksByActivityName("Jog");
-      const Soccer = await parkdata.getAllParksByActivityName("Soccer");
-      const Baseball = await parkdata.getAllParksByActivityName("Baseball");
-      const Skate = await parkdata.getAllParksByActivityName("Skate");
-      const Yoga = await parkdata.getAllParksByActivityName("Yoga");
-      const Rugby = await parkdata.getAllParksByActivityName("Rugby");
+      const tennis = await data.getAllParksByActivityName("Tennis");
+      const Basketball = await data.getAllParksByActivityName("Basketball");
+      const Jog = await data.getAllParksByActivityName("Jog");
+      const Soccer = await data.getAllParksByActivityName("Soccer");
+      const Baseball = await data.getAllParksByActivityName("Baseball");
+      const Skate = await data.getAllParksByActivityName("Skate");
+      const Yoga = await data.getAllParksByActivityName("Yoga");
+      const Rugby = await data.getAllParksByActivityName("Rugby");
 
       res.render('function/Activity', {tennis, Basketball, Jog, Soccer, Baseball, Skate, Yoga, Rugby});
     } catch (e) {
