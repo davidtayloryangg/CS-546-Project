@@ -200,20 +200,14 @@ async function test() {
     "1",
     "20"
   );
-
-<<<<<<< HEAD
   console.log("------------create activities successfully------------");
-=======
-  console.log('------------Init Appointments------------');
-  const appointment1 = await appointments.createAppointment(user1._id, columbus._id, TennisColumbus._id, "2022", "4", "16", "5", "20");
-  console.log('------------create appointments successfully------------');
->>>>>>> 4_27
+
 
   console.log("------------Init Appointments------------");
   const appointment1 = await appointments.createAppointment(
     user1._id,
     churchSquare._id,
-    playgroundColumbus._id,
+    BasketballChurchSquare._id,
     "2022",
     "4",
     "16",
@@ -228,19 +222,13 @@ async function test() {
   await comments.createComment(madison._id, 4.75, "god!");
   console.log("------------create comments successfully------------");
 
-<<<<<<< HEAD
   console.log("------------Init Reviews------------");
-  const review1 = await reviews.createReview(
-    user1._id,
-    BasketballColumbus._id,
-    "nice!!!!!"
-  );
+  // const review1 = await reviews.createReview(
+  //   user1._id,
+  //   BasketballColumbus._id,
+  //   "nice!!!!!"
+  // );
   console.log("------------create reviews successfully------------");
-=======
-  console.log('------------Init Reviews------------');
-  const review1 = await reviews.createReview(user1._id, TennisColumbus._id, "nice!!!!!");
-  console.log('------------create reviews successfully------------');
->>>>>>> 4_27
 
   await dbConnection.closeConnection();
 }
