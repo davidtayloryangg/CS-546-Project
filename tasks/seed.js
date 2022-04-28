@@ -92,6 +92,14 @@ async function test() {
   await parks.updateParkImg(CP._id, "/public/img/castlePoint.jpg");
   await parks.updateParkImg(PC._id, "/public/img/pierC.jpg");
   await parks.updateParkImg(PA._id, "/public/img/1600park.jpg");
+  await parks.updateParkLikes(columbus._id, 55);
+  await parks.updateParkLikes(churchSquare._id, 90);
+  await parks.updateParkLikes(madison._id, 80);
+  await parks.updateParkLikes(sinatra._id, 90);
+  await parks.updateParkLikes(stevens._id, 100);
+  await parks.updateParkLikes(CP._id, 60);
+  await parks.updateParkLikes(PC._id, 65);
+  await parks.updateParkLikes(PA._id, 70);
   console.log("------------create parks successfully------------");
 
   console.log("------------Init Activities------------");
@@ -222,7 +230,7 @@ async function test() {
   await comments.createComment(madison._id, 3.9, "free to play");
   await comments.createComment(sinatra._id, 4.55, "nice view!");
   await comments.createComment(stevens._id, 4.8, "amazing!");
-  await comments.createComment(CP._id, 4.95, "god!");
+  await comments.createComment(CP._id, 4.75, "god!");
   await comments.createComment(PC._id, 4.91, "nice park!");
   await comments.createComment(PA._id, 4.2, "amazing!");
   console.log("------------create comments successfully------------");

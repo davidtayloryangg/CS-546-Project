@@ -1,24 +1,35 @@
 (function ($) {
   $(document).ready(function () {
-    $.ajax({
-      url: "http://localhost:3000/parks/AllParks",
-      type: "get",
-      dataType: "json",
-      success: function (res) {
-        var imgList = $("#homeRecommendationImgList");
-        var txtList = $("#homeRecommendationTxtList");
-        console.log(res);
-        for (const element of res) {
-          var imgLi = document.createElement("li");
-          imgLi.innerHTML = `
+    $("#orderByRating").click();
+  })
+
+})(jQuery);
+
+$("#orderByRating").click(function () {
+  var likesDiv = $("#homePopularDiv");
+  var ratingDiv = $("#homeRecommendationDiv");
+  likesDiv.hide();
+  ratingDiv.show();
+  $.ajax({
+    url: "http://localhost:3000/parks/ParksOrderByRating",
+    type: "get",
+    dataType: "json",
+    success: function (res) {
+      var imgList = $("#homeRecommendationImgList");
+      var txtList = $("#homeRecommendationTxtList");
+      imgList.empty();
+      txtList.empty();
+      for (const element of res) {
+        var imgLi = document.createElement("li");
+        imgLi.innerHTML = `
             <div class="homeRecommendationImgListItem">
               <img src=${element.imgUrl} onerror="this.src='https://blog.nscsports.org/wp-content/uploads/2014/10/default-img.gif'">
             </div>
           `;
-          imgList.append(imgLi);
-          var txtLi = document.createElement("li");
-          var rating = (element.averageRating / 5) * 100;
-          txtLi.innerHTML = `
+        imgList.append(imgLi);
+        var txtLi = document.createElement("li");
+        var rating = (element.averageRating / 5) * 100;
+        txtLi.innerHTML = `
             <div class="homeRecommendationTxtListItem">
               <a href="/parks/${element._id}" class="a">
                   <p>${element.name}</p>
@@ -45,20 +56,65 @@
               </a>
             </div>
           `;
-          txtList.append(txtLi);
-        }
+        txtList.append(txtLi);
       }
-    })
+    }
   })
+});
 
-
-})(jQuery);
-
-(function ($) {
-  $(document).ready(function () {
-    $.ajax({
-      url: 'http://localhost:3000/parks/activities/reviews',
-
-    })
+$("#orderByLikes").click(function () {
+  var likesDiv = $("#homePopularDiv");
+  var ratingDiv = $("#homeRecommendationDiv");
+  ratingDiv.hide();
+  likesDiv.show();
+  $.ajax({
+    url: "http://localhost:3000/parks/ParksOrderByLikes",
+    type: "get",
+    dataType: "json",
+    success: function (res) {
+      var imgList = $("#homePopularImgList");
+      var txtList = $("#homePopularTxtList");
+      imgList.empty();
+      txtList.empty();
+      for (const element of res) {
+        var imgLi = document.createElement("li");
+        imgLi.innerHTML = `
+            <div class="homePopularImgListItem">
+              <img src=${element.imgUrl} onerror="this.src='https://blog.nscsports.org/wp-content/uploads/2014/10/default-img.gif'">
+            </div>
+          `;
+        imgList.append(imgLi);
+        var txtLi = document.createElement("li");
+        var rating = (element.averageRating / 5) * 100;
+        txtLi.innerHTML = `
+            <div class="homePopularTxtListItem">
+              <a href="/parks/${element._id}" class="a">
+                  <p>${element.name}</p>
+                   <div class="star-rating">
+                      <div class="star-rating-top" style="width:${rating}%">
+                          <span>★</span>
+                          <span>★</span>
+                          <span>★</span>
+                          <span>★</span>
+                          <span>★</span>
+                      </div>
+                      <div class="star-rating-bottom">
+                          <span>★</span>
+                          <span>★</span>
+                          <span>★</span>
+                          <span>★</span>
+                          <span>★</span>
+                      </div>
+                  </div>
+                  <p>Open Time: ${element.openTime}</p>
+                  <p>Close Time: ${element.closeTime}</p>
+                  <p>Address: ${element.location}</p>
+                  <br/>
+              </a>
+            </div>
+          `;
+        txtList.append(txtLi);
+      }
+    }
   })
-})
+});

@@ -13,10 +13,18 @@ router.get("/", function (req, res) {
   );
 });
 
-router.route("/AllParks").get(async (req, res) => {
+router.route("/ParksOrderByRating").get(async (req, res) => {
   try {
-    const allParks = await data.getAllParks();
-    res.json(allParks);
+    const parks = await data.getParksOrderByRating();
+    res.json(parks);
+  } catch (e) {
+    res.status(500).json(e);
+  }
+});
+router.route("/ParksOrderByLikes").get(async (req, res) => {
+  try {
+    const parks = await data.getParksOrderByLikes();
+    res.json(parks);
   } catch (e) {
     res.status(500).json(e);
   }

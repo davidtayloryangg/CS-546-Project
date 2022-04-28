@@ -48,7 +48,7 @@ a:link{
   text-decoration:none;
 }
 a:hover{
-  text-decoration:underline;
+  text-decoration:none;
 }
 a:visited {
 	text-decoration:none;
@@ -103,8 +103,31 @@ ul li{
   list-style: none;
 }
 
-
 /* For Recommendation List */
+.homeLink{
+  margin: 0 auto;
+  width: 400px;
+}
+.homeRecommendationLink{
+  float: left;
+  width: 50%;
+  font-size:1.5em;
+  color:#fffafa;
+  border-radius: 5px;
+}
+.homeRecommendationLink:hover{
+  color: #4CAF50;
+}
+.homePopularLink{
+  margin-left: 50%;
+  width: 50%;
+  font-size:1.5em;
+  color:#fffafa; 
+  border-radius: 5px;
+}
+.homePopularLink:hover{
+  color: #4CAF50;
+}
 .homeRecommendationDiv{
   margin: 0 auto;
   width: 1000px;
@@ -140,7 +163,50 @@ ul li{
 .homeRecommendationTxtList li div a p {
 	color: #fcfcfc;
   text-align: left;
+}
+.homeRecommendationTxtList li div a p:hover {
+	color: #4CAF50;
+}
 
+/* For Popular List */
+.homePopularDiv{
+  margin: 0 auto;
+  width: 1000px;
+  height: 1000px;
+}
+.homePopularImg{
+  float: left;
+  width: 50%;
+}
+.homePopularImgList li{
+  width: 500px;
+  height: 300px;
+  padding: 20px 0;
+}
+.homePopularImgList li img{
+  border-radius: 20px;
+  width: 500px;
+  height: 300px;
+  object-fit: cover;
+}
+.homePopularTxt{
+  margin-left: 50%;
+  width: 50%;
+}
+.homePopularTxtList li{
+  width: 700px;
+  height: 300px;
+  padding: 20px 20px;
+}
+.homePopularTxtListItem{
+  padding: 40px 0;
+}
+.homePopularTxtList li div a p {
+	color: #fcfcfc;
+  text-align: left;
+}
+.homePopularTxtList li div a p:hover {
+	color: #4CAF50;
 }
 
 .star-rating {
