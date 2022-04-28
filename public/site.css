@@ -208,7 +208,10 @@ ul li{
 .homePopularTxtList li div a p:hover {
 	color: #4CAF50;
 }
-
+.star-rating-num{
+  text-align: left;
+  color: #fcfcfc;
+}
 .star-rating {
   unicode-bidi: bidi-override;
   color: #ddd;

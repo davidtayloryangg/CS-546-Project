@@ -33,20 +33,22 @@ $("#orderByRating").click(function () {
             <div class="homeRecommendationTxtListItem">
               <a href="/parks/${element._id}" class="a">
                   <p>${element.name}</p>
-                   <div class="star-rating">
-                      <div class="star-rating-top" style="width:${rating}%">
-                          <span>★</span>
-                          <span>★</span>
-                          <span>★</span>
-                          <span>★</span>
-                          <span>★</span>
-                      </div>
-                      <div class="star-rating-bottom">
-                          <span>★</span>
-                          <span>★</span>
-                          <span>★</span>
-                          <span>★</span>
-                          <span>★</span>
+                  <div class="star-rating-num">(${element.averageRating})
+                      <div class="star-rating">
+                          <div class="star-rating-top" style="width:${rating}%">
+                              <span>★</span>
+                              <span>★</span>
+                              <span>★</span>
+                              <span>★</span>
+                              <span>★</span>
+                          </div>
+                          <div class="star-rating-bottom">
+                              <span>★</span>
+                              <span>★</span>
+                              <span>★</span>
+                              <span>★</span>
+                              <span>★</span>
+                          </div>
                       </div>
                   </div>
                   <p>Open Time: ${element.openTime}</p>
@@ -90,20 +92,22 @@ $("#orderByLikes").click(function () {
             <div class="homePopularTxtListItem">
               <a href="/parks/${element._id}" class="a">
                   <p>${element.name}</p>
-                   <div class="star-rating">
-                      <div class="star-rating-top" style="width:${rating}%">
-                          <span>★</span>
-                          <span>★</span>
-                          <span>★</span>
-                          <span>★</span>
-                          <span>★</span>
-                      </div>
-                      <div class="star-rating-bottom">
-                          <span>★</span>
-                          <span>★</span>
-                          <span>★</span>
-                          <span>★</span>
-                          <span>★</span>
+                  <div class="star-rating-num">(${element.averageRating})
+                      <div class="star-rating">
+                          <div class="star-rating-top" style="width:${rating}%">
+                              <span>★</span>
+                              <span>★</span>
+                              <span>★</span>
+                              <span>★</span>
+                              <span>★</span>
+                          </div>
+                          <div class="star-rating-bottom">
+                              <span>★</span>
+                              <span>★</span>
+                              <span>★</span>
+                              <span>★</span>
+                              <span>★</span>
+                          </div>
                       </div>
                   </div>
                   <p>Open Time: ${element.openTime}</p>
