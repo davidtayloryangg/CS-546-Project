@@ -32,6 +32,12 @@ async function test() {
     "davidtayloryang@gmail.com",
     "davidyang12345"
   );
+  await users.createUser(
+    "Yutong",
+    "Wei",
+    "weiyutong123@stevens.edu",
+    "12345678"
+  )
   console.log("------------create users successfully------------");
 
   console.log("------------Init Parks------------");

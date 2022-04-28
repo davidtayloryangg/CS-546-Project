@@ -116,5 +116,15 @@ module.exports = {
     if (!park) throw 'Could not find activity';
     return park.activities;
 
+  },
+  async getAllParksByActivityName(activityName){
+    if (!parkactivityNamename) throw 'please provide activity name';
+    const parkCollection = await parks();
+    var reg = new RegExp(activityName, "i");
+    const parkList = await parkCollection.find({ "activities.name": { $regex: reg } }).toArray();
+    if (!parkList) throw 'could not get park list';
+    return parkList;
   }
+
+
 }
