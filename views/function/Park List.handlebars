@@ -1,0 +1,43 @@
+<body>
+    <h1>Parks</h1>
+    <ul>
+    {{#each parks}}
+        <li>
+            <div class="parkCard">
+                <img src="{{imgUrl}}" onerror="this.src='https://blog.nscsports.org/wp-content/uploads/2014/10/default-img.gif'" alt="{{name}}" class="parkCardImg">
+                <a href="/parks/{{_id}}" class="parkCardText">
+                    <h2>{{name}}</h2>
+                    <div class="star-rating">
+                        <div class="star-rating-top" style="width:{{rating}}">
+                            <span>★</span>
+                            <span>★</span>
+                            <span>★</span>
+                            <span>★</span>
+                            <span>★</span>
+                        </div>
+                        <div class="star-rating-bottom">
+                            <span>★</span>
+                            <span>★</span>
+                            <span>★</span>
+                            <span>★</span>
+                            <span>★</span>
+                        </div>
+                    </div>
+                    <p>Open Time: {{openTime}}</p>
+                    <p>Close Time: {{closeTime}}</p>
+                    <p>Address: {{location}}</p>
+                    <br/>
+                    <div class="activitiesRight">
+                        <h3>Activities</h3>
+                        <ul>
+                            {{#each activities}}
+                                <li>{{this.name}}</li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                </a>
+            </div>
+        </li>
+    {{/each}}
+    </ul>
+</body>

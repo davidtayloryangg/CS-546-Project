@@ -6,20 +6,29 @@ const appointments = require("../data/appointments");
 const comments = require("../data/comments");
 const reviews = require("../data/reviews");
 
-const dbConnection = require('../config/mongoConnection');
+const dbConnection = require("../config/mongoConnection");
 const { getPark, getParkByName } = require("../data/parks");
 
 async function test() {
   const db = await dbConnection.connectToDb();
   await db.dropDatabase();
 
-  console.log('------------Init Users------------');
-  const user1 = await users.createUser("Yuheng", "Xiao", "yxiao38@stevens.edu", "Xyh123456");
-  const user2 = await users.createUser("Yue", "Qin", "qinyue12345@gmail.com", "qinyue12345");
-  console.log('------------create users successfully------------');
+  console.log("------------Init Users------------");
+  const user1 = await users.createUser(
+    "Yuheng",
+    "Xiao",
+    "yxiao38@stevens.edu",
+    "Xyh123456"
+  );
+  const user2 = await users.createUser(
+    "Yue",
+    "Qin",
+    "qinyue12345@gmail.com",
+    "qinyue12345"
+  );
+  console.log("------------create users successfully------------");
 
-  console.log('------------Init Parks------------');
-  //Parks
+  console.log("------------Init Parks------------");
   const columbus = await parks.createPark(
     "Columbus Park",
     "06:00",
@@ -77,10 +86,11 @@ async function test() {
   await parks.updateParkImg(CP._id, "/public/img/castlePoint.jpg");
   await parks.updateParkImg(PC._id, "/public/img/pierC.jpg");
   await parks.updateParkImg(PA._id, "/public/img/1600park.jpg");
-  console.log('------------create parks successfully------------');
+  console.log("------------create parks successfully------------");
 
-  console.log('------------Init Activities------------');
+  console.log("------------Init Activities------------");
   // create a new activities:
+  //COLUMBUS PARK
   const playgroundColumbus = await activities.createActivity(
     columbus._id.toString(),
     "Playground Columbus Park",
@@ -99,21 +109,34 @@ async function test() {
     "1",
     "10"
   );
-  console.log('------------create activities successfully------------');
+  console.log("------------create activities successfully------------");
 
-  console.log('------------Init Appointments------------');
-  const appointment1 = await appointments.createAppointment(user1._id, churchSquare._id, playgroundColumbus._id, "2022", "4", "16", "5", "20");
-  console.log('------------create appointments successfully------------');
+  console.log("------------Init Appointments------------");
+  const appointment1 = await appointments.createAppointment(
+    user1._id,
+    churchSquare._id,
+    playgroundColumbus._id,
+    "2022",
+    "4",
+    "16",
+    "5",
+    "20"
+  );
+  console.log("------------create appointments successfully------------");
 
-  console.log('------------Init Comments------------');
+  console.log("------------Init Comments------------");
   await comments.createComment(churchSquare._id, 4.55, "nice park!");
   await comments.createComment(columbus._id, 4.75, "amazing!");
   await comments.createComment(madison._id, 4.75, "god!");
-  console.log('------------create comments successfully------------');
+  console.log("------------create comments successfully------------");
 
-  console.log('------------Init Reviews------------');
-  const review1 = await reviews.createReview(user1._id, BasketballColumbus._id, "nice!!!!!");
-  console.log('------------create reviews successfully------------');
+  console.log("------------Init Reviews------------");
+  const review1 = await reviews.createReview(
+    user1._id,
+    BasketballColumbus._id,
+    "nice!!!!!"
+  );
+  console.log("------------create reviews successfully------------");
 
   await dbConnection.closeConnection();
 }

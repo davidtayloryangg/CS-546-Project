@@ -314,6 +314,47 @@ ul.topnav li.right {float: right;}
   width: 300px;
 }
 
+/*Single park page*/
+.parkCard {
+  width: auto;
+  padding: 20px;
+  overflow: hidden;
+}
+.parkCard .parkCardImg {
+  margin-right: 15px;
+  float: left;
+  padding: 20px 0;
+  width: 50%;
+  border-radius: 20px;
+  width: 500px;
+  height: 300px;
+  object-fit: cover
+}
+.parkCard .parkCardText {
+  margin-left: 50%;
+  display: block;
+  margin: 2px 0 0 0;
+  text-align: left;
+  line-height: 2em;
+  padding-bottom: 1em;
+  font-weight: bold;
+  display: table;
+  color: white;
+}
+.parkCard h2 {
+  color: #fff;
+  font-size: 1.5em;
+  margin-bottom: 1px;
+}
+.parkCard p {
+  font-size: 1em;
+  margin-bottom: 0;
+}
+
+.activitiesRight {
+  margin: 2px 0 0 0;
+  display: table-cell;
+}
 
 /* Footer styling: */
 /* 
