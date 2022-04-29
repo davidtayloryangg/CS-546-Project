@@ -23,6 +23,7 @@ module.exports = {
       activities: [],
       comments: [],
       averageRating: 0,
+      likes: 0,
       imgUrl: "/public/img/default_img.gif"
     };
     const insertInfo = await parkCollection.insertOne(newPark);
@@ -73,14 +74,40 @@ module.exports = {
       { $set: parkUpdateInfo }
     );
     if (!updateInfo.matchedCount && !updateInfo.modifiedCount)
-      throw 'Update park failed';
+      throw 'Update park img failed';
+    return true;
+  },
+  async updateParkLikes(id, num) {
+    if (!id) throw 'please provide all inputs';
+    if (!ObjectId.isValid(id)) throw 'invalid park ID';
+
+    const parkCollection = await parks();
+    const updateInfo = await parkCollection.updateOne(
+      { _id: ObjectId(id) },
+      { $inc: { likes: num } }
+    );
+    if (!updateInfo.matchedCount && !updateInfo.modifiedCount)
+      throw 'Update park likes failed';
     return true;
   },
   async getAllParks() {
     const parkCollection = await parks();
     const parkList = await parkCollection.find({}, {
-      // projection: { _id: 1, name: 1 }
     }).toArray();
+    if (!parkList) throw 'could not get all parks';
+    return parkList;
+  },
+  async getParksOrderByRating() {
+    const parkCollection = await parks();
+    const parkList = await parkCollection.find({}, {
+    }).sort({ "averageRating": -1 }).toArray();
+    if (!parkList) throw 'could not get all parks';
+    return parkList;
+  },
+  async getParksOrderByLikes() {
+    const parkCollection = await parks();
+    const parkList = await parkCollection.find({}, {
+    }).sort({ "likes": -1 }).toArray();
     if (!parkList) throw 'could not get all parks';
     return parkList;
   },

@@ -48,7 +48,7 @@ a:link{
   text-decoration:none;
 }
 a:hover{
-  text-decoration:underline;
+  text-decoration:none;
 }
 a:visited {
 	text-decoration:none;
@@ -103,8 +103,31 @@ ul li{
   list-style: none;
 }
 
-
 /* For Recommendation List */
+.homeLink{
+  margin: 0 auto;
+  width: 400px;
+}
+.homeRecommendationLink{
+  float: left;
+  width: 50%;
+  font-size:1.5em;
+  color:#fffafa;
+  border-radius: 5px;
+}
+.homeRecommendationLink:hover{
+  color: #4CAF50;
+}
+.homePopularLink{
+  margin-left: 50%;
+  width: 50%;
+  font-size:1.5em;
+  color:#fffafa; 
+  border-radius: 5px;
+}
+.homePopularLink:hover{
+  color: #4CAF50;
+}
 .homeRecommendationDiv{
   margin: 0 auto;
   width: 1000px;
@@ -140,9 +163,55 @@ ul li{
 .homeRecommendationTxtList li div a p {
 	color: #fcfcfc;
   text-align: left;
-
+}
+.homeRecommendationTxtList li div a p:hover {
+	color: #4CAF50;
 }
 
+/* For Popular List */
+.homePopularDiv{
+  margin: 0 auto;
+  width: 1000px;
+  height: 1000px;
+}
+.homePopularImg{
+  float: left;
+  width: 50%;
+}
+.homePopularImgList li{
+  width: 500px;
+  height: 300px;
+  padding: 20px 0;
+}
+.homePopularImgList li img{
+  border-radius: 20px;
+  width: 500px;
+  height: 300px;
+  object-fit: cover;
+}
+.homePopularTxt{
+  margin-left: 50%;
+  width: 50%;
+}
+.homePopularTxtList li{
+  width: 700px;
+  height: 300px;
+  padding: 20px 20px;
+}
+.homePopularTxtListItem{
+  padding: 40px 0;
+}
+.homePopularTxtList li div a p {
+	color: #fcfcfc;
+  text-align: left;
+}
+.homePopularTxtList li div a p:hover {
+	color: #4CAF50;
+}
+.star-rating-num{
+  text-align: left;
+  color: #fcfcfc;
+}
 .star-rating {
   unicode-bidi: bidi-override;
   color: #ddd;
@@ -314,6 +383,47 @@ ul.topnav li.right {float: right;}
   width: 300px;
 }
 
+/*Single park page*/
+.parkCard {
+  width: auto;
+  padding: 20px;
+  overflow: hidden;
+}
+.parkCard .parkCardImg {
+  margin-right: 15px;
+  float: left;
+  padding: 20px 0;
+  width: 50%;
+  border-radius: 20px;
+  width: 500px;
+  height: 300px;
+  object-fit: cover
+}
+.parkCard .parkCardText {
+  margin-left: 50%;
+  display: block;
+  margin: 2px 0 0 0;
+  text-align: left;
+  line-height: 2em;
+  padding-bottom: 1em;
+  font-weight: bold;
+  display: table;
+  color: white;
+}
+.parkCard h2 {
+  color: #fff;
+  font-size: 1.5em;
+  margin-bottom: 1px;
+}
+.parkCard p {
+  font-size: 1em;
+  margin-bottom: 0;
+}
+
+.activitiesRight {
+  margin: 2px 0 0 0;
+  display: table-cell;
+}
 
 /* Footer styling: */
 /* 

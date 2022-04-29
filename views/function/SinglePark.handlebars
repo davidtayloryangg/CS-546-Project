@@ -1,0 +1,50 @@
+<body>
+    <h1>{{parks.name}}</h1>
+    <div class="singlePark">
+        <img src="{{parks.imgUrl}}" onerror="this.src='https://blog.nscsports.org/wp-content/uploads/2014/10/default-img.gif'" alt="{{parks.name}}" class="parkImg">
+        <div class="parkInfo">
+            <div class="star-rating">
+                <div class="star-rating-top" style="width:{{parks.rating}}">
+                    <span>★</span>
+                    <span>★</span>
+                    <span>★</span>
+                    <span>★</span>
+                    <span>★</span>
+                </div>
+                <div class="star-rating-bottom">
+                    <span>★</span>
+                    <span>★</span>
+                    <span>★</span>
+                    <span>★</span>
+                    <span>★</span>
+                </div>
+            </div>
+            <p>Open Time: {{parks.openTime}}</p>
+            <p>Close Time: {{parks.closeTime}}</p>
+            <p>Address: {{parks.location}}</p>
+            <br/>
+            <h3>Activities</h3>
+            <div class="parkActivities">
+                {{#each parks.activities}}
+                    <a href="/activities/{{_id}}" class="button">{{this.name}}</a>
+                {{/each}}
+            </div>
+            <div class="parkComment">
+                {{#each parks.comments}}
+                    <h3>Comments</h3>
+                    <div class="comment">
+                        <div class="commentUser">
+                            {{!-- <img src="{{this.imgUrl}}" onerror="this.src='https://blog.nscsports.org/wp-content/uploads/2014/10/default-img.gif'" alt="{{user.name}}" class="commentUserImg"> --}}
+                            <a href="/users/{{_id}}">{{this._id}}</a>
+                            {{!-- Change This to look for users first and clast name --}}
+                        </div>
+                        <div class="commentContent">
+                            <p>{{this.parkComment}}</p>
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+
+        </div>
+    </div>
+</body>

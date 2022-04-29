@@ -20,7 +20,8 @@
      - ('/signup').get Wenjing Zhou :white_check_mark:
      - ('/signup').post Wenjing Zhou :white_check_mark:
    - Parks:
-     - ('/parks').get
+     - ('/parks').get David Yang :white_check_mark:
+     - ('/parks/:id').get David Yang :white_check_mark:
      - ('/parks/search').get Yutong Wei :white_check_mark:
      - ('/parks/allParks').get Yutong Wei :white_check_mark:
      - ('/parks/comments').get Yue Qin :white_check_mark:
@@ -29,7 +30,7 @@
      - ('/parks/activities').post Yutong Wei :white_check_mark:
      - ('appointments').get Yuheng Xiao :white_check_mark:
      - ('appointments').post Yuheng Xiao :white_check_mark:
-     - ('appointments/recommendation').post Yuheng Xiao :white_check_mark:
+     - ('appointments/match').post Yuheng Xiao :white_check_mark:
    - Users:
      - ('/users').get Wenjing Zhou :white_check_mark:
      - ('/users/reviews').get Yue Qin :white_check_mark:
@@ -45,7 +46,7 @@
    - User Profile Page:
    - Park activities management Page:
    - Activity Page:
-   - Park Activities Recommendation Page: Yuheng Xiao
+   - Park Activities Appointment Page: Yuheng Xiao
 
 ## Team Members
 

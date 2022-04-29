@@ -34,7 +34,7 @@ function computeRating(park) {
   for (let a of park.comments) {
     rating += a.rating;
   }
-  return rating / num;
+  return Math.floor((rating / num) * 100) / 100;
 }
 function checkId(string) {
   return ObjectId.isValid(string);
