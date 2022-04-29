@@ -103,6 +103,46 @@ ul li{
   list-style: none;
 }
 
+/* For home search list */
+.homeSearchDiv{
+  margin: 0 auto;
+  width: 1000px;
+  height: 1000px;
+}
+.homeSearchImg{
+  float: left;
+  width: 50%;
+}
+.homeSearchImgList li{
+  width: 500px;
+  height: 300px;
+  padding: 20px 0;
+}
+.homeSearchImgList li img{
+  border-radius: 20px;
+  width: 500px;
+  height: 300px;
+  object-fit: cover;
+}
+.homeSearchTxt{
+  margin-left: 50%;
+  width: 50%;
+}
+.homeSearchTxtList li{
+  width: 700px;
+  height: 300px;
+  padding: 20px 20px;
+}
+.homeSearchTxtListItem{
+  padding: 40px 0;
+}
+.homeSearchTxtList li div a p {
+	color: #fcfcfc;
+  text-align: left;
+}
+.homeSearchTxtList li div a p:hover {
+	color: #4CAF50;
+}
 /* For Recommendation List */
 .homeLink{
   margin: 0 auto;

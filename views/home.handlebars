@@ -3,12 +3,12 @@
     <main>
         <article>
             <h1 class="main-title">Search Park</h1>
-            <form method="post" action="/parks/search">
-                <input type="text" class="search" name="parkName" placeholder="Please input park name"/>
-                <button type="submit" class="button"><span>Search</span></button>
+            <form action="##" method="POST" id="searchForm">
+                <input type="text" class="search" name="parkName" id="homeSearchTxt" placeholder="Please input park name"/>
+                <button type="submit" class="button" id="homeSearch"><span>Search</span></button>
             </form>
         </article>
-        <div class="homeLink">
+        <div class="homeLink" id="homelink">
           <div class="homeRecommendationLink" id="orderByRating">
             ORDER BY RATING
           </div>
@@ -35,5 +35,15 @@
             <ul id="homePopularTxtList" class="homePopularTxtList"></ul>
           </div>
         </div>
+
+        <div class="homeSearchDiv" id="homeSearchDiv">
+          <div class="homeSearchImg"> 
+            <ul id="homeSearchImgList" class="homeSearchImgList"></ul>
+          </div>
+          <div class="homeSearchTxt">
+            <ul id="homeSearchTxtList" class="homeSearchTxtList"></ul>
+          </div>
+        </div>
+
     </main> 
 </body>
