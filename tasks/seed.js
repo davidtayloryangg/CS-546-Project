@@ -249,6 +249,9 @@ async function test() {
   // );
   console.log("------------create reviews successfully------------");
 
+  console.log("------------add favorite park---------------------");
+  await users.addfavorite(user1._id,columbus._id)
+
   console.log("------------test------------");
 
   await dbConnection.closeConnection();
