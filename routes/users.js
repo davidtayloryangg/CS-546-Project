@@ -93,6 +93,7 @@ router.get('/profile', async (req, res) => {
       state:user.state,
       age:user.age,
       description:user.description,
+      favorites:user.favorites,
       appointments:appointments
     }
     res.render('function/UserProfile', {user:userinfo,edit:false});
@@ -148,6 +149,7 @@ router.post('/profile', async (req, res) => {
       state:user.state,
       age:user.age,
       description:user.description,
+      favorites:user.favorites,
       appointments:appointments
     }
     res.render('function/UserProfile',{user:userinfo, edit:true})

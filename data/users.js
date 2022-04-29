@@ -2,6 +2,7 @@ const { ObjectId } = require('mongodb');
 const bcrypt = require('bcrypt');
 const mongoCollections = require('../config/mongoCollections');
 const users = mongoCollections.users;
+const parks = mongoCollections.parks;
 const func = require('./functions');
 
 module.exports = {
@@ -32,7 +33,8 @@ module.exports = {
       description: '',
       hashedPassword: hash,
       reviews: [],
-      appointments: []
+      appointments: [],
+      favorites:[]
     };
     const insertInfo = await userCollection.insertOne(newUser);
     if (!insertInfo.acknowledged || !insertInfo.insertedId) throw 'Could not add user';
@@ -100,4 +102,24 @@ module.exports = {
     user._id = user._id.toString();
     return user;
   },
+
+  async addfavorite(userId,parkId){
+    const userCollection=await users()
+    const parkCollection=await parks()
+    const user=await userCollection.findOne({_id:ObjectId(userId)})
+    const park=await parkCollection.findOne({_id:ObjectId(parkId)})
+    let newfavorite={parkId:parkId,parkname:park.name}
+    user.favorites.push(newfavorite)
+    const updateInfo=await userCollection.updateOne(
+      {_id:ObjectId(userId)},
+      {$set: {
+        favorites:user.favorites
+      }}
+    )
+    if (!updateInfo.matchedCount && !updateInfo.modifiedCount) {
+      throw 'could not update user successfully';
+    }
+    const user1=await userCollection.findOne({_id:ObjectId(userId)})
+    return true
+  }
 }

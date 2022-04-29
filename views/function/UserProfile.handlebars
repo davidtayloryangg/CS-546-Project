@@ -45,6 +45,12 @@
       <h3>{{user.age}}</h3>
       <h2> Description </h2>
       <h3>{{user.description}}</h3>
+      <h2>Favorite</h2>
+      {{#each user.favorites}}
+       <div>
+         <a href="/parks/{{this.parkId}}">{{this.parkname}}</a>
+       </div>
+      {{/each}}
       <p> Your Apointments </p>
       {{#unless user.appointments}}
       <p> You have no appointment right now! </p>
