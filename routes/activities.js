@@ -16,7 +16,7 @@ router
       const Yoga = await data.getAllParksByActivityName("Yoga");
       const Rugby = await data.getAllParksByActivityName("Rugby");
 
-      res.render('function/Activity', {tennis, Basketball, Jog, Soccer, Baseball, Skate, Yoga, Rugby});
+      res.render('function/Activity', { tennis, Basketball, Jog, Soccer, Baseball, Skate, Yoga, Rugby });
     } catch (e) {
       res.status(500).json(e);
     }
@@ -46,6 +46,16 @@ router
     } catch (e) {
       res.status(400).json(e);
     }
-  })
+  });
+router
+  .route("/id/:id")
+  .get(async (req, res) => {
+    try {
+      const parks = await data.getParkById(req.params.id);
+      res.render("function/SinglePark", { parks: parks });
+    } catch (error) {
+      res.status(500).json({ error: error });
+    }
+  });
 
 module.exports = router;
