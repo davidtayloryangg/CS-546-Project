@@ -37,7 +37,7 @@ router.post('/login', async (req, res) => {
 
 router.get('/signup', async (req, res) => {
   if (req.session.user) res.redirect('/users');
-  else res.redirect('function/Signup')
+  else res.render('function/Signup')
 });
 
 router.post('/signup', async (req, res) => {
