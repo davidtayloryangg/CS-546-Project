@@ -425,6 +425,14 @@ ul.topnav li.right {float: right;}
   display: table-cell;
 }
 
+
+.ActList{
+  color:pink;
+  width: auto;
+  padding: 20px;
+  overflow: hidden;
+}
+
 /* Footer styling: */
 /* 
 footer{

@@ -32,6 +32,12 @@ async function test() {
     "davidtayloryang@gmail.com",
     "davidyang12345"
   );
+  await users.createUser(
+    "Yutong",
+    "Wei",
+    "weiyutong123@stevens.edu",
+    "12345678"
+  )
   console.log("------------create users successfully------------");
 
   console.log("------------Init Parks------------");
@@ -178,7 +184,7 @@ async function test() {
     sinatra._id.toString(),
     "Soccer Sinatra Park",
     "1",
-    "20"
+    "22"
   );
   //STEVENS PARK
   const baseballStevens = await activities.createActivity(
@@ -206,7 +212,7 @@ async function test() {
     PA._id.toString(),
     "Soccer 1600 Park",
     "1",
-    "20"
+    "22"
   );
   console.log("------------create activities successfully------------");
 

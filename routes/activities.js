@@ -6,10 +6,17 @@ router
   .route('/')
   .get(async (req, res) => {
     try {
-      const park = await parkdata.getParkById("62688456dd26d3c2eba0cb43");
-      const activities = await data.getAllActivity(park._id);
-      console.log(activities);
-      res.render('function/Activity', {activities, park});
+
+      const tennis = await data.getAllParksByActivityName("Tennis");
+      const Basketball = await data.getAllParksByActivityName("Basketball");
+      const Jog = await data.getAllParksByActivityName("Jog");
+      const Soccer = await data.getAllParksByActivityName("Soccer");
+      const Baseball = await data.getAllParksByActivityName("Baseball");
+      const Skate = await data.getAllParksByActivityName("Skate");
+      const Yoga = await data.getAllParksByActivityName("Yoga");
+      const Rugby = await data.getAllParksByActivityName("Rugby");
+
+      res.render('function/Activity', {tennis, Basketball, Jog, Soccer, Baseball, Skate, Yoga, Rugby});
     } catch (e) {
       res.status(500).json(e);
     }
