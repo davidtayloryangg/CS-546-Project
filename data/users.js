@@ -43,17 +43,20 @@ module.exports = {
   async checkUser(email, password) {
     if (!email || !password)
       throw 'Please provide email address and password';
-    func.checkEmail(email);
-    func.checkPassword(password);
-
-    const userCollection = await users();
-    const user = await userCollection.findOne({ email: email.toLowerCase() });
-    if (user === null) throw 'Either the email address or password is invalid';
-    let comparePassword = bcrypt.compare(password, user.hashedPassword);
-    if (comparePassword)
-      return true;
-    else
-      throw 'Either the username or password is invalid';
+    try{
+      func.checkEmail(email);
+      func.checkPassword(password);
+      const userCollection = await users();
+      const user = await userCollection.findOne({ email: email.toLowerCase() });
+      if (user === null) throw 'Either the email address or password is invalid';
+      let comparePassword = bcrypt.compare(password, user.hashedPassword);
+      if (comparePassword)
+        return true;
+      else
+        throw 'Either the username or password is invalid';
+    }catch(error){
+      throw error
+    }
   },
 
   async modifyUserProfile(id, email, gender, city, state, age, description) {
@@ -91,7 +94,6 @@ module.exports = {
   },
 
   async getUserByEmail(email) {
-
     const userCollection = await users()
     const user = await userCollection.findOne({ email: email });
     if (user === null) throw 'No user with that id';

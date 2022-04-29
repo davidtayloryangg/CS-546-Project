@@ -88,7 +88,7 @@ module.exports = {
     }
 
     const parkCollection = await parks();
-    const activity = await parkCollection.findOne({
+    const park = await parkCollection.findOne({
       activities: {
         $elemMatch: { _id: ObjectId(activityId) }
       }
@@ -98,8 +98,11 @@ module.exports = {
       }
     });
     if (!park || park.activities.length == 0) throw 'No activity exist';
+    let activity;
+    for(let i of park.activities){
+      if(i._id.toString()===activityId) {activity=i;break;}
+    }
     return activity;
-
   },
   async getAllActivity(parkId) {
     if (arguments.length !== 1) throw 'paramater is wrong';
