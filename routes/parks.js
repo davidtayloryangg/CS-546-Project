@@ -40,7 +40,7 @@ router.route("/search").post(async (req, res) => {
   }
 });
 
-router.route("/:id").get(async (req, res) => {
+router.route("/id/:id").get(async (req, res) => {
   try {
     const parks = await data.getParkById(req.params.id);
     res.render("function/SinglePark", { parks: parks });
