@@ -1,8 +1,7 @@
 (function ($) {
   $(document).ready(function () {
     $("#orderByRating").click();
-  })
-
+  });
 })(jQuery);
 
 $("#orderByRating").click(function () {
@@ -31,7 +30,7 @@ $("#orderByRating").click(function () {
         var rating = (element.averageRating / 5) * 100;
         txtLi.innerHTML = `
             <div class="homeRecommendationTxtListItem">
-              <a href="/parks/${element._id}" class="a">
+              <a href="/parks/id/${element._id}" class="a">
                   <p>${element.name}</p>
                   <div class="star-rating-num">(${element.averageRating})
                       <div class="star-rating">
@@ -60,8 +59,8 @@ $("#orderByRating").click(function () {
           `;
         txtList.append(txtLi);
       }
-    }
-  })
+    },
+  });
 });
 
 $("#orderByLikes").click(function () {
@@ -119,6 +118,6 @@ $("#orderByLikes").click(function () {
           `;
         txtList.append(txtLi);
       }
-    }
-  })
+    },
+  });
 });
