@@ -9,7 +9,7 @@ $("#orderByRating").click(function () {
   var ratingDiv = $("#homeRecommendationDiv");
   var searchDiv = $("#homeSearchDiv");
   var homelink = $("#homelink");
-  homelink.hide();
+  homelink.show();
   likesDiv.hide();
   searchDiv.hide();
   ratingDiv.show();
