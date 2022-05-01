@@ -32,7 +32,7 @@ app.use(
   session({
     name: 'AuthCookie',
     secret: 'some secret string!',
-    resave: false,
+    resave: true,
     saveUninitialized: true,
     cookie: { maxAge: 600000 }
   }),

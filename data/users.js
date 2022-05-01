@@ -34,7 +34,7 @@ module.exports = {
       hashedPassword: hash,
       reviews: [],
       appointments: [],
-      favorites:[]
+      favorites: []
     };
     const insertInfo = await userCollection.insertOne(newUser);
     if (!insertInfo.acknowledged || !insertInfo.insertedId) throw 'Could not add user';
@@ -43,22 +43,15 @@ module.exports = {
   },
 
   async checkUser(email, password) {
-    if (!email || !password)
-      throw 'Please provide email address and password';
-    try{
-      func.checkEmail(email);
-      func.checkPassword(password);
-      const userCollection = await users();
-      const user = await userCollection.findOne({ email: email.toLowerCase() });
-      if (user === null) throw 'Either the email address or password is invalid';
-      let comparePassword = bcrypt.compare(password, user.hashedPassword);
-      if (comparePassword)
-        return true;
-      else
-        throw 'Either the username or password is invalid';
-    }catch(error){
-      throw error
-    }
+    if (!email || !password) throw 'Please provide email address and password';
+    func.checkEmail(email);
+    func.checkPassword(password);
+    const userCollection = await users();
+    const user = await userCollection.findOne({ email: email.toLowerCase() });
+    if (user === null) throw 'Either the email address or password is invalid';
+    let comparePassword = bcrypt.compare(password, user.hashedPassword);
+    if (comparePassword) return user;
+    else throw 'Either the username or password is invalid';
   },
 
   async modifyUserProfile(id, email, gender, city, state, age, description) {
@@ -103,23 +96,25 @@ module.exports = {
     return user;
   },
 
-  async addfavorite(userId,parkId){
-    const userCollection=await users()
-    const parkCollection=await parks()
-    const user=await userCollection.findOne({_id:ObjectId(userId)})
-    const park=await parkCollection.findOne({_id:ObjectId(parkId)})
-    let newfavorite={parkId:parkId,parkname:park.name}
+  async addfavorite(userId, parkId) {
+    const userCollection = await users()
+    const parkCollection = await parks()
+    const user = await userCollection.findOne({ _id: ObjectId(userId) })
+    const park = await parkCollection.findOne({ _id: ObjectId(parkId) })
+    let newfavorite = { parkId: parkId, parkname: park.name }
     user.favorites.push(newfavorite)
-    const updateInfo=await userCollection.updateOne(
-      {_id:ObjectId(userId)},
-      {$set: {
-        favorites:user.favorites
-      }}
+    const updateInfo = await userCollection.updateOne(
+      { _id: ObjectId(userId) },
+      {
+        $set: {
+          favorites: user.favorites
+        }
+      }
     )
     if (!updateInfo.matchedCount && !updateInfo.modifiedCount) {
       throw 'could not update user successfully';
     }
-    const user1=await userCollection.findOne({_id:ObjectId(userId)})
-    return true
+    const user1 = await userCollection.findOne({ _id: ObjectId(userId) })
+    return true;
   }
 }

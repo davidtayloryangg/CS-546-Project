@@ -231,14 +231,14 @@ async function test() {
   console.log("------------create appointments successfully------------");
 
   console.log("------------Init Comments------------");
-  await comments.createComment(churchSquare._id, 3.5, "I love it!");
-  await comments.createComment(columbus._id, 4.6, "amazing!");
-  await comments.createComment(madison._id, 3.9, "free to play");
-  await comments.createComment(sinatra._id, 4.55, "nice view!");
-  await comments.createComment(stevens._id, 4.8, "amazing!");
-  await comments.createComment(CP._id, 4.75, "god!");
-  await comments.createComment(PC._id, 4.91, "nice park!");
-  await comments.createComment(PA._id, 4.2, "amazing!");
+  await comments.createComment(churchSquare._id, user3._id, 3.5, "I love it!");
+  await comments.createComment(columbus._id, user3._id, 4.6, "amazing!");
+  await comments.createComment(madison._id, user3._id, 3.9, "free to play");
+  await comments.createComment(sinatra._id, user3._id, 4.55, "nice view!");
+  await comments.createComment(stevens._id, user3._id, 4.8, "amazing!");
+  await comments.createComment(CP._id, user3._id, 4.75, "god!");
+  await comments.createComment(PC._id, user3._id, 4.91, "nice park!");
+  await comments.createComment(PA._id, user3._id, 4.2, "amazing!");
   console.log("------------create comments successfully------------");
 
   console.log("------------Init Reviews------------");
@@ -250,7 +250,7 @@ async function test() {
   console.log("------------create reviews successfully------------");
 
   console.log("------------add favorite park---------------------");
-  await users.addfavorite(user1._id,columbus._id)
+  await users.addfavorite(user1._id, columbus._id)
 
   console.log("------------test------------");
 

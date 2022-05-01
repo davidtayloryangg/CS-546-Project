@@ -5,15 +5,19 @@ const parks = mongoCollections.parks;
 const { ObjectId } = require('mongodb');
 
 module.exports = {
-  async createComment(parkId, rating, parkComment) {
-    if (!parkId || !rating || !parkComment) throw 'please provide all inputs';
+  async createComment(parkId, userId, rating, parkComment) {
+    if (!parkId || !userId || !rating || !parkComment) throw 'please provide all inputs';
     if (!ObjectId.isValid(parkId)) throw 'invalid park ID';
+    if (!ObjectId.isValid(userId)) throw 'invalid user ID';
 
     const newId = ObjectId();
+    const date = new Date()
     let newComment = {
       _id: newId,
       parkId: parkId,
+      userId: userId,
       rating: rating,
+      timestamp: date.toDateString(),
       parkComment: parkComment
     };
 
