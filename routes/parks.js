@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const data = require("../data/parks");
+const activity_data = require('../data/activities');
+const appointment_data = require('../data/appointments');
 
 router.get("/", function (req, res) {
   data.getAllParks().then(
@@ -49,4 +51,30 @@ router.route("/id/:id").get(async (req, res) => {
   }
 });
 
+// Creating new activity:
+router.get('/newActivity', async (req, res) => {
+  if (!req.session.user){
+    res.redirect('/users');
+  } else{
+    res.render('function/Activity_newActivity');
+  }
+});
+
+router.post('/createnewActivity', async (req, res) => {
+  if (!req.session.user){
+    res.redirect('/users');
+  } else{
+    try {
+      var body = req.body;
+      const parkId = await appointment_data.getParkIdByParkname(body.park);
+      const activity = body.activity
+      const numberOfCourts = body.numberOfCourts;
+      const maxPeople = body.maxPeople;
+      const Appointments = await activity_data.createActivity(parkId, activity, numberOfCourts, maxPeople);
+      res.render('function/Appointment_Created',{ result: `You have created ${body.activity} for ${body.park}!`, title: "Created"});
+    } catch (e) {
+      res.status(404).render('function/Appointment_Error',{ error: e, title: "Error"});
+    }
+  }
+});
 module.exports = router;
