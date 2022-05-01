@@ -40,6 +40,7 @@ body{
   font-size:0.825em;
 	color:#fcfcfc;
 	background-color:#355664;
+  /* background-color: 	#f5f5dc; */
 	font-family:Arial, Helvetica, sans-serif;
 }
 
@@ -98,6 +99,15 @@ label{
   text-align: right;
 }
 
+hr{
+  margin: 20px 0 20px 0; 
+  background-color: #a2a2a2;
+  border:none;
+  height: 2px;
+}
+input, textarea{
+  font-family:Arial, Helvetica, sans-serif;
+}
 /* For ALL list */
 ul li{
   list-style: none;
@@ -425,7 +435,7 @@ ul.topnav li.right {float: right;}
 
 /*Single park page*/
 .parkCard {
-  width: auto;
+  width: 1000px;
   padding: 20px;
   overflow: hidden;
 }
@@ -473,6 +483,70 @@ ul.topnav li.right {float: right;}
   overflow: hidden;
 }
 
+/* For single park */
+.singlePark{
+  margin: 0 auto;
+  width: 500px;
+}
+.singlePark img{
+  float: center;
+  width: 100%;
+}
+.parkInfo{
+  width: 500px;
+  text-align: left;
+}
+.newComment{
+  margin: 0 auto;
+  width: 500px;
+}
+.commentUser{
+  width: 100%;
+}
+.commentUsername{
+  text-align: left;
+}
+.commentContent{
+  width: 100%;
+}
+.commentContentTxt{
+  width: 100%;
+}
+.commentContentTxt input{
+  width: 40%;
+  padding: 5px 5px;
+  display: inline-block;
+  border: 2px solid #a2a2a2;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+.commentContentTxt textarea{
+  width: 70%;
+  height: 50px;
+  resize: none;
+  padding: 5px 5px;
+  margin: 10px 0;
+  display: inline-block;
+  border: 2px solid #a2a2a2;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+  text-align: left;
+}
+.commentContentBtn{
+  width: 100%;
+}
+.commentButton{
+  display: inline-block;
+  background-color: #6495ed;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 16px;
+  color: white;
+  padding: 5px 5px;
+}
 /* Footer styling: */
 /* 
 footer{

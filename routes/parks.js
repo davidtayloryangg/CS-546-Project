@@ -54,8 +54,11 @@ router.route("/id/:id").get(async (req, res) => {
 router
   .route("/id/comments/:id")
   .get(async (req, res) => {
+    if (req.session && req.session.user)
+      var currentUsername = req.session.user.name;
+    else
+      currentUsername = null;
     try {
-      const currentUser = req.session.user;
       const park = await data.getParkById(req.params.id);
       const comments = park.comments;
       var userList = [];
@@ -63,10 +66,11 @@ router
         const userInfo = await userdata.getUserById(element.userId);
         const name = userInfo.firstname + " " + userInfo.lastname;
         var user = {
-          currentUsername: currentUser.name,
+          currentUsername: currentUsername,
           userId: element.userId,
           username: name,
-          comment: element.parkComment
+          comment: element.parkComment,
+          timestamp: element.timestamp
         }
         userList.push(user);
       }
@@ -81,12 +85,7 @@ router
         const userInfo = req.session.user;
         const info = req.body;
         const parkId = req.params.id;
-        var commentInfo = {
-          username: userInfo.name,
-          comment: info.newCommentTxt
-        }
-        const created = await commentdata.createComment(parkId, userInfo.userId, info.newCommentRating, info.newCommentTxt);
-        if (created) res.json(commentInfo);
+        await commentdata.createComment(parkId, userInfo.userId, info.newCommentRating, info.newCommentTxt);
       } catch (error) {
         res.status(500).json({ error: error });
       }

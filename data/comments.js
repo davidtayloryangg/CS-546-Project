@@ -11,11 +11,13 @@ module.exports = {
     if (!ObjectId.isValid(userId)) throw 'invalid user ID';
 
     const newId = ObjectId();
+    const date = new Date()
     let newComment = {
       _id: newId,
       parkId: parkId,
       userId: userId,
       rating: rating,
+      timestamp: date.toDateString(),
       parkComment: parkComment
     };
 
