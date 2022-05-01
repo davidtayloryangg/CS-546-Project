@@ -54,6 +54,7 @@ function loadComments() {
                 <div class="commentContent">
                     <div>${element.comment}</div>
                     <p class="replyButton" id="replyButton"> ${element.timestamp} &emsp;&emsp;Reply </p>
+                    <p id="replyTo${element.commentId}" hidden> ${element.commentId}</p>
                 </div>
             </div>
           `;

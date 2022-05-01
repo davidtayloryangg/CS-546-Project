@@ -70,7 +70,8 @@ router
           userId: element.userId,
           username: name,
           comment: element.parkComment,
-          timestamp: element.timestamp
+          timestamp: element.timestamp,
+          commentId: element._id
         }
         userList.push(user);
       }
