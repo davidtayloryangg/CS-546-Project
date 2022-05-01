@@ -233,7 +233,20 @@ $("#parkComment").click(function () {
                   <p>${element.name}</p>
                   <div class="star-rating-num">(${element.averageRating})
                       <div class="star-rating">
-
+                          <div class="star-rating-top" style="width:${rating}%">
+                              <span>★</span>
+                              <span>★</span>
+                              <span>★</span>
+                              <span>★</span>
+                              <span>★</span>
+                          </div>
+                          <div class="star-rating-bottom">
+                              <span>★</span>
+                              <span>★</span>
+                              <span>★</span>
+                              <span>★</span>
+                              <span>★</span>
+                          </div>
                       </div>
                   </div>
                   <p>Open Time: ${element.openTime}</p>
@@ -250,4 +263,5 @@ $("#parkComment").click(function () {
       alert("search failed");
     }
   });
+
 })
