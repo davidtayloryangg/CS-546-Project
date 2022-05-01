@@ -1,5 +1,6 @@
 <body>
     <h1>{{parks.name}}</h1>
+    <h1 id="singleParkId" hidden>{{parks._id}}</h1>
     <div class="singlePark">
         <img src="{{parks.imgUrl}}" onerror="this.src='https://blog.nscsports.org/wp-content/uploads/2014/10/default-img.gif'" alt="{{parks.name}}" class="parkImg">
         <div class="parkInfo">
@@ -26,25 +27,39 @@
             <h3>Activities</h3>
             <div class="parkActivities">
                 {{#each parks.activities}}
-                    <a href="parks/activities/{{_id}}" class="button">{{this.name}}</a>
+                    <a href="parks/activities/{{_id}}">
+                      <p>
+                        {{this.name}}
+                      </p>
+                    </a>
                 {{/each}}
             </div>
-            <div class="parkComment">
-                {{#each parks.comments}}
-                    <h3>Comments</h3>
-                    <div class="comment">
-                        <div class="commentUser">
-                            {{!-- <img src="{{this.imgUrl}}" onerror="this.src='https://blog.nscsports.org/wp-content/uploads/2014/10/default-img.gif'" alt="{{user.name}}" class="commentUserImg"> --}}
-                            <a href="/users/{{_id}}">{{this._id}}</a>
-                            {{!-- Change This to look for users first and clast name --}}
-                        </div>
-                        <div class="commentContent">
-                            <p>{{this.parkComment}}</p>
-                        </div>
+
+            <div class="newComment">
+                <div class="commentUser">
+                    <div class="user">
+                      <p>username</p>
                     </div>
-                {{/each}}
+                </div>
+                <div class="commentContent">
+                    <div>
+                        <textarea class="textarea" id="textarea"></textarea>
+                    </div>
+                    <button class="commentButton" id="commentButton"> Comment </button>
+                </div>
+            </div>
+            
+            <hr>
+
+            <div class="parkComment">
+                <ul id="commentsList" class="commentsList"></ul>
             </div>
 
         </div>
     </div>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+        crossorigin="anonymous"></script>
+<script type="module" src="/public/ajaxComment.js"></script>
 </body>
