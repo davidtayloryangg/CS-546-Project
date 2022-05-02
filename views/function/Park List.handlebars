@@ -1,5 +1,6 @@
 <body>
     <h1>Parks</h1>
+    <a href="/parks/CreatePark" class="button"> Create new park</a>
     <ul>
     {{#each parks}}
         <li>
@@ -7,20 +8,22 @@
                 <img src="{{imgUrl}}" onerror="this.src='https://blog.nscsports.org/wp-content/uploads/2014/10/default-img.gif'" alt="{{name}}" class="parkCardImg">
                 <a href="/parks/id/{{_id}}" class="parkCardText">
                     <h2>{{name}}</h2>
-                    <div class="star-rating">
-                        <div class="star-rating-top" style="width:{{rating}}">
-                            <span>★</span>
-                            <span>★</span>
-                            <span>★</span>
-                            <span>★</span>
-                            <span>★</span>
-                        </div>
-                        <div class="star-rating-bottom">
-                            <span>★</span>
-                            <span>★</span>
-                            <span>★</span>
-                            <span>★</span>
-                            <span>★</span>
+                    <div class="star-rating-num">({{averageRating}})
+                        <div class="star-rating">
+                            <div class="star-rating-top" style="width:{{averageRating}}">
+                                <span>★</span>
+                                <span>★</span>
+                                <span>★</span>
+                                <span>★</span>
+                                <span>★</span>
+                            </div>
+                            <div class="star-rating-bottom">
+                                <span>★</span>
+                                <span>★</span>
+                                <span>★</span>
+                                <span>★</span>
+                                <span>★</span>
+                            </div>
                         </div>
                     </div>
                     <p>Open Time: {{openTime}}</p>
@@ -34,6 +37,9 @@
                                 <li>{{this.name}}</li>
                             {{/each}}
                         </ul>
+                    </div>
+                    <div class="parkEdits">
+                        <a href="/parks/id/{{_id}}/edit" class="button"> Edit </a>
                     </div>
                 </a>
             </div>

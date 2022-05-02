@@ -1,0 +1,31 @@
+<body>
+    <h1>Edit Park</h1>
+    <br>
+    <form action="/parks/id/{{parks._id}}/edit" method="post">
+        <input class="input" type="text" name="id" value="{{parks._id}}" hidden="true"></input>
+        <div class="field">
+            <label class="label">Park Name:  </label>
+            <input class="input" type="text" name="name" value="{{parks.name}}">
+        </div>
+        <br>
+        <div class="field">
+            <label class="label">Open Time:  </label>
+            <input class="input" type="time" name="openTime" min="00:00" max="23:59" value="{{parks.openTime}}">          
+        </div>
+        <br>
+        <div class="field">
+            <label class="label">Close Time:  </label>            
+            <input placeholder="{{parks.closeTime}}" class="input" type="time" name="closeTime" value="{{parks.closeTime}}">            
+        </div>
+        <br>
+        <div class="field">
+            <label class="label">Address:  </label>            
+            <input class="input" type="text" name="location" value="{{parks.location}}">            
+        </div>
+        <br>
+        <div class="field">
+            <div class="control">
+                <button class="button is-link" type="submit">Submit</button>
+            </div>
+        </div>
+</body>

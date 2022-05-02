@@ -3,21 +3,25 @@
     <h1 id="singleParkId" hidden>{{parks._id}}</h1>
     <div class="singlePark">
         <img src="{{parks.imgUrl}}" onerror="this.src='https://blog.nscsports.org/wp-content/uploads/2014/10/default-img.gif'" alt="{{parks.name}}" class="parkImg">
+        
         <div class="parkInfo">
-            <div class="star-rating">
-                <div class="star-rating-top" style="width:{{parks.rating}}">
-                    <span>★</span>
-                    <span>★</span>
-                    <span>★</span>
-                    <span>★</span>
-                    <span>★</span>
-                </div>
-                <div class="star-rating-bottom">
-                    <span>★</span>
-                    <span>★</span>
-                    <span>★</span>
-                    <span>★</span>
-                    <span>★</span>
+            <div class=":star-rating-num">({{parks.averageRating}})
+                <div class="star-rating">
+                    <div class="star-rating-top" style="width:{{parks.averageRating}}">
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                    </div>
+                    <div class="star-rating-bottom">
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                    </div>
+                    <p>({{parks.averageRating}})</p>
                 </div>
             </div>
             <p>Open Time: {{parks.openTime}}</p>
