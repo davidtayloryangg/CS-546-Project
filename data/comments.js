@@ -75,7 +75,7 @@ module.exports = {
   },
 
   async replyComment(commentId, userId, newUserComment) {
-    if (!commentId || !newUserComment) throw 'please provide comment id and comment';
+    if (!commentId || !userId || !newUserComment) throw 'please provide comment id and comment';
     if (!ObjectId.isValid(commentId)) throw 'invalid comment ID';
     if (!ObjectId.isValid(userId)) throw 'invalid comment ID';
 
@@ -94,13 +94,53 @@ module.exports = {
 
     const parkCollection = await parks();
     let park = await parkCollection.findOne({ "comments._id": ObjectId(commentId) });
+    if (park === null)
+      park = await parkCollection.findOne({ "comments.reply._id": ObjectId(commentId) });
     if (park === null) throw 'No comment with that id';
     const updateInfo = await parkCollection.updateOne(
       { "comments._id": ObjectId(commentId) },
       { $addToSet: { "comments.$.reply": newcomment } }
     );
-    if (!updateInfo.matchedCount && !updateInfo.modifiedCount)
+    const updateInfo2 = await parkCollection.updateOne(
+      { "comments.reply._id": ObjectId(commentId) },
+      { $addToSet: { "comments.$.reply": newcomment } }
+    );
+    if (!updateInfo.matchedCount && !updateInfo.modifiedCount && !updateInfo2.matchedCount && !updateInfo2.modifiedCount)
       throw 'Could not reply that a comment';
     return true;
+  },
+
+  async getUserByCommentId(commentId) {
+    if (!commentId) throw 'please provide comment id';
+    if (!ObjectId.isValid(commentId)) throw 'invalid comment ID';
+
+    const parkCollection = await parks();
+    let park = await parkCollection.findOne(
+      { "comments._id": ObjectId(commentId) },
+      { projection: { comments: 1 } }
+    );
+    if (park === null) {
+      park = await parkCollection.findOne(
+        { "comments.reply._id": ObjectId(commentId) },
+        { projection: { comments: 1 } }
+      );
+    }
+    if (park === null) throw 'No comment with that id';
+    var userId = null;
+    for (const element of park.comments) {
+      if (element._id.toString() === commentId.toString()) {
+        userId = element.userId;
+        break;
+      }
+      for (const e of element.reply) {
+        if (e._id.toString() === commentId.toString()) {
+          userId = e.userId;
+          break;
+        }
+      }
+    }
+    if (userId === null) throw "could not find that user with that comment";
+    const user = await userdata.getUserById(userId);
+    return user;
   }
 }
