@@ -2,6 +2,7 @@
 const mongoCollections = require('../config/mongoCollections');
 const parks = mongoCollections.parks;
 const { ObjectId } = require('mongodb');
+const func = require('./functions');
 
 function checkActivityId(activityId) {
   if (arguments.length !== 1) throw 'paramater is wrong';
@@ -14,6 +15,8 @@ module.exports = {
   async createActivity(parkId, name, numberOfCourts, maxPeople) {
     if (!parkId || !name || !numberOfCourts || !maxPeople) throw 'please provide all inputs';
     if (!ObjectId.isValid(parkId)) throw 'invalid park ID';
+    func.checkNumber(numberOfCourts);
+    func.checkNumber(maxPeople);
 
     const newId = ObjectId();
     let newActivity = {
