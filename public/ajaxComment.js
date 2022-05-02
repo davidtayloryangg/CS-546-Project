@@ -55,11 +55,35 @@ function loadComments() {
                     <div>${element.comment}</div>
                     <p class="replyButton" id="replyButton"> ${element.timestamp} &emsp;&emsp;Reply </p>
                     <p id="replyTo${element.commentId}" hidden> ${element.commentId}</p>
+                    <ul id="commentReplyList"></ul>
                 </div>
             </div>
           `;
         commentsList.append(li);
+        var commentReplyList = $("#commentReplyList");
+        for (const e of element.reply) {
+          var replyLi = document.createElement("li");
+          replyLi.innerHTML = `
+            <div class="Replycomment">
+                <div class="ReplycommentUser">
+                    <div class="Replyuser">
+                      <p>${e.username}</p>
+                    </div>
+                </div>
+                <div class="ReplycommentContent">
+                    <div>${e.usercomment}</div>
+                    <p class="replyButton" id="replyButton"> ${e.timestamp}&emsp;&emsp;Reply </p>
+                    <p id="replyTo${e._id}" hidden> ${e._id}</p>
+                    <ul id="commentReplyList"></ul>
+                </div>
+            </div>
+          `;
+          commentReplyList.append(replyLi);
+        }
       }
+    },
+    error: function (error) {
+      alert("something wrong!")
     }
   })
 }

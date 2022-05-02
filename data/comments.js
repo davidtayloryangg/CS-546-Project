@@ -2,6 +2,7 @@
 const func = require('./functions');
 const mongoCollections = require('../config/mongoCollections');
 const parks = mongoCollections.parks;
+const userdata = require("./users");
 const { ObjectId } = require('mongodb');
 
 module.exports = {
@@ -11,7 +12,7 @@ module.exports = {
     if (!ObjectId.isValid(userId)) throw 'invalid user ID';
 
     const newId = ObjectId();
-    const date = new Date()
+    const date = new Date();
     let newComment = {
       _id: newId,
       parkId: parkId,
@@ -73,14 +74,22 @@ module.exports = {
     return parkList;
   },
 
-  async replyComment(commentId, newComment) {
-    if (!commentId || !newComment) throw 'please provide comment id and comment';
+  async replyComment(commentId, userId, newUserComment) {
+    if (!commentId || !newUserComment) throw 'please provide comment id and comment';
     if (!ObjectId.isValid(commentId)) throw 'invalid comment ID';
+    if (!ObjectId.isValid(userId)) throw 'invalid comment ID';
 
+    const user = await userdata.getUserById(userId);
+    const name = user.firstname + " " + user.lastname;
+    const id = user._id;
+    const date = new Date();
     const newId = ObjectId();
     let newcomment = {
       _id: newId,
-      usercomment: usercomment,
+      userId: id,
+      username: name,
+      usercomment: newUserComment,
+      timestamp: date.toDateString(),
     };
 
     const parkCollection = await parks();
@@ -88,7 +97,7 @@ module.exports = {
     if (park === null) throw 'No comment with that id';
     const updateInfo = await parkCollection.updateOne(
       { "comments._id": ObjectId(commentId) },
-      { $addToSet: { comments: { reply: newcomment } } }
+      { $addToSet: { "comments.$.reply": newcomment } }
     );
     if (!updateInfo.matchedCount && !updateInfo.modifiedCount)
       throw 'Could not reply that a comment';

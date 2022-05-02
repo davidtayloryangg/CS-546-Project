@@ -547,6 +547,10 @@ ul.topnav li.right {float: right;}
   color: white;
   padding: 5px 5px;
 }
+.Replycomment{
+  width: 90%;
+  margin-left: 10%;
+}
 /* Footer styling: */
 /* 
 footer{

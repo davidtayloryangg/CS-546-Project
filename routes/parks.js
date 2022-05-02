@@ -71,7 +71,8 @@ router
           username: name,
           comment: element.parkComment,
           timestamp: element.timestamp,
-          commentId: element._id
+          commentId: element._id,
+          reply: element.reply
         }
         userList.push(user);
       }
@@ -86,7 +87,8 @@ router
         const userInfo = req.session.user;
         const info = req.body;
         const parkId = req.params.id;
-        await commentdata.createComment(parkId, userInfo.userId, info.newCommentRating, info.newCommentTxt);
+        const comment = await commentdata.createComment(parkId, userInfo.userId, info.newCommentRating, info.newCommentTxt);
+        res.json(comment);
       } catch (error) {
         res.status(500).json({ error: error });
       }
