@@ -321,13 +321,13 @@ module.exports = {
     let currentPeople;
     for (x of user.appointments){
       if (x.appointmentId.equals(appointmentId)){
-        currentPeople = x.maxPeople;
+        currentPeople = x.maxPeople - 1;
         break;
       }
     }
 
     // If this appointment is full(currentPeople == 0):
-    if (currentPeople == 0) throw "This appointment is full, Can not register it!";
+    if (currentPeople <= 0) throw "This appointment is full, Can not register it!";
 
     // If this appointment has more than 1 spot left(currentPeople > 1):
     if (currentPeople > 1){
