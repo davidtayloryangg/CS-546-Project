@@ -15,7 +15,8 @@ router.get('/myAppointment', async (req, res) => {
     res.redirect('/users');
   } else{
     try {
-      let Appointments = await data.getAllAppointmentsByCookies(req.session.user);
+      console.log(req.session.user)
+      let Appointments = await data.getAllAppointmentsByCookies(req.session.user.email);
       if (Appointments[0].appointments.length == 0){
         res.status(404).render('function/Appointment_Error',{ error: "You don't have any appointment yet, please match one or create one~", title: "Error"});
         return;
@@ -32,27 +33,15 @@ router.get('/myAppointment', async (req, res) => {
   }
 });
 
-router.get('/AllAppointment', async (req, res) => {
-  if (!req.session.user){
-    res.redirect('/users');
-  } else{
-    res.render('function/Appointment_AllAppointment');
-  }
-});
-
-router.post('/searchAppointment', async (req, res) => {
+router.post('/cancelAppointment', async (req, res) => {
   if (!req.session.user){
     res.redirect('/users');
   } else{
     try {
       var body = req.body;
-      const activityId = await data.getActivityIdbyActivityname(body.activity);
-      const Appointments = await data.getAllAppointmentsByActivityId(activityId);
-      for (x of Appointments[0].appointments){
-        x.parkId = await data.getParknameByParkId(x.parkId);
-        x.activityId = await data.getActivitynameByActivityId(x.activityId);
-      }
-      res.render('function/Appointment_Searched',{ head: body.activity, title: "Searched", data: Appointments[0].appointments});
+      let currentUserId = await data.getUserIdbyEmail(req.session.user.email);
+      const deleted = await data.cancelAppointmentByAppointmentId(body.appointmentId, currentUserId);
+      res.render('function/Appointment_Menu');
     } catch (e) {
       res.status(404).render('function/Appointment_Error',{ error: e, title: "Error"});
     }
@@ -73,9 +62,9 @@ router.post('/creatNewAppointment', async (req, res) => {
   } else{
     try {
       var body = req.body;
-      const userOneId = await data.getUserIdbyEmail(req.session.user);
-      const parkId = await data.getParkIdbyActivityname(body.activity);
-      const activityId = await data.getActivityIdbyActivityname(body.activity);
+      const userOneId = await data.getUserIdbyEmail(req.session.user.email);
+      const parkId = await data.getParkIdByParkname(body.park);
+      const activityId = await data.getActivityIdbyActivitynameandParkname(body.activity, body.park);
       const year = body.year;
       const month = body.month;
       const day = body.day;
@@ -103,9 +92,9 @@ router.post('/matchNewAppointment', async (req, res) => {
   } else{
     try {
       var body = req.body;
-      const userOneId = await data.getUserIdbyEmail(req.session.user);
-      const parkId = await data.getParkIdbyActivityname(body.activity);
-      const activityId = await data.getActivityIdbyActivityname(body.activity);
+      const userOneId = await data.getUserIdbyEmail(req.session.user.email);
+      const parkId = await data.getParkIdByParkname(body.park);
+      const activityId = await data.getActivityIdbyActivitynameandParkname(body.activity, body.park);
       const year = body.year;
       const month = body.month;
       const day = body.day;
