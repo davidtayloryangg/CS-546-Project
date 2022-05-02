@@ -2,10 +2,29 @@
 <body>
     <main>
         <article>
+          <script>
+            function change(){
+              var val = document.getElementById("select").value;
+              if(val=="park") 
+              {
+                document.getElementById("homeSearchTxt").placeholder="Please input park name"
+                document.getElementById("homeSearchTxt").name="parkname"
+              }
+              else {
+                document.getElementById("homeSearchTxt").placeholder="Please input activity name"
+                document.getElementById("homeSearchTxt").name="activityname"
+              }
+            }
+            
+          </script>
             <h1 class="main-title">Search Park</h1>
             <form action="##" method="POST" id="searchForm">
-                <input type="text" class="search" name="parkName" id="homeSearchTxt" placeholder="Please input park name"/>
+              <select class="full-width-input" id="select" name="posterId" onchange="change()">
+              <option value="park">Park</option>
+              <option value="activity">Activity</option>
+                <input type="text" class="search" name="parkname" id="homeSearchTxt" placeholder="Please input park name"/>
                 <button type="submit" class="button" id="homeSearch"><span>Search</span></button>
+              </select>
             </form>
         </article>
         <div class="homeLink" id="homelink">

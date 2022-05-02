@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const data = require("../data/parks");
+const activitydata=require("../data/activities")
 
 router.get("/", function (req, res) {
   data.getAllParks().then(
@@ -33,8 +34,10 @@ router.route("/ParksOrderByLikes").get(async (req, res) => {
 router.route("/search").post(async (req, res) => {
   try {
     const info = req.body;
-    const searchParks = await data.getParksByName(info.parkName);
-    res.json(searchParks);
+    let searchdata;
+    if('parkname' in info) searchdata = await data.getParksByName(info.parkname);
+    else searchdata=await activitydata.getAllParksByActivityName(info.activityname);
+    res.json(searchdata);
   } catch (e) {
     res.status(500).json(e);
   }
