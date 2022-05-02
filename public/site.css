@@ -1,3 +1,10 @@
+.appointment_list{
+  font-size:1.5em;
+	padding:0.5em 0 0;
+  color: greenyellow; 
+	/* text-transform:uppercase; */
+}
+
 *{
 	/* Universal reset: */
 	margin:0;
