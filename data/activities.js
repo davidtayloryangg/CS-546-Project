@@ -99,8 +99,8 @@ module.exports = {
     });
     if (!park || park.activities.length == 0) throw 'No activity exist';
     let activity;
-    for(let i of park.activities){
-      if(i._id.toString()===activityId) {activity=i;break;}
+    for (let i of park.activities) {
+      if (i._id.toString() === activityId) { activity = i; break; }
     }
     return activity;
   },
@@ -109,18 +109,15 @@ module.exports = {
     if (!parkId) throw 'paramater is not exist';
     if (!ObjectId.isValid(parkId)) throw 'Invalid Object parkId';
     const parkCollection = await parks();
-    const park = await parkCollection.findOne({
-      _id: ObjectId(parkId)
-    }, {
-      projection: {
-        activities: 1
-      }
-    });
+    const park = await parkCollection.findOne(
+      { _id: ObjectId(parkId) },
+      { projection: { activities: 1 } }
+    );
     if (!park) throw 'Could not find activity';
     return park.activities;
 
   },
-  async getAllParksByActivityName(activityName){
+  async getAllParksByActivityName(activityName) {
     if (!activityName) throw 'please provide activity name';
     const parkCollection = await parks();
     var reg = new RegExp(activityName, "i");
