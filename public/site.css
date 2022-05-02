@@ -516,6 +516,13 @@ ul.topnav li.right {float: right;}
 .commentContent{
   width: 100%;
 }
+.commentContent p img{
+  width: 20px;
+  vertical-align: middle;
+  margin: 0 5px 5px 5px;
+  cursor: pointer;
+}
+
 .commentContentTxt{
   width: 100%;
 }

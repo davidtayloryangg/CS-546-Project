@@ -4,6 +4,7 @@
   });
 })(jQuery);
 
+
 $("#commentButton").click(function () {
   var parkId = $("#singleParkId").text();
   $.ajax({
@@ -75,6 +76,14 @@ $("body").on("click", ".replyCommentButton", function (event) {
 
 })
 
+$("body").on("click", ".likeButton", function () {
+  alert("sss");
+})
+
+$("body").on("click", ".dislikeButton", function () {
+  alert("disss");
+})
+
 function loadComments() {
   var parkId = $("#singleParkId").text();
   var commentsList = $("#commentsList");
@@ -103,6 +112,8 @@ function loadComments() {
                 <div class="commentContent">
                     <div>${element.comment}</div>
                     <p> ${element.timestamp} &emsp;&emsp;
+                        <img class="likeButton" src="/public/img/like.png"</img>
+                        <img class="dislikeButton" src="/public/img/dislike.png"</img>
                         <b class="replyButton" id="${element.commentId}">Reply</b>
                     </p>
                     <b id="name${element.commentId}" hidden>${element.username}</b>
@@ -126,6 +137,8 @@ function loadComments() {
                 <div class="ReplycommentContent">
                     <div>${e.usercomment}</div>
                     <p> ${element.timestamp} &emsp;&emsp;
+                        <img class="likeButton" src="/public/img/like.png"</img>
+                        <img class="dislikeButton" src="/public/img/dislike.png"</img>
                         <b class="replyButton" id="${e._id}">Reply</b>
                     </p>
                     <b id="name${e._id}" hidden>${e.username}</b>
