@@ -128,7 +128,6 @@ module.exports = {
     if (!parkList) throw 'could not get park list';
     return parkList;
     // console.log(parkList);
-    
   }
 
 
