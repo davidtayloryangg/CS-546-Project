@@ -99,12 +99,7 @@ p{
   font-weight:bold;
 }
 
-label{
-  font-size:1.5em;
-  display: inline-block;
-  width: 200px;
-  text-align: right;
-}
+
 
 hr{
   margin: 20px 0 20px 0; 
@@ -120,6 +115,19 @@ ul li{
   list-style: none;
 }
 
+/* For login  and signup*/
+.login label{
+  font-size:1.5em;
+  display: inline-block;
+  width: 200px;
+  text-align: right;
+}
+.signup label{
+  font-size:1.5em;
+  display: inline-block;
+  width: 200px;
+  text-align: right;
+}
 /* For home search list */
 .homeSearchDiv{
   margin: 0 auto;
@@ -553,6 +561,38 @@ ul.topnav li.right {float: right;}
   margin: 0 5px 5px 5px;
   cursor: pointer;
 }
+
+.rating {
+      font-size: 0;
+      display: table;
+  }
+
+  .rating > label {
+      color: #ddd;
+      float: right;
+  }
+
+  .rating > label:before {
+      padding: 3px;
+      font-size: 24px;
+      line-height: 1em;
+      display: inline-block;
+      content: "★";
+  }
+
+  .rating > input:checked ~ label,
+  .rating:not(:checked) > label:hover,
+  .rating:not(:checked) > label:hover ~ label {
+      color: #FFD700;
+  }
+
+  .rating > input:checked ~ label:hover,
+  .rating > label:hover ~ input:checked ~ label,
+  .rating > input:checked ~ label:hover ~ label {
+      opacity: 0.5;
+  }
+
+
 .userComment{
   font-size: 16px;
   font-family:Arial, Helvetica, sans-serif;
@@ -563,15 +603,7 @@ ul.topnav li.right {float: right;}
 .commentContentTxt{
   width: 100%;
 }
-.commentContentTxt input{
-  width: 40%;
-  padding: 5px 5px;
-  display: inline-block;
-  border: 2px solid #a2a2a2;
-  border-radius: 5px;
-  box-sizing: border-box;
-  font-size: 16px;
-}
+
 .commentContentTxt textarea{
   width: 70%;
   height: 50px;

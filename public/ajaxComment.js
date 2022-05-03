@@ -14,7 +14,6 @@ $("#commentButton").click(function () {
     data: $("#newCommentForm").serialize(),
     success: function (commentInfo) {
       loadComments();
-      $("#newCommentRating").val("");
       $("#newCommentTxt").val("");
     },
     error: function (error) {
@@ -74,6 +73,11 @@ $("body").on("click", ".replyCommentButton", function (event) {
     }
   })
 
+})
+
+$("body").on("click", ".ratingNumber", function (event) {
+  var findValue = event.target.value;
+  $("#newCommentRating").text(findValue);
 })
 
 $("body").on("click", ".likeButton", function (event) {
