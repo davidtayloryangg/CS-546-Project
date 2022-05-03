@@ -5,14 +5,10 @@
 })(jQuery);
 
 $("#orderByRating").click(function () {
-  var likesDiv = $("#homePopularDiv");
-  var ratingDiv = $("#homeRecommendationDiv");
-  var searchDiv = $("#homeSearchDiv");
-  var homelink = $("#homelink");
-  homelink.show();
-  likesDiv.hide();
-  searchDiv.hide();
-  ratingDiv.show();
+  $("#homeSearchDiv").hide();
+  $("#homelink").show();
+  $("#homeRecommendationDiv").fadeIn(100);
+  $("#homePopularDiv").fadeOut(100);
   $.ajax({
     url: "http://localhost:3000/parks/ParksOrderByRating",
     type: "get",
@@ -68,14 +64,10 @@ $("#orderByRating").click(function () {
 });
 
 $("#orderByLikes").click(function () {
-  var likesDiv = $("#homePopularDiv");
-  var ratingDiv = $("#homeRecommendationDiv");
-  var searchDiv = $("#homeSearchDiv");
-  var homelink = $("#homelink");
-  homelink.show();
-  ratingDiv.hide();
-  searchDiv.hide();
-  likesDiv.show();
+  $("#homeSearchDiv").hide();
+  $("#homelink").show();
+  $("#homeRecommendationDiv").fadeOut(100);
+  $("#homePopularDiv").fadeIn(100);
   $.ajax({
     url: "http://localhost:3000/parks/ParksOrderByLikes",
     type: "get",
