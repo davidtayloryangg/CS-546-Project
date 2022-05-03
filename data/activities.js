@@ -2,11 +2,7 @@
 const mongoCollections = require('../config/mongoCollections');
 const parks = mongoCollections.parks;
 const { ObjectId } = require('mongodb');
-<<<<<<< HEAD
-const {getParkById} = require('./parks')
-=======
 const func = require('./functions');
->>>>>>> 43bb3a1c3bbaad05b0660ee9e0627be1498a2e3b
 
 function checkActivityId(activityId) {
   if (arguments.length !== 1) throw 'paramater is wrong';
@@ -67,27 +63,27 @@ module.exports = {
     // if (!ObjectId.isValid(id)) throw 'Invalid Object ID';
     const parkCollection = await parks();
     const updateactivities = {
-      _id:ObjectId(activityId),
-      parkId:parkId,
-      name:name,
-      numberOfCourts:numberOfCourts,
-      maxPeople:maxPeople,
-      appointments:appointments,
-      comments:comments
+      _id: ObjectId(activityId),
+      parkId: parkId,
+      name: name,
+      numberOfCourts: numberOfCourts,
+      maxPeople: maxPeople,
+      appointments: appointments,
+      comments: comments
     };
-    let park=await getParkById(parkId)
-    let index=park.activities.findIndex(element=>element._id.toString()==(activityId))
-    park.activities.splice(index,1,updateactivities)
-    const updatepark={
-      name:park.name,
-      openTime:park.openTime,
-      closeTime:park.closeTime,
-      location:park.location,
-      activities:park.activities,
-      comments:park.comments,
-      averageRating:park.averageRating,
-      likes:park.likes,
-      imgUrl:park.imgUrl
+    let park = await getParkById(parkId)
+    let index = park.activities.findIndex(element => element._id.toString() == (activityId))
+    park.activities.splice(index, 1, updateactivities)
+    const updatepark = {
+      name: park.name,
+      openTime: park.openTime,
+      closeTime: park.closeTime,
+      location: park.location,
+      activities: park.activities,
+      comments: park.comments,
+      averageRating: park.averageRating,
+      likes: park.likes,
+      imgUrl: park.imgUrl
     }
     const updatedInfo = await parkCollection.updateOne(
       { _id: ObjectId(parkId) },

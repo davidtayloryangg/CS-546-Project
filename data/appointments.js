@@ -3,11 +3,6 @@ const mongoCollections = require('../config/mongoCollections');
 const users = mongoCollections.users;
 const parks = mongoCollections.parks;
 let { ObjectId } = require('mongodb');
-<<<<<<< HEAD
-const res = require('express/lib/response');
-const { getUserByEmail,getUserById } = require('./users');
-=======
->>>>>>> 43bb3a1c3bbaad05b0660ee9e0627be1498a2e3b
 
 module.exports = {
   async createAppointment(userOneId, parkId, activityId, year, month, day, hour, minute) {
