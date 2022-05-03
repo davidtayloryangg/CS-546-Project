@@ -76,12 +76,18 @@ $("body").on("click", ".replyCommentButton", function (event) {
 
 })
 
-$("body").on("click", ".likeButton", function () {
-  alert("sss");
+$("body").on("click", ".likeButton", function (event) {
+  var findID = "#" + event.target.id;
+  var findDisID = "#dis" + event.target.id;
+  $(findID).attr("src", "/public/img/like_red.png");
+  $(findDisID).attr("src", "/public/img/dislike.png");
 })
 
-$("body").on("click", ".dislikeButton", function () {
-  alert("disss");
+$("body").on("click", ".dislikeButton", function (event) {
+  var findID = "#" + event.target.id;
+  var findLikeID = "#" + findID.substring(4);
+  $(findID).attr("src", "/public/img/dislike_red.png");
+  $(findLikeID).attr("src", "/public/img/like.png");
 })
 
 function loadComments() {
@@ -110,10 +116,10 @@ function loadComments() {
                     </div>
                 </div>
                 <div class="commentContent">
-                    <div>${element.comment}</div>
-                    <p> ${element.timestamp} &emsp;&emsp;
-                        <img class="likeButton" src="/public/img/like.png"</img>
-                        <img class="dislikeButton" src="/public/img/dislike.png"</img>
+                    <div class="userComment">${element.comment}</div>
+                    <p class="timestamp"> ${element.timestamp} &emsp;&emsp;
+                        <img class="likeButton" id="like${element.commentId}" src="/public/img/like.png"></img>
+                        <img class="dislikeButton" id="dislike${element.commentId}" src="/public/img/dislike.png"></img>
                         <b class="replyButton" id="${element.commentId}">Reply</b>
                     </p>
                     <b id="name${element.commentId}" hidden>${element.username}</b>
@@ -135,10 +141,10 @@ function loadComments() {
                     </div>
                 </div>
                 <div class="ReplycommentContent">
-                    <div>${e.usercomment}</div>
-                    <p> ${element.timestamp} &emsp;&emsp;
-                        <img class="likeButton" src="/public/img/like.png"</img>
-                        <img class="dislikeButton" src="/public/img/dislike.png"</img>
+                    <div class="userComment">${e.usercomment}</div>
+                    <p class="timestamp"> ${element.timestamp} &emsp;&emsp;
+                        <img class="likeButton" id="like${e._id}" src="/public/img/like.png"></img>
+                        <img class="dislikeButton" id="dislike${e._id}" src="/public/img/dislike.png"></img>
                         <b class="replyButton" id="${e._id}">Reply</b>
                     </p>
                     <b id="name${e._id}" hidden>${e.username}</b>
