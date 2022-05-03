@@ -3,7 +3,6 @@ const mongoCollections = require('../config/mongoCollections');
 const users = mongoCollections.users;
 const parks = mongoCollections.parks;
 let { ObjectId } = require('mongodb');
-const res = require('express/lib/response');
 const { getUserByEmail, getUserById } = require('./users');
 
 module.exports = {
