@@ -2,6 +2,7 @@
 const mongoCollections = require('../config/mongoCollections');
 const parks = mongoCollections.parks;
 const { ObjectId } = require('mongodb');
+const {getParkById} = require('./parks')
 
 function checkActivityId(activityId) {
   if (arguments.length !== 1) throw 'paramater is wrong';
@@ -22,10 +23,9 @@ module.exports = {
       name: name,
       numberOfCourts: numberOfCourts,
       maxPeople: maxPeople,
-      appointmens: [],
-      reviews: []
+      appointments: [],
+      comments: []
     };
-
     const parkCollection = await parks();
     const updateInfo = await parkCollection.updateOne({ _id: ObjectId(parkId) },
       { $addToSet: { activities: newActivity } }
@@ -55,27 +55,40 @@ module.exports = {
     if (deletionInfo.modifiedCount === 0) throw `Could not delete park with activityId of ${activityId}`;
     return `activityId: ${activityId}, deleted: true`;
   },
-  async updateActivity(activityId, parkId, name, numberOfCourts, maxPeople, appointmens, comments, reviews) {
+  async updateActivity(activityId, parkId, name, numberOfCourts, maxPeople, appointments, comments) {
     // if (typeof activityId !== 'string') throw 'paramaters must be string';
     // if (activityId.trim().length === 0) throw 'paramater cannot be an empty string or string with just spaces';
     // if (!ObjectId.isValid(id)) throw 'Invalid Object ID';
     const parkCollection = await parks();
     const updateactivities = {
-      parkId,
-      name,
-      numberOfCourts,
-      maxPeople,
-      appointmens,
-      comments,
-      reviews
+      _id:ObjectId(activityId),
+      parkId:parkId,
+      name:name,
+      numberOfCourts:numberOfCourts,
+      maxPeople:maxPeople,
+      appointments:appointments,
+      comments:comments
     };
-
-    const updateInfo = await parkCollection.updateOne(
-      { _id: ObjectId(activityId) },
-      { $set: updateactivities }
+    let park=await getParkById(parkId)
+    let index=park.activities.findIndex(element=>element._id.toString()==(activityId))
+    park.activities.splice(index,1,updateactivities)
+    const updatepark={
+      name:park.name,
+      openTime:park.openTime,
+      closeTime:park.closeTime,
+      location:park.location,
+      activities:park.activities,
+      comments:park.comments,
+      averageRating:park.averageRating,
+      likes:park.likes,
+      imgUrl:park.imgUrl
+    }
+    const updatedInfo = await parkCollection.updateOne(
+      { _id: ObjectId(parkId) },
+      { $set: updatepark }
     );
-    if (updateInfo.modifiedCount === 0) {
-      throw 'could not update activity successfully';
+    if (!updatedInfo.matchedCount && !updatedInfo.modifiedCount) {
+      throw 'could not update park successfully';
     }
     return await this.get(activityId);
 

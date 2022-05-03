@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const data = require('../data/activities');
 const parkdata = require('../data/parks');
+const userdata=require('../data/users')
 router
   .route('/')
   .get(async (req, res) => {
@@ -48,14 +49,50 @@ router
     }
   });
 router
-  .route("/id/:id")
+  .route("/:id")
   .get(async (req, res) => {
     try {
-      const parks = await data.getParkById(req.params.id);
-      res.render("function/SinglePark", { parks: parks });
+      const activity=await data.get(req.params.id)
+      const park=await parkdata.getParkById(activity.parkId)
+      let singleactivity={
+        activityId:req.params.id,
+        parkId:park._id,
+        activityname:activity.name,
+        parkname:park.name,
+        comments:activity.comments
+      }
+      res.render("function/SingleActivity", {activity:singleactivity});
     } catch (error) {
       res.status(500).json({ error: error });
     }
   });
+  router
+  .route("/:id")
+  .post(async (req, res) => {
+    if (!req.session.user) res.redirect('/users/login');
+    else{
+      try {
+        const {activityId,star,Comment}=req.body
+        const activity=await data.get(activityId)
+        const user=await userdata.getUserByEmail(req.session.user.email)
+        let myday=new Date()
+        let date=(myday.getMonth()+1).toString()+"/"+(myday.getDate()).toString()+"/"+(myday.getFullYear())
+        let newcomment={
+          username:user.firstname+" "+user.lastname,
+          userid:user._id.toString(),
+          star:Number(star),
+          comment:Comment,
+          reviews:[],
+          time:date
+        }
+        activity.comments.push(newcomment)
+        await data.updateActivity(activityId, activity.parkId, activity.name, activity.numberOfCourts, activity.maxPeople, activity.appointments, activity.comments)
+        res.redirect('/activities/'+req.params.id)
+      } catch (error) {
+        res.status(500).json({ error: error.message });
+      }
+    }
+  });
+
 
 module.exports = router;

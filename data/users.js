@@ -91,7 +91,7 @@ module.exports = {
   async getUserByEmail(email) {
     const userCollection = await users()
     const user = await userCollection.findOne({ email: email });
-    if (user === null) throw 'No user with that id';
+    if (user === null) throw 'No user with that email';
     user._id = user._id.toString();
     return user;
   },
