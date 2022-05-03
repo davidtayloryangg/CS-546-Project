@@ -2,6 +2,7 @@
 const mongoCollections = require('../config/mongoCollections');
 const parks = mongoCollections.parks;
 const { ObjectId } = require('mongodb');
+const { getParkById } = require('./parks')
 const func = require('./functions');
 
 function checkActivityId(activityId) {
