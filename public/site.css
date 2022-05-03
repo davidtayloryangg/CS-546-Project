@@ -203,6 +203,7 @@ ul li{
 }
 .homeRecommendationLink:hover{
   color: #4CAF50;
+  cursor: pointer;
 }
 .homePopularLink{
   margin-left: 50%;
@@ -213,6 +214,7 @@ ul li{
 }
 .homePopularLink:hover{
   color: #4CAF50;
+  cursor: pointer;
 }
 .homeRecommendationDiv{
   margin: 0 auto;
