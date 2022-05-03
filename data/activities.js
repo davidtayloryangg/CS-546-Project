@@ -2,11 +2,8 @@
 const mongoCollections = require('../config/mongoCollections');
 const parks = mongoCollections.parks;
 const { ObjectId } = require('mongodb');
-<<<<<<< HEAD
 const {getParkById} = require('./parks')
-=======
 const func = require('./functions');
->>>>>>> 43bb3a1c3bbaad05b0660ee9e0627be1498a2e3b
 
 function checkActivityId(activityId) {
   if (arguments.length !== 1) throw 'paramater is wrong';
