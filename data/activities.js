@@ -13,7 +13,7 @@ function checkActivityId(activityId) {
 
 module.exports = {
   async createActivity(parkId, name, numberOfCourts, maxPeople) {
-    if (!parkId || !name || !numberOfCourts || !maxPeople) throw 'please provide all inputs';
+    if (!parkId || !name || !numberOfCourts || !maxPeople) throw 'please provide all inputs for act';
     if (!ObjectId.isValid(parkId)) throw 'invalid park ID';
     func.checkNumber(numberOfCourts);
     func.checkNumber(maxPeople);
@@ -84,11 +84,7 @@ module.exports = {
 
   },
   async get(activityId) {
-    try {
-      checkActivityId(activityId);
-    } catch (error) {
-      throw error;
-    }
+    checkActivityId(activityId);
 
     const parkCollection = await parks();
     const park = await parkCollection.findOne({

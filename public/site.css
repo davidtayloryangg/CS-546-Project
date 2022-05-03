@@ -160,10 +160,39 @@ ul li{
 .homeSearchTxtList li div a p:hover {
 	color: #4CAF50;
 }
+
+/* For Act Search list */
+.actSearchDiv{
+  margin: 0 auto;
+  width: 500px;
+}
+.actSearchTxtList li{
+  width: 500px;
+  height: 300px;
+  padding: 20px 0;
+}
+.actSearchTxtListItem{
+  padding: 40px 0;
+}
+.actSearchImgListItem img{
+  width: 500px;
+  height: 300px;
+  border-radius: 20px;
+  object-fit: cover;
+  float: center;
+}
+.actSearchTxtList li div a p {
+	color: #fcfcfc;
+  text-align: left;
+}
+.actSearchTxtList li div a p:hover {
+	color: #4CAF50;
+}
+
 /* For Recommendation List */
 .homeLink{
   margin: 0 auto;
-  width: 400px;
+  width: 500px;
 }
 .homeRecommendationLink{
   float: left;
@@ -329,7 +358,7 @@ ul li{
 }
 
 .search:focus {
-  width: 61.8%;
+  border-color: #6495ed;
 }
 
 /* The button styling */

@@ -6,7 +6,7 @@ let { ObjectId } = require('mongodb');
 
 module.exports = {
   async createAppointment(userOneId, parkId, activityId, year, month, day, hour, minute) {
-    if (!userOneId || !parkId || !activityId || !year || !month || !day || !hour || !minute) throw 'please provide all inputs';
+    if (!userOneId || !parkId || !activityId || !year || !month || !day || !hour || !minute) throw 'please provide all inputs for appointment';
     if (!ObjectId.isValid(userOneId)) throw 'invalid user ID';
     if (!ObjectId.isValid(parkId)) throw 'invalid park ID';
     if (!ObjectId.isValid(activityId)) throw 'invalid park ID';
@@ -239,7 +239,7 @@ module.exports = {
   },
 
   async autoMatchId(activityId, parkId, year, month, day, hour, minute) {
-    if (!activityId || !parkId || !year || !month || !day || !hour || !minute) throw 'please provide all inputs';
+    if (!activityId || !parkId || !year || !month || !day || !hour || !minute) throw 'please provide all inputs to match';
     if (!ObjectId.isValid(activityId)) throw 'invalid acitivity ID';
     if (!ObjectId.isValid(parkId)) throw 'invalid park ID';
     if (typeof year !== 'string' || year.trim().length === 0 || isNaN(parseInt(year)) || parseInt(year) < new Date().getFullYear()) throw "invalid year or the year was past";

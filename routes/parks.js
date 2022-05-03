@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const data = require("../data/parks");
-const activitydata=require("../data/activities")
+const activitydata = require("../data/activities")
 const userdata = require("../data/users");
 const commentdata = require("../data/comments");
 const activity_data = require('../data/activities');
@@ -39,8 +39,8 @@ router.route("/search").post(async (req, res) => {
   try {
     const info = req.body;
     let searchdata;
-    if('parkname' in info) searchdata = await data.getParksByName(info.parkname);
-    else searchdata=await activitydata.getAllParksByActivityName(info.activityname);
+    if ('parkname' in info) searchdata = await data.getParksByName(info.parkname);
+    else searchdata = await activitydata.getAllParksByActivityName(info.activityname);
     res.json(searchdata);
   } catch (e) {
     res.status(500).json(e);
@@ -122,17 +122,17 @@ router
 
 // Creating new activity:
 router.get('/newActivity', async (req, res) => {
-  if (!req.session.user){
+  if (!req.session.user) {
     res.redirect('/users');
-  } else{
+  } else {
     res.render('function/Activity_newActivity');
   }
 });
 
 router.post('/createnewActivity', async (req, res) => {
-  if (!req.session.user){
+  if (!req.session.user) {
     res.redirect('/users');
-  } else{
+  } else {
     try {
       var body = req.body;
       const parkId = await appointment_data.getParkIdByParkname(body.park);
@@ -140,9 +140,9 @@ router.post('/createnewActivity', async (req, res) => {
       const numberOfCourts = body.numberOfCourts;
       const maxPeople = body.maxPeople;
       const Appointments = await activity_data.createActivity(parkId, activity, numberOfCourts, maxPeople);
-      res.render('function/Appointment_Created',{ result: `You have created ${body.activity} for ${body.park}!`, title: "Created"});
+      res.render('function/Appointment_Created', { result: `You have created ${body.activity} for ${body.park}!`, title: "Created" });
     } catch (e) {
-      res.status(404).render('function/Appointment_Error',{ error: e, title: "Error"});
+      res.status(404).render('function/Appointment_Error', { error: e, title: "Error" });
     }
   }
 });

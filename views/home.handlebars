@@ -2,32 +2,13 @@
 <body>
     <main>
         <article>
-          <script>
-            function change(){
-              var val = document.getElementById("select").value;
-              if(val=="park") 
-              {
-                document.getElementById("homeSearchTxt").placeholder="Please input park name"
-                document.getElementById("homeSearchTxt").name="parkname"
-              }
-              else {
-                document.getElementById("homeSearchTxt").placeholder="Please input activity name"
-                document.getElementById("homeSearchTxt").name="activityname"
-              }
-            }
-            
-          </script>
             <h1 class="main-title">Search Park</h1>
             <form action="##" method="POST" id="searchForm">
-              <select class="full-width-input" id="select" name="posterId" onchange="change()">
-              <option value="park">Park</option>
-              <option value="activity">Activity</option>
                 <input type="text" class="search" name="parkname" id="homeSearchTxt" placeholder="Please input park name"/>
                 <button type="submit" class="button" id="homeSearch"><span>Search</span></button>
-              </select>
             </form>
         </article>
-        <div class="homeLink" id="homelink">
+        <div class="homeLink" id="homeLink">
           <div class="homeRecommendationLink" id="orderByRating">
             ORDER BY RATING
           </div>
@@ -66,3 +47,9 @@
 
     </main> 
 </body>
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+      crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+      crossorigin="anonymous"></script>
+<script src="/public/ajaxHome.js"></script>
