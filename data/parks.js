@@ -5,7 +5,7 @@ const { ObjectId } = require('mongodb');
 module.exports = {
   async createPark(name, opentime, closetime, location) {
     if (!name || !opentime || !closetime || !location)
-      throw 'please provide all inputs';
+      throw 'please provide all inputs for park';
 
     const parkCollection = await parks();
     const park = await parkCollection.findOne({ name: name.toLowerCase() });
@@ -41,7 +41,7 @@ module.exports = {
     return true;
   },
   async updatePark(id, name, opentime, closetime, location) {
-    if (!id || !name || !opentime || !closetime || !location) throw 'please provide all inputs';
+    if (!id || !name || !opentime || !closetime || !location) throw 'please provide all inputs to update park';
     if (!ObjectId.isValid(id)) throw 'invalid park ID';
 
     // const newOpentime = new Date(opentime);
@@ -62,7 +62,7 @@ module.exports = {
     return true;
   },
   async updateParkImg(id, url) {
-    if (!id || !url) throw 'please provide all inputs';
+    if (!id || !url) throw 'please provide all inputs to update img';
     if (!ObjectId.isValid(id)) throw 'invalid park ID';
 
     let parkUpdateInfo = {
@@ -78,7 +78,7 @@ module.exports = {
     return true;
   },
   async updateParkLikes(id, num) {
-    if (!id) throw 'please provide all inputs';
+    if (!id || !num) throw 'please provide all inputs to update likes';
     if (!ObjectId.isValid(id)) throw 'invalid park ID';
 
     const parkCollection = await parks();

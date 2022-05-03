@@ -10,7 +10,16 @@
             <dd>
                 <ul>
                     {{#each data}}
-                    <li>Time:{{this.year}}/{{this.month}}/{{this.day}}/{{this.hour}}:{{this.minute}} Park:{{this.parkId}} activity:{{this.activityId}} Approval:{{this.approvement}} Status:{{this.status}}</li>
+                    <li class = "appointment_list">
+                        Time:{{this.year}}/{{this.month}}/{{this.day}}/{{this.hour}}:{{this.minute}} Park:{{this.parkId}} activity:{{this.activityId}} Full:{{this.approvement}} Status:{{this.status}}
+                        <form action="/appointments/cancelAppointment" method="post" id="login-form">
+                            <div class="login">
+                                <input type="hidden" name = "appointmentId" value = {{{this.appointmentId}}}>
+                                <input type="hidden" name = "currentUserId" value = {{{currentUserId}}}>
+                                <button type="submit" class="button">Cancel</button>
+                            </div>
+                        </form>
+                    </li>
                     {{/each}}
                 </ul>
             </dd>

@@ -6,16 +6,38 @@ let { ObjectId } = require('mongodb');
 
 module.exports = {
   async createAppointment(userOneId, parkId, activityId, year, month, day, hour, minute) {
-    if (!userOneId || !parkId || !activityId || !year || !month || !day || !hour || !minute) throw 'please provide all inputs';
+    if (!userOneId || !parkId || !activityId || !year || !month || !day || !hour || !minute) throw 'please provide all inputs for appointment';
     if (!ObjectId.isValid(userOneId)) throw 'invalid user ID';
     if (!ObjectId.isValid(parkId)) throw 'invalid park ID';
     if (!ObjectId.isValid(activityId)) throw 'invalid park ID';
     if (typeof year !== 'string' || year.trim().length === 0 || isNaN(parseInt(year)) || parseInt(year) < new Date().getFullYear()) throw "invalid year or the year was past";
-    if (typeof month !== 'string' || month.trim().length === 0 || isNaN(parseInt(month)) || parseInt(month) < new Date().getMonth()) throw "invalid month or the month was past";
-    if (typeof day !== 'string' || day.trim().length === 0 || isNaN(parseInt(day)) || parseInt(day) < new Date().getDay()) throw "invalid day or the day was past";
+    if (typeof month !== 'string' || month.trim().length === 0 || isNaN(parseInt(month))) throw "invalid month or the month was past";
+    if (typeof day !== 'string' || day.trim().length === 0 || isNaN(parseInt(day))) throw "invalid day or the day was past";
     if (typeof hour !== 'string' || hour.trim().length === 0 || isNaN(parseInt(hour)) || parseInt(hour) < 0 || parseInt(hour) > 23) throw "invalid hour";
-    if (typeof minute !== 'string' || minute.trim().length === 0 || parseInt(minute) < 0 || parseInt(minute) > 59) throw "invalid minute";
 
+    // Checking the current time is occupied or not:
+    activityId = ObjectId(activityId);
+    parkId = ObjectId(parkId);
+
+    const checkuserCollection = await users();
+    const checkavalibleappointment = await checkuserCollection.findOne({ "appointments.parkId": parkId, "appointments.activityId": activityId, "appointments.year": year, "appointments.month": month, "appointments.day": day, "appointments.hour": hour });
+    if (checkavalibleappointment != null) {
+      throw 'This schedule has been created by others, you can try to match this time directly!'
+    }
+
+    // Getting the maxpeople
+    const maxpeopelCollection = await parks();
+    let maxpoepleappointment = await maxpeopelCollection.find({ "_id": parkId }).toArray();
+    if (maxpoepleappointment === null) throw 'Cannot get maxpeople in your selected park and activity!';
+    let maxPeople;
+    for (x of maxpoepleappointment[0].activities) {
+      if (x._id.equals(activityId)) {
+        maxPeople = x.maxPeople;
+        break;
+      }
+    }
+
+    // Creating new appointment if current time is not occupied:
     const newId = ObjectId();
     let newAppointment = {
       appointmentId: newId,
@@ -27,6 +49,7 @@ module.exports = {
       day: day,
       hour: hour,
       minute: minute,
+      maxPeople: maxPeople,
       approvement: false,
       status: "Not matched"
     };
@@ -79,6 +102,18 @@ module.exports = {
     return allappointments[0].name;
   },
 
+  async getParkIdByParkname(Parkname) {
+    if (typeof Parkname === 'undefined') throw "Parkname is undefined!";
+    if (typeof Parkname === 'string' && Parkname.trim().length === 0) throw "Parkname is an empty string!";
+
+    const parkCollection = await parks();
+    let allappointments = await parkCollection.find({ "name": Parkname }).toArray();
+    // for (let x of allbands){
+    //     x._id = x._id.toString();
+    // }
+    return allappointments[0]._id;
+  },
+
   async getActivitynameByActivityId(activityId) {
     if (typeof activityId === 'undefined') throw "activityId is undefined!";
     if (!ObjectId.isValid(activityId) && typeof activityId !== 'string') throw "activityId is not a string or objectKey!"
@@ -94,35 +129,37 @@ module.exports = {
     // for (let x of allbands){
     //     x._id = x._id.toString();
     // }
-    return allappointments[0].activities[0].name;
+    let result;
+    for (x of allappointments[0].activities) {
+      if ((x._id).equals(activityId)) {
+        result = x.name;
+      }
+    }
+    return result;
   },
 
-  async getParkIdbyActivityname(Activityname) {
+  async getActivityIdbyActivitynameandParkname(Activityname, Parkname) {
     if (typeof Activityname === 'undefined') throw "Activityname is undefined!";
     if (typeof Activityname !== 'string') throw "Activityname is not a string!"
     if (typeof Activityname === 'string' && Activityname.trim().length === 0) throw "Activityname is an empty string!";
+    if (typeof Parkname === 'undefined') throw "Parkname is undefined!";
+    if (typeof Parkname !== 'string') throw "Parkname is not a string!"
+    if (typeof Parkname === 'string' && Parkname.trim().length === 0) throw "Parkname is an empty string!";
 
     const parkCollection = await parks();
-    let allappointments = await parkCollection.find({ "activities.name": Activityname }).toArray();
-    if (allappointments === null) throw 'No park with that activity!';
+    let allappointments = await parkCollection.find({ "name": Parkname }).toArray();
+    if (allappointments === null) throw 'Your selected park without that activity!';
     // for (let x of allbands){
     //     x._id = x._id.toString();
     // }
-    return allappointments[0]._id;
-  },
-
-  async getActivityIdbyActivityname(Activityname) {
-    if (typeof Activityname === 'undefined') throw "Activityname is undefined!";
-    if (typeof Activityname !== 'string') throw "Activityname is not a string!"
-    if (typeof Activityname === 'string' && Activityname.trim().length === 0) throw "Activityname is an empty string!";
-
-    const parkCollection = await parks();
-    let allappointments = await parkCollection.find({ "activities.name": Activityname }).toArray();
-    if (allappointments === null) throw 'No park with that activity!';
-    // for (let x of allbands){
-    //     x._id = x._id.toString();
-    // }
-    return allappointments[0].activities[0]._id;
+    let result;
+    for (x of allappointments[0].activities) {
+      if (x.name == Activityname) {
+        result = x._id;
+      }
+    }
+    if (result == null) throw `${Parkname} don't have ${Activityname} yet! Please create ${Activityname} for ${Parkname} in activity page first~`
+    return result;
   },
 
   async getAllAppointmentsByActivityId(activityId) {
@@ -192,8 +229,8 @@ module.exports = {
     // return appointment;
 
     let result;
-    for (x of appointment.appointments){
-      if ((x.appointmentId).equals(appointmentId)){
+    for (x of appointment.appointments) {
+      if ((x.appointmentId).equals(appointmentId)) {
         result = x;
         break;
       }
@@ -202,7 +239,7 @@ module.exports = {
   },
 
   async autoMatchId(activityId, parkId, year, month, day, hour, minute) {
-    if (!activityId || !parkId || !year || !month || !day || !hour || !minute) throw 'please provide all inputs';
+    if (!activityId || !parkId || !year || !month || !day || !hour || !minute) throw 'please provide all inputs to match';
     if (!ObjectId.isValid(activityId)) throw 'invalid acitivity ID';
     if (!ObjectId.isValid(parkId)) throw 'invalid park ID';
     if (typeof year !== 'string' || year.trim().length === 0 || isNaN(parseInt(year)) || parseInt(year) < new Date().getFullYear()) throw "invalid year or the year was past";
@@ -215,17 +252,45 @@ module.exports = {
     parkId = ObjectId(parkId);
 
     const userCollection = await users();
-    const avalibleappointment = await userCollection.findOne({ "appointments.activityId": activityId, "appointments.year": year, "appointments.month": month, "appointments.day": day, "appointments.approvement": false });
+    const avalibleappointment = await userCollection.findOne({ "appointments.parkId": parkId, "appointments.activityId": activityId, "appointments.year": year, "appointments.month": month, "appointments.day": day, "appointments.hour": hour, "appointments.approvement": false });
     if (avalibleappointment === null) throw 'No avalible appointment, you can creat a new appointment!';
     // return avalibleappointment;
 
     let appointmentId;
-    for (x of avalibleappointment.appointments){
-      if ((x.activityId).equals(activityId) && x.year == year && x.month == month && x.day == day && x.approvement == false){
+    for (x of avalibleappointment.appointments) {
+      if ((x.parkId).equals(parkId) && (x.activityId).equals(activityId) && x.year == year && x.month == month && x.day == day && x.approvement == false) {
         appointmentId = x.appointmentId;
       }
     }
     return appointmentId;
+  },
+
+  async cancelAppointmentByAppointmentId(appointmentId, currentUserId) {
+    if (typeof appointmentId === 'undefined') throw "appointmentId is undefined!";
+    if (!ObjectId.isValid(appointmentId) && typeof appointmentId !== 'string') throw "appointmentId is not a string or objectKey!"
+    if (!ObjectId.isValid(appointmentId)) {
+      throw "appointmentId doesn't exist!";
+    } else {
+      appointmentId = ObjectId(appointmentId);
+    }
+    if (typeof currentUserId === 'undefined') throw "currentUserId is undefined!";
+    if (!ObjectId.isValid(currentUserId) && typeof currentUserId !== 'string') throw "currentUserId is not a string or objectKey!"
+    if (typeof currentUserId === 'string' && currentUserId.trim().length === 0) throw "currentUserId is an empty string!";
+    if (!ObjectId.isValid(currentUserId)) {
+      throw "currentUserId doesn't exist!";
+    } else {
+      currentUserId = ObjectId(currentUserId);
+    }
+
+    const userCollection = await users();
+    let user = await userCollection.findOne({ "_id": ObjectId(currentUserId) });
+    if (user === null) throw "Cannot find the user!";
+
+    userCollection.updateOne(
+      { "_id": ObjectId(currentUserId) },
+      { $pull: { appointments: { appointmentId: appointmentId } } }
+    );
+
   },
 
   async updateAppointment(appointmentId, currentUserId) {
@@ -246,57 +311,119 @@ module.exports = {
       currentUserId = ObjectId(currentUserId);
     }
 
-    // const userCollection = await users();
-    // let user = await userCollection.findOne({ "appointments.appointmentId": ObjectId(appointmentId) });
-    // if (user === null) throw 'No appointment with that appointmentId';
-    // const updateInfo = await userCollection.updateOne({"appointments.appointmentId": ObjectId(appointmentId)}, {$add: {appointmens: {approvement: true, status: "Full"}}});
-    // if (!updateInfo.matchedCount && !updateInfo.modifiedCount)
-    //   throw 'Could register that appointment';
-
     const userCollection = await users();
     let user = await userCollection.findOne({ "appointments.appointmentId": ObjectId(appointmentId) });
     if (user === null) throw 'No appointment with that appointmentId';
     if (user._id.equals(currentUserId)) throw "You cannot register your own appointment!"
 
-    userCollection.updateOne(
-      { "appointments.appointmentId": ObjectId(appointmentId) },
-      { $set: { "appointments.$[filter].approvement": true } },
-      { arrayFilters: [{ "filter.appointmentId": ObjectId(appointmentId) }] }
-    );
-    userCollection.updateOne(
-      { "appointments.appointmentId": ObjectId(appointmentId) },
-      { $set: { "appointments.$[filter].status": "Full" } },
-      { arrayFilters: [{ "filter.appointmentId": ObjectId(appointmentId) }] }
-    );
-
-    let newuser = await userCollection.findOne({ "appointments.appointmentId": ObjectId(appointmentId) });
-    if (newuser === null) throw 'No appointment with that appointmentId';
-    let newAppointment;
-    let allAppointments = newuser.appointments;
-    for (let x of allAppointments){
-      if (x.appointmentId.equals(appointmentId)){
-        newAppointment = x;
+    // Get the current number of people in this appointment:
+    let currentPeople;
+    for (x of user.appointments) {
+      if (x.appointmentId.equals(appointmentId)) {
+        currentPeople = x.maxPeople - 1;
         break;
       }
     }
-    const updatesecondUser = await userCollection.updateOne({ _id: ObjectId(currentUserId) },
-      { $addToSet: { appointments: newAppointment } }
-    );
 
-    const parkCollection = await parks();
-    let park = await parkCollection.findOne({ "appointments.appointmentId": ObjectId(appointmentId) });
-    if (park === null) throw 'No appointment with that appointmentId';
-    parkCollection.updateOne(
-      { "appointments.appointmentId": ObjectId(appointmentId) },
-      { $set: { "appointments.$[filter].approvement": true } },
-      { arrayFilters: [{ "filter.appointmentId": ObjectId(appointmentId) }] }
-    );
-    parkCollection.updateOne(
-      { "appointments.appointmentId": ObjectId(appointmentId) },
-      { $set: { "appointments.$[filter].status": "Full" } },
-      { arrayFilters: [{ "filter.appointmentId": ObjectId(appointmentId) }] }
-    );
-    return true;
+    // If this appointment is full(currentPeople == 0):
+    if (currentPeople <= 0) throw "This appointment is full, Can not register it!";
+
+    // If this appointment has more than 1 spot left(currentPeople > 1):
+    if (currentPeople > 1) {
+      userCollection.updateOne(
+        { "appointments.appointmentId": ObjectId(appointmentId) },
+        { $set: { "appointments.$[filter].maxPeople": currentPeople - 1 } },
+        { arrayFilters: [{ "filter.appointmentId": ObjectId(appointmentId) }] }
+      );
+      userCollection.updateOne(
+        { "appointments.appointmentId": ObjectId(appointmentId) },
+        { $set: { "appointments.$[filter].status": `${currentPeople - 1} people left` } },
+        { arrayFilters: [{ "filter.appointmentId": ObjectId(appointmentId) }] }
+      );
+
+      let newuser = await userCollection.findOne({ "appointments.appointmentId": ObjectId(appointmentId) });
+      if (newuser === null) throw 'No appointment with that appointmentId';
+      let newAppointment;
+      let allAppointments = newuser.appointments;
+      for (let x of allAppointments) {
+        if (x.appointmentId.equals(appointmentId)) {
+          newAppointment = x;
+          break;
+        }
+      }
+      const updatesecondUser = await userCollection.updateOne({ _id: ObjectId(currentUserId) },
+        { $addToSet: { appointments: newAppointment } }
+      );
+
+      const parkCollection = await parks();
+      let park = await parkCollection.findOne({ "appointments.appointmentId": ObjectId(appointmentId) });
+      if (park === null) throw 'No appointment with that appointmentId';
+      parkCollection.updateOne(
+        { "appointments.appointmentId": ObjectId(appointmentId) },
+        { $set: { "appointments.$[filter].maxPeople": currentPeople - 1 } },
+        { arrayFilters: [{ "filter.appointmentId": ObjectId(appointmentId) }] }
+      );
+      parkCollection.updateOne(
+        { "appointments.appointmentId": ObjectId(appointmentId) },
+        { $set: { "appointments.$[filter].status": `${currentPeople - 1} people left` } },
+        { arrayFilters: [{ "filter.appointmentId": ObjectId(appointmentId) }] }
+      );
+      return true;
+    }
+
+    // If this appointment only 1 spot left(currentPeople == 1):
+    if (currentPeople == 1) {
+      userCollection.updateOne(
+        { "appointments.appointmentId": ObjectId(appointmentId) },
+        { $set: { "appointments.$[filter].maxPeople": currentPeople - 1 } },
+        { arrayFilters: [{ "filter.appointmentId": ObjectId(appointmentId) }] }
+      );
+      userCollection.updateOne(
+        { "appointments.appointmentId": ObjectId(appointmentId) },
+        { $set: { "appointments.$[filter].approvement": true } },
+        { arrayFilters: [{ "filter.appointmentId": ObjectId(appointmentId) }] }
+      );
+      userCollection.updateOne(
+        { "appointments.appointmentId": ObjectId(appointmentId) },
+        { $set: { "appointments.$[filter].status": "Full" } },
+        { arrayFilters: [{ "filter.appointmentId": ObjectId(appointmentId) }] }
+      );
+
+      let newuser = await userCollection.findOne({ "appointments.appointmentId": ObjectId(appointmentId) });
+      if (newuser === null) throw 'No appointment with that appointmentId';
+      let newAppointment;
+      let allAppointments = newuser.appointments;
+      for (let x of allAppointments) {
+        if (x.appointmentId.equals(appointmentId)) {
+          newAppointment = x;
+          break;
+        }
+      }
+      const updatesecondUser = await userCollection.updateOne({ _id: ObjectId(currentUserId) },
+        { $addToSet: { appointments: newAppointment } }
+      );
+
+      const parkCollection = await parks();
+      let park = await parkCollection.findOne({ "appointments.appointmentId": ObjectId(appointmentId) });
+      if (park === null) throw 'No appointment with that appointmentId';
+      parkCollection.updateOne(
+        { "appointments.appointmentId": ObjectId(appointmentId) },
+        { $set: { "appointments.$[filter].maxPeople": currentPeople - 1 } },
+        { arrayFilters: [{ "filter.appointmentId": ObjectId(appointmentId) }] }
+      );
+      parkCollection.updateOne(
+        { "appointments.appointmentId": ObjectId(appointmentId) },
+        { $set: { "appointments.$[filter].approvement": true } },
+        { arrayFilters: [{ "filter.appointmentId": ObjectId(appointmentId) }] }
+      );
+      parkCollection.updateOne(
+        { "appointments.appointmentId": ObjectId(appointmentId) },
+        { $set: { "appointments.$[filter].status": "Full" } },
+        { arrayFilters: [{ "filter.appointmentId": ObjectId(appointmentId) }] }
+      );
+      return true;
+    }
+
   }
 
 }

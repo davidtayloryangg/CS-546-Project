@@ -6,7 +6,7 @@ const { ObjectId } = require('mongodb');
 
 module.exports = {
   async createReview(userId, activityId, userReview) {
-    if (!userId || !userReview) throw 'please provide all inputs';
+    if (!userId || !userReview) throw 'please provide all inputs for review';
     if (!ObjectId.isValid(userId)) throw 'invalid user ID';
 
     const newId = ObjectId();

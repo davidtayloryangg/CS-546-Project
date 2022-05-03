@@ -32,7 +32,7 @@ async function test() {
     "davidtayloryang@gmail.com",
     "davidyang12345"
   );
-  await users.createUser(
+  const user4 = await users.createUser(
     "Yutong",
     "Wei",
     "weiyutong123@stevens.edu",
@@ -231,14 +231,22 @@ async function test() {
   console.log("------------create appointments successfully------------");
 
   console.log("------------Init Comments------------");
-  await comments.createComment(churchSquare._id, user3._id, 3.5, "I love it!");
-  await comments.createComment(columbus._id, user3._id, 4.6, "amazing!");
-  await comments.createComment(madison._id, user3._id, 3.9, "free to play");
-  await comments.createComment(sinatra._id, user3._id, 4.55, "nice view!");
-  await comments.createComment(stevens._id, user3._id, 4.8, "amazing!");
-  await comments.createComment(CP._id, user3._id, 4.75, "god!");
-  await comments.createComment(PC._id, user3._id, 4.91, "nice park!");
-  await comments.createComment(PA._id, user3._id, 4.2, "amazing!");
+  const comment1 = await comments.createComment(churchSquare._id, user3._id, 3.5, "I love it!");
+  const comment2 = await comments.createComment(columbus._id, user3._id, 4.6, "amazing!");
+  const comment3 = await comments.createComment(madison._id, user3._id, 3.9, "free to play");
+  const comment4 = await comments.createComment(sinatra._id, user3._id, 4.55, "nice view!");
+  const comment5 = await comments.createComment(stevens._id, user3._id, 4.8, "amazing!");
+  const comment6 = await comments.createComment(CP._id, user3._id, 4.75, "god!");
+  const comment7 = await comments.createComment(PC._id, user3._id, 4.91, "nice park!");
+  const comment8 = await comments.createComment(PA._id, user3._id, 4.2, "amazing!");
+  await comments.replyComment(comment1._id, user4._id, "say it again????");
+  await comments.replyComment(comment2._id, user4._id, "say it again????");
+  await comments.replyComment(comment3._id, user4._id, "say it again????");
+  await comments.replyComment(comment4._id, user4._id, "say it again????");
+  await comments.replyComment(comment5._id, user4._id, "say it again????");
+  await comments.replyComment(comment6._id, user4._id, "say it again????");
+  await comments.replyComment(comment7._id, user4._id, "say it again????");
+  await comments.replyComment(comment8._id, user4._id, "say it again????");
   console.log("------------create comments successfully------------");
 
   console.log("------------Init Reviews------------");

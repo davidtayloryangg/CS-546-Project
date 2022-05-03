@@ -1,8 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const data = require("../data/parks");
+const activitydata = require("../data/activities")
 const userdata = require("../data/users");
 const commentdata = require("../data/comments");
+const activity_data = require('../data/activities');
+const appointment_data = require('../data/appointments');
 
 router.get("/", function (req, res) {
   data.getAllParks().then(
@@ -35,8 +38,10 @@ router.route("/ParksOrderByLikes").get(async (req, res) => {
 router.route("/search").post(async (req, res) => {
   try {
     const info = req.body;
-    const searchParks = await data.getParksByName(info.parkName);
-    res.json(searchParks);
+    let searchdata;
+    if ('parkname' in info) searchdata = await data.getParksByName(info.parkname);
+    else searchdata = await activitydata.getAllParksByActivityName(info.activityname);
+    res.json(searchdata);
   } catch (e) {
     res.status(500).json(e);
   }
@@ -44,8 +49,8 @@ router.route("/search").post(async (req, res) => {
 
 router.route("/id/:id").get(async (req, res) => {
   try {
-    const park = await data.getParkById(req.params.id);
-    res.render("function/SinglePark", { parks: park });
+    const parks = await data.getParkById(req.params.id);
+    res.render("function/SinglePark", { parks: parks });
   } catch (error) {
     res.status(500).json({ error: error });
   }
@@ -129,7 +134,9 @@ router
           username: name,
           comment: element.parkComment,
           timestamp: element.timestamp,
-        };
+          commentId: element._id,
+          reply: element.reply
+        }
         userList.push(user);
       }
       res.json(userList);
@@ -143,12 +150,27 @@ router
         const userInfo = req.session.user;
         const info = req.body;
         const parkId = req.params.id;
-        await commentdata.createComment(
-          parkId,
-          userInfo.userId,
-          info.newCommentRating,
-          info.newCommentTxt
-        );
+        const comment = await commentdata.createComment(parkId, userInfo.userId, info.newCommentRating, info.newCommentTxt);
+        res.json(comment);
+      } catch (error) {
+        res.status(500).json({ error: error });
+      }
+    }
+    else res.render('function/Login', { error: "Log in to comment parks!!!" });
+  });
+
+router
+  .route("/id/comments/reply/:id")
+  .post(async (req, res) => {
+    if (req.session.user) {
+      try {
+        const userInfo = req.session.user;
+        const info = req.body;
+        const commentId = req.params.id;
+        const replyToUser = await commentdata.getUserByCommentId(commentId);
+        const comment = "@" + replyToUser.firstname + replyToUser.lastname + " " + info.newCommentTxt;
+        const updated = await commentdata.replyComment(commentId, userInfo.userId, comment);
+        res.json(updated);
       } catch (error) {
         res.status(500).json({ error: error });
       }
@@ -156,4 +178,30 @@ router
       res.render("function/Login", { error: "Log in to comment parks!!!" });
   });
 
+// Creating new activity:
+router.get('/newActivity', async (req, res) => {
+  if (!req.session.user) {
+    res.redirect('/users');
+  } else {
+    res.render('function/Activity_newActivity');
+  }
+});
+
+router.post('/createnewActivity', async (req, res) => {
+  if (!req.session.user) {
+    res.redirect('/users');
+  } else {
+    try {
+      var body = req.body;
+      const parkId = await appointment_data.getParkIdByParkname(body.park);
+      const activity = body.activity
+      const numberOfCourts = body.numberOfCourts;
+      const maxPeople = body.maxPeople;
+      const Appointments = await activity_data.createActivity(parkId, activity, numberOfCourts, maxPeople);
+      res.render('function/Appointment_Created', { result: `You have created ${body.activity} for ${body.park}!`, title: "Created" });
+    } catch (e) {
+      res.status(404).render('function/Appointment_Error', { error: e, title: "Error" });
+    }
+  }
+});
 module.exports = router;
