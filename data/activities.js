@@ -2,7 +2,11 @@
 const mongoCollections = require('../config/mongoCollections');
 const parks = mongoCollections.parks;
 const { ObjectId } = require('mongodb');
+<<<<<<< HEAD
 const {getParkById} = require('./parks')
+=======
+const func = require('./functions');
+>>>>>>> 43bb3a1c3bbaad05b0660ee9e0627be1498a2e3b
 
 function checkActivityId(activityId) {
   if (arguments.length !== 1) throw 'paramater is wrong';
@@ -13,8 +17,10 @@ function checkActivityId(activityId) {
 
 module.exports = {
   async createActivity(parkId, name, numberOfCourts, maxPeople) {
-    if (!parkId || !name || !numberOfCourts || !maxPeople) throw 'please provide all inputs';
+    if (!parkId || !name || !numberOfCourts || !maxPeople) throw 'please provide all inputs for act';
     if (!ObjectId.isValid(parkId)) throw 'invalid park ID';
+    func.checkNumber(numberOfCourts);
+    func.checkNumber(maxPeople);
 
     const newId = ObjectId();
     let newActivity = {
@@ -94,11 +100,7 @@ module.exports = {
 
   },
   async get(activityId) {
-    try {
-      checkActivityId(activityId);
-    } catch (error) {
-      throw error;
-    }
+    checkActivityId(activityId);
 
     const parkCollection = await parks();
     const park = await parkCollection.findOne({
@@ -112,8 +114,8 @@ module.exports = {
     });
     if (!park || park.activities.length == 0) throw 'No activity exist';
     let activity;
-    for(let i of park.activities){
-      if(i._id.toString()===activityId) {activity=i;break;}
+    for (let i of park.activities) {
+      if (i._id.toString() === activityId) { activity = i; break; }
     }
     return activity;
   },
@@ -122,18 +124,15 @@ module.exports = {
     if (!parkId) throw 'paramater is not exist';
     if (!ObjectId.isValid(parkId)) throw 'Invalid Object parkId';
     const parkCollection = await parks();
-    const park = await parkCollection.findOne({
-      _id: ObjectId(parkId)
-    }, {
-      projection: {
-        activities: 1
-      }
-    });
+    const park = await parkCollection.findOne(
+      { _id: ObjectId(parkId) },
+      { projection: { activities: 1 } }
+    );
     if (!park) throw 'Could not find activity';
     return park.activities;
 
   },
-  async getAllParksByActivityName(activityName){
+  async getAllParksByActivityName(activityName) {
     if (!activityName) throw 'please provide activity name';
     const parkCollection = await parks();
     var reg = new RegExp(activityName, "i");

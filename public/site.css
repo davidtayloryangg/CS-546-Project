@@ -160,10 +160,39 @@ ul li{
 .homeSearchTxtList li div a p:hover {
 	color: #4CAF50;
 }
+
+/* For Act Search list */
+.actSearchDiv{
+  margin: 0 auto;
+  width: 500px;
+}
+.actSearchTxtList li{
+  width: 500px;
+  height: 300px;
+  padding: 20px 0;
+}
+.actSearchTxtListItem{
+  padding: 40px 0;
+}
+.actSearchImgListItem img{
+  width: 500px;
+  height: 300px;
+  border-radius: 20px;
+  object-fit: cover;
+  float: center;
+}
+.actSearchTxtList li div a p {
+	color: #fcfcfc;
+  text-align: left;
+}
+.actSearchTxtList li div a p:hover {
+	color: #4CAF50;
+}
+
 /* For Recommendation List */
 .homeLink{
   margin: 0 auto;
-  width: 400px;
+  width: 500px;
 }
 .homeRecommendationLink{
   float: left;
@@ -174,6 +203,7 @@ ul li{
 }
 .homeRecommendationLink:hover{
   color: #4CAF50;
+  cursor: pointer;
 }
 .homePopularLink{
   margin-left: 50%;
@@ -184,6 +214,7 @@ ul li{
 }
 .homePopularLink:hover{
   color: #4CAF50;
+  cursor: pointer;
 }
 .homeRecommendationDiv{
   margin: 0 auto;
@@ -329,7 +360,7 @@ ul li{
 }
 
 .search:focus {
-  width: 61.8%;
+  border-color: #6495ed;
 }
 
 /* The button styling */
@@ -516,6 +547,19 @@ ul.topnav li.right {float: right;}
 .commentContent{
   width: 100%;
 }
+.commentContent p img{
+  width: 20px;
+  vertical-align: middle;
+  margin: 0 5px 5px 5px;
+  cursor: pointer;
+}
+.userComment{
+  font-size: 16px;
+  font-family:Arial, Helvetica, sans-serif;
+}
+.timestamp{
+  color: #ddd;
+}
 .commentContentTxt{
   width: 100%;
 }
@@ -546,14 +590,96 @@ ul.topnav li.right {float: right;}
 }
 .commentButton{
   display: inline-block;
+  background: transparent;
+  border-color: #6495ed;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 16px;
+  color: #fcfcfc;
+  padding: 5px 8px;
+  cursor:pointer; 
+}
+.commentButton:hover{
   background-color: #6495ed;
-  border: none;
+  color: #fff;
+}
+.Replycomment{
+  width: 90%;
+  margin-left: 10%;
+}
+/*  For comment reply form */
+
+.newReplyComment{
+  width: 90%;
+  margin-left: 10%;
+}
+.replyCommentUser{
+  width: 100%;
+}
+.replyCommentUsername{
+  text-align: left;
+}
+.replyCommentContent{
+  width: 100%;
+}
+.replyCommentContentTxt{
+  width: 100%;
+}
+.replyCommentContentTxt input{
+  width: 40%;
+  padding: 5px 5px;
+  display: inline-block;
+  border: 2px solid #a2a2a2;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+.replyCommentContentTxt textarea{
+  width: 70%;
+  height: 50px;
+  resize: none;
+  padding: 5px 5px;
+  margin: 10px 0;
+  display: inline-block;
+  border: 2px solid #a2a2a2;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+  text-align: left;
+}
+.replyCommentContentBtn{
+  width: 100%;
+}
+.replyCommentButton{
+  display: inline-block;
+  background: transparent;
+  border-color: #6495ed;
   border-radius: 5px;
   text-align: center;
   font-size: 16px;
   color: white;
-  padding: 5px 5px;
+  padding: 5px 8px;
+  cursor:pointer; 
 }
+.replyCommentButton:hover{
+  background-color: #6495ed;
+  color: #fff;
+}
+
+.replyButton{
+  display: inline-block;
+  color:#ddd;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  padding: 2px 5px;
+  cursor:pointer; 
+}
+.replyButton:hover{
+  background-color: #6495ed;
+  color: #fff;
+}
+
 /* Footer styling: */
 /* 
 footer{

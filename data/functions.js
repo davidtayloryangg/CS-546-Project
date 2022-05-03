@@ -12,7 +12,7 @@ function checkUserName(string) {
   }
 }
 function checkEmail(string) {
-  if (!string.includes('.')||!string.lastIndexOf('.') > (string.length - 3)||!string.indexOf('.') === 0 || string.indexOf('@') === 0||string.indexOf('@') === -1)
+  if (!string.includes('.') || !string.lastIndexOf('.') > (string.length - 3) || !string.indexOf('.') === 0 || string.indexOf('@') === 0 || string.indexOf('@') === -1)
     throw 'invalid email address';
 }
 function checkPassword(string) {
@@ -46,6 +46,12 @@ function checkRating(val) {
     return false;
   return !(val < 0 || val > 5);
 }
+function checkNumber(val) {
+  if (typeof val !== "number")
+    return false;
+  if (isNaN(val))
+    return false;
+}
 function checkString(string) {
   if (!string)
     return false;
@@ -64,5 +70,6 @@ module.exports = {
   computeRating,
   checkId,
   checkRating,
-  checkString
+  checkString,
+  checkNumber
 }
