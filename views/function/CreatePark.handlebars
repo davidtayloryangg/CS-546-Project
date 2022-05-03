@@ -1,0 +1,30 @@
+<body>
+    <h1>Add New Park</h1>
+    <br>
+    <form action="/parks/CreatePark" method="post">
+        <div class="field">
+            <label class="label">Park Name:  </label>
+            <input class="input" type="text" name="name" placeholder="Park Name">
+        </div>
+        <br>
+        <div class="field">
+            <label class="label">Open Time:  </label>
+            <input class="input" type="time" name="openTime" min="00:00" max="23:59" Requried="true">            
+        </div>
+        <br>
+        <div class="field">
+            <label class="label">Close Time:  </label>            
+            <input class="input" type="time" name="closeTime" placeholder="Close Time">            
+        </div>
+        <br>
+        <div class="field">
+            <label class="label">Address:  </label>            
+            <input class="input" type="text" name="location" placeholder="Location">            
+        </div>
+        <br>
+        <div class="field">
+            <div class="control">
+                <button class="button is-link" type="submit">Submit</button>
+            </div>
+        </div>
+</body>
