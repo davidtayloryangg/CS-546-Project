@@ -259,7 +259,7 @@ module.exports = {
 
     let appointmentId;
     for (x of avalibleappointment.appointments) {
-      if ((x.parkId).equals(parkId) && (x.activityId).equals(activityId) && x.year == year && x.month == month && x.day == day && x.approvement == false) {
+      if ((x.parkId).equals(parkId) && (x.activityId).equals(activityId) && x.year == year && x.month == month && x.day == day && x.hour == hour && x.approvement == false) {
         appointmentId = x.appointmentId;
       }
     }
