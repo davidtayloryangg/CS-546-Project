@@ -31,7 +31,8 @@ router.post('/login', async (req, res) => {
       var user = {
         name: userInfo.firstname + " " + userInfo.lastname,
         email: userInfo.email,
-        userId: userInfo._id
+        userId: userInfo._id,
+        permission: userInfo.permission
       }
       req.session.user = user;
     }

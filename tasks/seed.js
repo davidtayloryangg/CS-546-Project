@@ -37,7 +37,11 @@ async function test() {
     "Wei",
     "weiyutong123@stevens.edu",
     "12345678"
-  )
+  );
+  await users.updateUserPermission(user1._id);
+  await users.updateUserPermission(user2._id);
+  await users.updateUserPermission(user3._id);
+  await users.updateUserPermission(user4._id);
   console.log("------------create users successfully------------");
 
   console.log("------------Init Parks------------");

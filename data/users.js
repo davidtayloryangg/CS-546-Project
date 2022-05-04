@@ -32,6 +32,7 @@ module.exports = {
       age: 0,
       description: '',
       hashedPassword: hash,
+      permission: "basic",
       reviews: [],
       appointments: [],
       favorites: []
@@ -116,5 +117,22 @@ module.exports = {
     }
     const user1 = await userCollection.findOne({ _id: ObjectId(userId) })
     return true;
-  }
+  },
+  async updateUserPermission(id) {
+    if (!id) throw 'please provide user id to update permission';
+    if (!ObjectId.isValid(id)) throw 'invalid user ID';
+
+    let userUpdateInfo = {
+      permission: "admin"
+    };
+    const userCollection = await users();
+    const updateInfo = await userCollection.updateOne(
+      { _id: ObjectId(id) },
+      { $set: userUpdateInfo }
+    );
+    if (!updateInfo.matchedCount && !updateInfo.modifiedCount)
+      throw 'Update user permission failed';
+    return true;
+  },
+
 }

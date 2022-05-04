@@ -7,16 +7,19 @@ const commentdata = require("../data/comments");
 const activity_data = require('../data/activities');
 const appointment_data = require('../data/appointments');
 
-router.get("/", function (req, res) {
-  data.getAllParks().then(
-    (parks) => {
-      res.render("function/Park List", { parks: parks });
-    },
-    (error) => {
+router
+  .route("/")
+  .get(async (req, res) => {
+    try {
+      const parks = await data.getAllParks();
+      var isAdmin = false;
+      if (req.session.user && req.session.user.permission === "admin")
+        isAdmin = true;
+      res.render("function/Park List", { parks: parks, isAdmin: isAdmin });
+    } catch (error) {
       res.status(500).json({ error: error });
     }
-  );
-});
+  })
 
 router.route("/ParksOrderByRating").get(async (req, res) => {
   try {

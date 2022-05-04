@@ -1,6 +1,6 @@
 <body>
     <h1>Parks</h1>
-    <a href="/parks/CreatePark" class="button"> Create new park</a>
+
     <ul>
     {{#each parks}}
         <li>
@@ -38,12 +38,17 @@
                             {{/each}}
                         </ul>
                     </div>
+                    {{#if ../isAdmin}}
                     <div class="parkEdits">
                         <a href="/parks/id/{{_id}}/edit" class="button"> Edit </a>
                     </div>
+                    {{/if}}
                 </a>
             </div>
         </li>
     {{/each}}
     </ul>
+    {{#if isAdmin}}
+    <a href="/parks/CreatePark" class="button"> Create new park</a>
+    {{/if}}
 </body>
