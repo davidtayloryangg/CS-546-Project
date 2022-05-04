@@ -29,31 +29,31 @@
       </div>
       {{else}}
       <input type="text" id="userId" name="id" value="{{user.id}}" hidden/>
-      <h2> Firstname </h2>
-      <h3>{{user.firstname}}<h3>
-      <h2> Lastname </h2>
-      <h3>{{user.lastname}}</h3>
-      <h2> Email Address </h2>
-      <h3>{{user.email}}</h3>
-      <h2> Gender </h2>
-      <h3>{{user.gender}}</h3>
-      <h2> City </h2>
-      <h3>{{user.city}}</h3>>
-      <h2> State </h2>
-      <h3>{{user.state}}<h3>
-      <h2> Age </h2>
-      <h3>{{user.age}}</h3>
-      <h2> Description </h2>
-      <h3>{{user.description}}</h3>
-      <h2>Favorite</h2>
+      <p> Firstname </p>
+      <p>{{user.firstname}}<p>
+      <p> Lastname </p>
+      <p>{{user.lastname}}</p>
+      <p> Email Address </p>
+      <p>{{user.email}}</p>
+      <p> Gender </p>
+      <p>{{user.gender}}</p>
+      <p> City </p>
+      <p>{{user.city}}</p>
+      <p> State </p>
+      <p>{{user.state}}<p>
+      <p> Age </p>
+      <p>{{user.age}}</p>
+      <p> Description </p>
+      <p>{{user.description}}</p>
+      <p>Favorite</p>
       {{#each user.favorites}}
        <div>
          <a href="/parks/{{this.parkId}}">{{this.parkname}}</a>
        </div>
       {{/each}}
-      <h2> Your Apointments </h2>
+      <p> Your Apointments </p>
       {{#unless user.appointments}}
-      <h2> You have no appointment right now! </h2>
+      <p> You have no appointment right now! </p>
       {{/unless}}
       {{#each user.appointments}}
          <div class="card" style="width: 18rem;">

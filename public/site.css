@@ -19,7 +19,7 @@ header{
 article{
 	margin:3em 0;
 	padding:20px;
-	text-shadow:0 2px 0 black;
+	text-shadow:0 2px 0 #f08080;
 }
 
 figure{
@@ -45,8 +45,8 @@ body{
 	/* Setting the default text color, size, page background and a font stack: */
 	text-align: center;
   font-size:0.825em;
-	color:#fcfcfc;
-	background-color:#355664;
+	color:#000000;
+	background-color:	#e0ffff;
   /* background-color: 	#f5f5dc; */
 	font-family:Arial, Helvetica, sans-serif;
 }
@@ -73,7 +73,7 @@ h1{
 	/* The logo text */
 	font-size:3.5em;
 	padding:0.5em 0 0;
-  color:#fffafa; 
+  color:#000000; 
 	text-transform:uppercase;
 }
 
@@ -116,18 +116,37 @@ ul li{
 }
 
 /* For login  and signup*/
+.loginDiv{
+  margin: 10% 10% 20% 10%;
+}
 .login label{
-  font-size:1.5em;
+  margin-left: -10%;
+  font-size:1.2em;
   display: inline-block;
-  width: 200px;
+  width: 30%;
   text-align: right;
+}
+.login input{
+  width: 50%;
+  -webkit-box-shadow: 0 0 5px #ccc;
+  box-shadow: 0 0 5px #ccc;
+}
+.signupDiv{
+  margin: 10% 10% 20% 10%;
 }
 .signup label{
-  font-size:1.5em;
+  margin-left: -10%;
+  font-size:1.2em;
   display: inline-block;
-  width: 200px;
+  width: 30%;
   text-align: right;
 }
+.signup input{
+  width: 50%;
+  -webkit-box-shadow: 0 0 5px #ccc;
+  box-shadow: 0 0 5px #ccc;
+}
+
 /* For home search list */
 .homeSearchDiv{
   margin: 0 auto;
@@ -162,7 +181,7 @@ ul li{
   padding: 40px 0;
 }
 .homeSearchTxtList li div a p {
-	color: #fcfcfc;
+	color: 	#000000;
   text-align: left;
 }
 .homeSearchTxtList li div a p:hover {
@@ -190,7 +209,7 @@ ul li{
   float: center;
 }
 .actSearchTxtList li div a p {
-	color: #fcfcfc;
+	color: #000000;
   text-align: left;
 }
 .actSearchTxtList li div a p:hover {
@@ -206,22 +225,26 @@ ul li{
   float: left;
   width: 50%;
   font-size:1.5em;
-  color:#fffafa;
-  border-radius: 5px;
+  color:#ff7f50;
+  border-radius: 20px;
+  padding: 10px 0 10px 0;
 }
 .homeRecommendationLink:hover{
-  color: #4CAF50;
+  color: #e0ffff;
+  background-color: #4CAF50;
   cursor: pointer;
 }
 .homePopularLink{
-  margin-left: 50%;
-  width: 50%;
+  margin-left: 55%;
+  width: 45%;
   font-size:1.5em;
-  color:#fffafa; 
-  border-radius: 5px;
+  color:#ff7f50; 
+  border-radius: 20px;
+  padding: 10px 0 10px 0;
 }
 .homePopularLink:hover{
-  color: #4CAF50;
+  color: #e0ffff;
+  background-color: #4CAF50;
   cursor: pointer;
 }
 .homeRecommendationDiv{
@@ -257,7 +280,7 @@ ul li{
   padding: 40px 0;
 }
 .homeRecommendationTxtList li div a p {
-	color: #fcfcfc;
+	color: #000000;
   text-align: left;
 }
 .homeRecommendationTxtList li div a p:hover {
@@ -298,7 +321,7 @@ ul li{
   padding: 40px 0;
 }
 .homePopularTxtList li div a p {
-	color: #fcfcfc;
+	color: #000000;
   text-align: left;
 }
 .homePopularTxtList li div a p:hover {
@@ -362,8 +385,10 @@ ul li{
   border: none;
   border-radius: 20px;
   box-sizing: border-box;
+  box-shadow: #ccc;
   font-size: 16px;
   -webkit-transition: width 0.4s ease-in-out;
+  -webkit-box-shadow: 0 0 5px #ccc;
   transition: width 0.4s ease-in-out;
 }
 
@@ -420,6 +445,8 @@ ul.topnav {
     padding: 0;
     overflow: hidden;
     background-color: #f3f3f3;
+    box-shadow: 0 0 5px #ccc;
+    -webkit-box-shadow: 0 0 5px #ccc;
 }
 
 ul.topnav li {float: left;}
@@ -470,16 +497,23 @@ ul.topnav li.right {float: right;}
   text-align: left;
 }
 .userProfile form input{
-  border: 2px solid #a2a2a2;
   border-radius: 5px;
-  background-color: #355664;
   padding: 5px 5px 5px 10px;
-  color: #fcfcfc;
   margin: 0 0 10px 0;
   width: 300px;
+  -webkit-box-shadow: 0 0 5px #ccc;
+  box-shadow: 0 0 5px #ccc;
 }
 
 /*Single park page*/
+.parkImg {
+  margin: 50px 0 50px 0;
+  border-radius: 20px;
+  width: 500px;
+  height: 300px;
+  object-fit: cover
+}
+
 .parkCard {
   width: 1000px;
   padding: 20px;
@@ -488,7 +522,6 @@ ul.topnav li.right {float: right;}
 .parkCard .parkCardImg {
   margin-right: 15px;
   float: left;
-  padding: 20px 0;
   width: 50%;
   border-radius: 20px;
   width: 500px;
@@ -504,10 +537,10 @@ ul.topnav li.right {float: right;}
   padding-bottom: 1em;
   font-weight: bold;
   display: table;
-  color: white;
+  color: #000000;
 }
 .parkCard h2 {
-  color: #fff;
+  color: #000000;
   font-size: 1.5em;
   margin-bottom: 1px;
 }
@@ -536,7 +569,6 @@ ul.topnav li.right {float: right;}
 }
 .singlePark img{
   float: center;
-  width: 100%;
 }
 .parkInfo{
   width: 500px;
@@ -598,7 +630,7 @@ ul.topnav li.right {float: right;}
   font-family:Arial, Helvetica, sans-serif;
 }
 .timestamp{
-  color: #ddd;
+  color: #a9a9a9;
 }
 .commentContentTxt{
   width: 100%;
@@ -627,7 +659,7 @@ ul.topnav li.right {float: right;}
   border-radius: 5px;
   text-align: center;
   font-size: 16px;
-  color: #fcfcfc;
+  color: #100;
   padding: 5px 8px;
   cursor:pointer; 
 }
@@ -689,7 +721,7 @@ ul.topnav li.right {float: right;}
   border-radius: 5px;
   text-align: center;
   font-size: 16px;
-  color: white;
+  color: #000000;
   padding: 5px 8px;
   cursor:pointer; 
 }
@@ -700,7 +732,7 @@ ul.topnav li.right {float: right;}
 
 .replyButton{
   display: inline-block;
-  color:#ddd;
+  color:#a9a9a9;
   border: none;
   border-radius: 5px;
   text-align: center;
