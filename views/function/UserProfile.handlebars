@@ -5,9 +5,9 @@
     
   </div>
   <div class = "userProfile">
-    <p> </p>
     <form action="/users/profile" method="POST" id="profileform">
-      <input type="text" id="userid" name="id" value="{{user._id}}"hidden/>
+      {{#if edit}}
+      <input type="text" id="userId" name="id" value="{{user.id}}" hidden/> 
       <p> Firstname </p>
       <input type="text" id="userfirstname" name="firstname" value="{{user.firstname}}" />
       <p> Lastname </p>
@@ -24,15 +24,55 @@
       <input type="text" id="userage" name="age" value="{{user.age}}" size="30"/>
       <p> Description </p>
       <input type="text" id="userdescription" name="description" value="{{user.description}}" size="30"/>
-      <p> Your Apointments </p>
-      {{#if user.appointments}}
-        <p>{{user.appointments}}</p>
+      <div class="userProfileButton">
+        <button type="submit" class="button" ><span>Submit</span> </button>
+      </div>
       {{else}}
-        <p> You have no appointment right now! </p>
+      <input type="text" id="userId" name="id" value="{{user.id}}" hidden/>
+      <p> Firstname </p>
+      <p>{{user.firstname}}<p>
+      <p> Lastname </p>
+      <p>{{user.lastname}}</p>
+      <p> Email Address </p>
+      <p>{{user.email}}</p>
+      <p> Gender </p>
+      <p>{{user.gender}}</p>
+      <p> City </p>
+      <p>{{user.city}}</p>
+      <p> State </p>
+      <p>{{user.state}}<p>
+      <p> Age </p>
+      <p>{{user.age}}</p>
+      <p> Description </p>
+      <p>{{user.description}}</p>
+      <p>Favorite</p>
+      {{#each user.favorites}}
+       <div>
+         <a href="/parks/{{this.parkId}}">{{this.parkname}}</a>
+       </div>
+      {{/each}}
+      <p> Your Apointments </p>
+      {{#unless user.appointments}}
+      <p> You have no appointment right now! </p>
+      {{/unless}}
+      {{#each user.appointments}}
+         <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-text">{{this.date}}/{{this.time}}</h5>
+              <h5 class="card-title">{{this.status}}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{this.park}}</h6>
+              <h6 class="card-subtitle mb-2 text-muted">{{this.activity}}</h6>
+              <h6 class="card-subtitle mb-2 text-muted">------------------------------</h6>
+            </div>
+         </div>
+      {{/each}}
+      <div class="userProfileButton">
+        <button type="submit" class="button"><span>Edit Profile</span> </button>
+      </div>
       {{/if}}
 
-      <div class="userProfileButton">
-        <button type="submit" class="button"><span>submit</span> </button>
+      <div>
+        <a href="/users/logout">Log out</a>
       </div>
     </form>
   </div>

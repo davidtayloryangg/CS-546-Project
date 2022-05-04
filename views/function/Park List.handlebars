@@ -1,26 +1,29 @@
 <body>
     <h1>Parks</h1>
+
     <ul>
     {{#each parks}}
         <li>
             <div class="parkCard">
                 <img src="{{imgUrl}}" onerror="this.src='https://blog.nscsports.org/wp-content/uploads/2014/10/default-img.gif'" alt="{{name}}" class="parkCardImg">
-                <a href="/parks/{{_id}}" class="parkCardText">
+                <a href="/parks/id/{{_id}}" class="parkCardText">
                     <h2>{{name}}</h2>
-                    <div class="star-rating">
-                        <div class="star-rating-top" style="width:{{rating}}">
-                            <span>★</span>
-                            <span>★</span>
-                            <span>★</span>
-                            <span>★</span>
-                            <span>★</span>
-                        </div>
-                        <div class="star-rating-bottom">
-                            <span>★</span>
-                            <span>★</span>
-                            <span>★</span>
-                            <span>★</span>
-                            <span>★</span>
+                    <div class="star-rating-num">({{averageRating}})
+                        <div class="star-rating">
+                            <div class="star-rating-top" style="width:{{averageRating}}">
+                                <span>★</span>
+                                <span>★</span>
+                                <span>★</span>
+                                <span>★</span>
+                                <span>★</span>
+                            </div>
+                            <div class="star-rating-bottom">
+                                <span>★</span>
+                                <span>★</span>
+                                <span>★</span>
+                                <span>★</span>
+                                <span>★</span>
+                            </div>
                         </div>
                     </div>
                     <p>Open Time: {{openTime}}</p>
@@ -35,9 +38,17 @@
                             {{/each}}
                         </ul>
                     </div>
+                    {{#if ../isAdmin}}
+                    <div class="parkEdits">
+                        <a href="/parks/id/{{_id}}/edit" class="button"> Edit </a>
+                    </div>
+                    {{/if}}
                 </a>
             </div>
         </li>
     {{/each}}
     </ul>
+    {{#if isAdmin}}
+    <a href="/parks/CreatePark" class="button"> Create new park</a>
+    {{/if}}
 </body>

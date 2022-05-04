@@ -1,3 +1,10 @@
+.appointment_list{
+  font-size:1.5em;
+	padding:0.5em 0 0;
+  color: greenyellow; 
+	/* text-transform:uppercase; */
+}
+
 *{
 	/* Universal reset: */
 	margin:0;
@@ -12,7 +19,7 @@ header{
 article{
 	margin:3em 0;
 	padding:20px;
-	text-shadow:0 2px 0 black;
+	text-shadow:0 2px 0 #f08080;
 }
 
 figure{
@@ -38,8 +45,9 @@ body{
 	/* Setting the default text color, size, page background and a font stack: */
 	text-align: center;
   font-size:0.825em;
-	color:#fcfcfc;
-	background-color:#355664;
+	color:#000000;
+	background-color:	#e0ffff;
+  /* background-color: 	#f5f5dc; */
 	font-family:Arial, Helvetica, sans-serif;
 }
 
@@ -48,7 +56,7 @@ a:link{
   text-decoration:none;
 }
 a:hover{
-  text-decoration:underline;
+  text-decoration:none;
 }
 a:visited {
 	text-decoration:none;
@@ -65,7 +73,7 @@ h1{
 	/* The logo text */
 	font-size:3.5em;
 	padding:0.5em 0 0;
-  color:#fffafa; 
+  color:#000000; 
 	text-transform:uppercase;
 }
 
@@ -91,20 +99,154 @@ p{
   font-weight:bold;
 }
 
-label{
-  font-size:1.5em;
-  display: inline-block;
-  width: 200px;
-  text-align: right;
-}
 
+
+hr{
+  margin: 20px 0 20px 0; 
+  background-color: #a2a2a2;
+  border:none;
+  height: 2px;
+}
+input, textarea{
+  font-family:Arial, Helvetica, sans-serif;
+}
 /* For ALL list */
 ul li{
   list-style: none;
 }
 
+/* For login  and signup*/
+.loginDiv{
+  margin: 10% 10% 20% 10%;
+}
+.login label{
+  margin-left: -10%;
+  font-size:1.2em;
+  display: inline-block;
+  width: 30%;
+  text-align: right;
+}
+.login input{
+  width: 50%;
+  -webkit-box-shadow: 0 0 5px #ccc;
+  box-shadow: 0 0 5px #ccc;
+}
+.signupDiv{
+  margin: 10% 10% 20% 10%;
+}
+.signup label{
+  margin-left: -10%;
+  font-size:1.2em;
+  display: inline-block;
+  width: 30%;
+  text-align: right;
+}
+.signup input{
+  width: 50%;
+  -webkit-box-shadow: 0 0 5px #ccc;
+  box-shadow: 0 0 5px #ccc;
+}
+
+/* For home search list */
+.homeSearchDiv{
+  margin: 0 auto;
+  width: 1000px;
+  height: 1000px;
+}
+.homeSearchImg{
+  float: left;
+  width: 50%;
+}
+.homeSearchImgList li{
+  width: 500px;
+  height: 300px;
+  padding: 20px 0;
+}
+.homeSearchImgList li img{
+  border-radius: 20px;
+  width: 500px;
+  height: 300px;
+  object-fit: cover;
+}
+.homeSearchTxt{
+  margin-left: 50%;
+  width: 50%;
+}
+.homeSearchTxtList li{
+  width: 700px;
+  height: 300px;
+  padding: 20px 20px;
+}
+.homeSearchTxtListItem{
+  padding: 40px 0;
+}
+.homeSearchTxtList li div a p {
+	color: 	#000000;
+  text-align: left;
+}
+.homeSearchTxtList li div a p:hover {
+	color: #4CAF50;
+}
+
+/* For Act Search list */
+.actSearchDiv{
+  margin: 0 auto;
+  width: 500px;
+}
+.actSearchTxtList li{
+  width: 500px;
+  height: 300px;
+  padding: 20px 0;
+}
+.actSearchTxtListItem{
+  padding: 40px 0;
+}
+.actSearchImgListItem img{
+  width: 500px;
+  height: 300px;
+  border-radius: 20px;
+  object-fit: cover;
+  float: center;
+}
+.actSearchTxtList li div a p {
+	color: #000000;
+  text-align: left;
+}
+.actSearchTxtList li div a p:hover {
+	color: #4CAF50;
+}
 
 /* For Recommendation List */
+.homeLink{
+  margin: 0 auto;
+  width: 500px;
+}
+.homeRecommendationLink{
+  float: left;
+  width: 50%;
+  font-size:1.5em;
+  color:#ff7f50;
+  border-radius: 20px;
+  padding: 10px 0 10px 0;
+}
+.homeRecommendationLink:hover{
+  color: #e0ffff;
+  background-color: #4CAF50;
+  cursor: pointer;
+}
+.homePopularLink{
+  margin-left: 55%;
+  width: 45%;
+  font-size:1.5em;
+  color:#ff7f50; 
+  border-radius: 20px;
+  padding: 10px 0 10px 0;
+}
+.homePopularLink:hover{
+  color: #e0ffff;
+  background-color: #4CAF50;
+  cursor: pointer;
+}
 .homeRecommendationDiv{
   margin: 0 auto;
   width: 1000px;
@@ -138,11 +280,57 @@ ul li{
   padding: 40px 0;
 }
 .homeRecommendationTxtList li div a p {
-	color: #fcfcfc;
+	color: #000000;
   text-align: left;
-
+}
+.homeRecommendationTxtList li div a p:hover {
+	color: #4CAF50;
 }
 
+/* For Popular List */
+.homePopularDiv{
+  margin: 0 auto;
+  width: 1000px;
+  height: 1000px;
+}
+.homePopularImg{
+  float: left;
+  width: 50%;
+}
+.homePopularImgList li{
+  width: 500px;
+  height: 300px;
+  padding: 20px 0;
+}
+.homePopularImgList li img{
+  border-radius: 20px;
+  width: 500px;
+  height: 300px;
+  object-fit: cover;
+}
+.homePopularTxt{
+  margin-left: 50%;
+  width: 50%;
+}
+.homePopularTxtList li{
+  width: 700px;
+  height: 300px;
+  padding: 20px 20px;
+}
+.homePopularTxtListItem{
+  padding: 40px 0;
+}
+.homePopularTxtList li div a p {
+	color: #000000;
+  text-align: left;
+}
+.homePopularTxtList li div a p:hover {
+	color: #4CAF50;
+}
+.star-rating-num{
+  text-align: left;
+  color: #fcfcfc;
+}
 .star-rating {
   unicode-bidi: bidi-override;
   color: #ddd;
@@ -197,13 +385,15 @@ ul li{
   border: none;
   border-radius: 20px;
   box-sizing: border-box;
+  box-shadow: #ccc;
   font-size: 16px;
   -webkit-transition: width 0.4s ease-in-out;
+  -webkit-box-shadow: 0 0 5px #ccc;
   transition: width 0.4s ease-in-out;
 }
 
 .search:focus {
-  width: 61.8%;
+  border-color: #6495ed;
 }
 
 /* The button styling */
@@ -255,6 +445,8 @@ ul.topnav {
     padding: 0;
     overflow: hidden;
     background-color: #f3f3f3;
+    box-shadow: 0 0 5px #ccc;
+    -webkit-box-shadow: 0 0 5px #ccc;
 }
 
 ul.topnav li {float: left;}
@@ -305,25 +497,31 @@ ul.topnav li.right {float: right;}
   text-align: left;
 }
 .userProfile form input{
-  border: 2px solid #a2a2a2;
   border-radius: 5px;
-  background-color: #355664;
   padding: 5px 5px 5px 10px;
-  color: #fcfcfc;
   margin: 0 0 10px 0;
   width: 300px;
+  -webkit-box-shadow: 0 0 5px #ccc;
+  box-shadow: 0 0 5px #ccc;
 }
 
 /*Single park page*/
+.parkImg {
+  margin: 50px 0 50px 0;
+  border-radius: 20px;
+  width: 500px;
+  height: 300px;
+  object-fit: cover
+}
+
 .parkCard {
-  width: auto;
+  width: 1000px;
   padding: 20px;
   overflow: hidden;
 }
 .parkCard .parkCardImg {
   margin-right: 15px;
   float: left;
-  padding: 20px 0;
   width: 50%;
   border-radius: 20px;
   width: 500px;
@@ -339,10 +537,10 @@ ul.topnav li.right {float: right;}
   padding-bottom: 1em;
   font-weight: bold;
   display: table;
-  color: white;
+  color: #000000;
 }
 .parkCard h2 {
-  color: #fff;
+  color: #000000;
   font-size: 1.5em;
   margin-bottom: 1px;
 }
@@ -362,6 +560,188 @@ ul.topnav li.right {float: right;}
   width: auto;
   padding: 20px;
   overflow: hidden;
+}
+
+/* For single park */
+.singlePark{
+  margin: 0 auto;
+  width: 500px;
+}
+.singlePark img{
+  float: center;
+}
+.parkInfo{
+  width: 500px;
+  text-align: left;
+}
+.newComment{
+  margin: 0 auto;
+  width: 500px;
+}
+.commentUser{
+  width: 100%;
+}
+.commentUsername{
+  text-align: left;
+}
+.commentContent{
+  width: 100%;
+}
+.commentContent p img{
+  width: 20px;
+  vertical-align: middle;
+  margin: 0 5px 5px 5px;
+  cursor: pointer;
+}
+
+.rating {
+      font-size: 0;
+      display: table;
+  }
+
+  .rating > label {
+      color: #ddd;
+      float: right;
+  }
+
+  .rating > label:before {
+      padding: 3px;
+      font-size: 24px;
+      line-height: 1em;
+      display: inline-block;
+      content: "★";
+  }
+
+  .rating > input:checked ~ label,
+  .rating:not(:checked) > label:hover,
+  .rating:not(:checked) > label:hover ~ label {
+      color: #FFD700;
+  }
+
+  .rating > input:checked ~ label:hover,
+  .rating > label:hover ~ input:checked ~ label,
+  .rating > input:checked ~ label:hover ~ label {
+      opacity: 0.5;
+  }
+
+
+.userComment{
+  font-size: 16px;
+  font-family:Arial, Helvetica, sans-serif;
+}
+.timestamp{
+  color: #a9a9a9;
+}
+.commentContentTxt{
+  width: 100%;
+}
+
+.commentContentTxt textarea{
+  width: 70%;
+  height: 50px;
+  resize: none;
+  padding: 5px 5px;
+  margin: 10px 0;
+  display: inline-block;
+  border: 2px solid #a2a2a2;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+  text-align: left;
+}
+.commentContentBtn{
+  width: 100%;
+}
+.commentButton{
+  display: inline-block;
+  background: transparent;
+  border-color: #6495ed;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 16px;
+  color: #100;
+  padding: 5px 8px;
+  cursor:pointer; 
+}
+.commentButton:hover{
+  background-color: #6495ed;
+  color: #fff;
+}
+.Replycomment{
+  width: 90%;
+  margin-left: 10%;
+}
+/*  For comment reply form */
+
+.newReplyComment{
+  width: 90%;
+  margin-left: 10%;
+}
+.replyCommentUser{
+  width: 100%;
+}
+.replyCommentUsername{
+  text-align: left;
+}
+.replyCommentContent{
+  width: 100%;
+}
+.replyCommentContentTxt{
+  width: 100%;
+}
+.replyCommentContentTxt input{
+  width: 40%;
+  padding: 5px 5px;
+  display: inline-block;
+  border: 2px solid #a2a2a2;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+.replyCommentContentTxt textarea{
+  width: 70%;
+  height: 50px;
+  resize: none;
+  padding: 5px 5px;
+  margin: 10px 0;
+  display: inline-block;
+  border: 2px solid #a2a2a2;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+  text-align: left;
+}
+.replyCommentContentBtn{
+  width: 100%;
+}
+.replyCommentButton{
+  display: inline-block;
+  background: transparent;
+  border-color: #6495ed;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 16px;
+  color: #000000;
+  padding: 5px 8px;
+  cursor:pointer; 
+}
+.replyCommentButton:hover{
+  background-color: #6495ed;
+  color: #fff;
+}
+
+.replyButton{
+  display: inline-block;
+  color:#a9a9a9;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  padding: 2px 5px;
+  cursor:pointer; 
+}
+.replyButton:hover{
+  background-color: #6495ed;
+  color: #fff;
 }
 
 /* Footer styling: */

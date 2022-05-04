@@ -5,6 +5,21 @@
         </title>
     </header>
     <body>
+        <h1>activities</h1>
+
+        <div>
+            <form action="##" id="actSearchForm">
+                <input type="text" class="search" name="activityname" id="actSearchTxt" placeholder="Search activity, please input activity name"/>
+                <button type="submit" class="button" id="actSearch"><span>Search</span></button>
+            </form>
+        </div>
+
+        <div class="actSearchDiv" id="actSearchDiv">
+          <div class="actSearchTxt">
+            <ul id="actSearchTxtList" class="actSearchTxtList"></ul>
+          </div>
+        </div>
+
         <div class="ActList">
             <ul>
                 <h1>tennis</h1>
@@ -74,11 +89,25 @@
                 
             </ul>
         </div>
+        {{#if isAdmin}}
+        <div class="newActDiv">
+            <form action="/parks/newActivity" method="GET" id="login-form">
+                <div class="login">
+                    <button type="submit" class="button">Create a new activity</button>
+                </div>
+            </form>
+        </div>
+        {{/if}}
 
             
         
         
 
     </body>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+      crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+      crossorigin="anonymous"></script>
+    <script src="/public/ajaxActivity.js"></script>
 </html>
 

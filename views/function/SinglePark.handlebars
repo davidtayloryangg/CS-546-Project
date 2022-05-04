@@ -1,22 +1,27 @@
 <body>
     <h1>{{parks.name}}</h1>
+    <h1 id="singleParkId" hidden>{{parks._id}}</h1>
     <div class="singlePark">
         <img src="{{parks.imgUrl}}" onerror="this.src='https://blog.nscsports.org/wp-content/uploads/2014/10/default-img.gif'" alt="{{parks.name}}" class="parkImg">
+        
         <div class="parkInfo">
-            <div class="star-rating">
-                <div class="star-rating-top" style="width:{{parks.rating}}">
-                    <span>★</span>
-                    <span>★</span>
-                    <span>★</span>
-                    <span>★</span>
-                    <span>★</span>
-                </div>
-                <div class="star-rating-bottom">
-                    <span>★</span>
-                    <span>★</span>
-                    <span>★</span>
-                    <span>★</span>
-                    <span>★</span>
+            <div class=":star-rating-num">({{parks.averageRating}})
+                <div class="star-rating">
+                    <div class="star-rating-top" style="width:{{parks.averageRating}}">
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                    </div>
+                    <div class="star-rating-bottom">
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                    </div>
+                    <p>({{parks.averageRating}})</p>
                 </div>
             </div>
             <p>Open Time: {{parks.openTime}}</p>
@@ -26,25 +31,57 @@
             <h3>Activities</h3>
             <div class="parkActivities">
                 {{#each parks.activities}}
-                    <a href="/activities/{{_id}}" class="button">{{this.name}}</a>
+                    <a href="/activities/{{_id}}">
+                      <p>
+                        {{this.name}}
+                      </p>
+                    </a>
                 {{/each}}
             </div>
-            <div class="parkComment">
-                {{#each parks.comments}}
-                    <h3>Comments</h3>
-                    <div class="comment">
-                        <div class="commentUser">
-                            {{!-- <img src="{{this.imgUrl}}" onerror="this.src='https://blog.nscsports.org/wp-content/uploads/2014/10/default-img.gif'" alt="{{user.name}}" class="commentUserImg"> --}}
-                            <a href="/users/{{_id}}">{{this._id}}</a>
-                            {{!-- Change This to look for users first and clast name --}}
-                        </div>
-                        <div class="commentContent">
-                            <p>{{this.parkComment}}</p>
-                        </div>
+            <hr>
+            <div class="newComment">
+                <div class="commentUser">
+                    <div class="commentUsername" id="commentUsername">
                     </div>
-                {{/each}}
+                </div>
+                <div class="commentContent">
+                    <div class="commentContentTxt">
+                        <form action="##" method="POST" id="newCommentForm">
+                            <p id="singleParkId" name="singleParkId"hidden>{{parks._id}}</p>
+                            <input type="text" id="newCommentRating" name="newCommentRating" placeholder="Leave a rate from 0 to 5" value="0" hidden></input>
+                            <div class="rating">
+                                <input type="radio" class="ratingNumber" id="star5" name="rating" value="5" hidden/>
+                                <label for="star5"></label>
+                                <input type="radio" class="ratingNumber" id="star4" name="rating" value="4" hidden/>
+                                <label for="star4"></label>
+                                <input type="radio" class="ratingNumber" id="star3" name="rating" value="3" hidden/>
+                                <label for="star3"></label>
+                                <input type="radio" class="ratingNumber" id="star2" name="rating" value="2" hidden/>
+                                <label for="star2"></label>
+                                <input type="radio" class="ratingNumber" id="star1" name="rating" value="1" hidden/>
+                                <label for="star1"></label>
+                            </div>
+                            <textarea type="text" id="newCommentTxt" name="newCommentTxt" placeholder="Leave a friendly comment!"></textarea>
+                        </form>
+                        
+                    </div>
+                    <div class="commentContentBtn">
+                      <button class="commentButton" id="commentButton"> Comment </button>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="parkComment">
+                <ul id="commentsList" class="commentsList"></ul>
             </div>
 
         </div>
     </div>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+      crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+      crossorigin="anonymous"></script>
+<script type="module" src="/public/ajaxComment.js"></script>
 </body>

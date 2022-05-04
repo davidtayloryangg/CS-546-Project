@@ -1,0 +1,62 @@
+<body>
+    <script>
+        function change(){
+            var val = document.getElementById("select").value;
+            document.getElementById("star").innerHTML=val
+        }
+    </script>
+    <h1>{{activity.parkname}}</h1>
+    <h1>{{activity.activityname}}</h1> 
+    <input type="text" id="star" name="star" hidden /> 
+    <div class="createComment">
+        <div class="commentContent">
+                <form action="#" method="POST" id="newCommentForm">
+                    <input type="text" id="activityId" name="activityId" value="{{activity.activityId}}" hidden/>
+                    <select class="full-width-input" id="select" name="star" onchange="change()">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    </select>
+                    <br />
+                    <input type="text" id="Comment" name="Comment" placeholder="Leave a friendly comment!">
+                    <button type="submit" class="button" id="button"> Comment </button>
+                </form>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="activityComment">
+        {{#each activity.comments}}
+            <ul id="commentsList" class="commentsList">
+            <p>{{this.username}}</p>
+            <div class="star-rating">
+                <div class="star-rating-top" style="width:{{this.star}}">
+                    <span>★</span>
+                    <span>★</span>
+                    <span>★</span>
+                    <span>★</span>
+                    <span>★</span>
+                </div>
+                <div class="star-rating-bottom">
+                    <span>★</span>
+                    <span>★</span>
+                    <span>★</span>
+                    <span>★</span>
+                    <span>★</span>
+                </div>
+            </div>
+            <p>{{this.comment}}</p>
+            {{#each this.reviews}}
+                <li>{{this}}</li>
+            {{/each}}
+            <p>{{this.date}}</p>
+            </ul>
+            <br />
+            
+        {{/each}}
+     </div>
+</body>

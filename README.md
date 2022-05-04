@@ -21,7 +21,7 @@
      - ('/signup').post Wenjing Zhou :white_check_mark:
    - Parks:
      - ('/parks').get David Yang :white_check_mark:
-     - ('/parks/:id').get David Yang :white_check_mark:
+     - ('/parks/id/:id').get David Yang :white_check_mark:
      - ('/parks/search').get Yutong Wei :white_check_mark:
      - ('/parks/allParks').get Yutong Wei :white_check_mark:
      - ('/parks/comments').get Yue Qin :white_check_mark:

@@ -5,7 +5,7 @@ const { ObjectId } = require('mongodb');
 module.exports = {
   async createPark(name, opentime, closetime, location) {
     if (!name || !opentime || !closetime || !location)
-      throw 'please provide all inputs';
+      throw 'please provide all inputs for park';
 
     const parkCollection = await parks();
     const park = await parkCollection.findOne({ name: name.toLowerCase() });
@@ -23,6 +23,7 @@ module.exports = {
       activities: [],
       comments: [],
       averageRating: 0,
+      likes: 0,
       imgUrl: "/public/img/default_img.gif"
     };
     const insertInfo = await parkCollection.insertOne(newPark);
@@ -40,7 +41,7 @@ module.exports = {
     return true;
   },
   async updatePark(id, name, opentime, closetime, location) {
-    if (!id || !name || !opentime || !closetime || !location) throw 'please provide all inputs';
+    if (!id || !name || !opentime || !closetime || !location) throw 'please provide all inputs to update park';
     if (!ObjectId.isValid(id)) throw 'invalid park ID';
 
     // const newOpentime = new Date(opentime);
@@ -61,7 +62,7 @@ module.exports = {
     return true;
   },
   async updateParkImg(id, url) {
-    if (!id || !url) throw 'please provide all inputs';
+    if (!id || !url) throw 'please provide all inputs to update img';
     if (!ObjectId.isValid(id)) throw 'invalid park ID';
 
     let parkUpdateInfo = {
@@ -73,14 +74,40 @@ module.exports = {
       { $set: parkUpdateInfo }
     );
     if (!updateInfo.matchedCount && !updateInfo.modifiedCount)
-      throw 'Update park failed';
+      throw 'Update park img failed';
+    return true;
+  },
+  async updateParkLikes(id, num) {
+    if (!id || !num) throw 'please provide all inputs to update likes';
+    if (!ObjectId.isValid(id)) throw 'invalid park ID';
+
+    const parkCollection = await parks();
+    const updateInfo = await parkCollection.updateOne(
+      { _id: ObjectId(id) },
+      { $inc: { likes: num } }
+    );
+    if (!updateInfo.matchedCount && !updateInfo.modifiedCount)
+      throw 'Update park likes failed';
     return true;
   },
   async getAllParks() {
     const parkCollection = await parks();
     const parkList = await parkCollection.find({}, {
-      // projection: { _id: 1, name: 1 }
     }).toArray();
+    if (!parkList) throw 'could not get all parks';
+    return parkList;
+  },
+  async getParksOrderByRating() {
+    const parkCollection = await parks();
+    const parkList = await parkCollection.find({}, {
+    }).sort({ "averageRating": -1 }).toArray();
+    if (!parkList) throw 'could not get all parks';
+    return parkList;
+  },
+  async getParksOrderByLikes() {
+    const parkCollection = await parks();
+    const parkList = await parkCollection.find({}, {
+    }).sort({ "likes": -1 }).toArray();
     if (!parkList) throw 'could not get all parks';
     return parkList;
   },
