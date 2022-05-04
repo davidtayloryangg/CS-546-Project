@@ -554,12 +554,18 @@ ul.topnav li.right {float: right;}
   display: table-cell;
 }
 
-
 .ActList{
-  color:pink;
-  width: auto;
-  padding: 20px;
-  overflow: hidden;
+  border: none;
+}
+.ActListLeft{
+  width: 50%;
+  float: left;
+  
+}
+.ActListRight{
+  width: 50%;
+  float: right;
+  
 }
 
 /* For single park */
