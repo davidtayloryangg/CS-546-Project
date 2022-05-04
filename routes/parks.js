@@ -207,4 +207,32 @@ router.post('/createnewActivity', async (req, res) => {
     }
   }
 });
+
+// Warning!!! 
+// Something really bad would happen if you insit on deleting the activity!!!!
+
+// Removing an activity:
+router.get('/checkActivity', async (req, res) => {
+  if (!req.session.user) {
+    res.redirect('/users');
+  } else {
+    res.render('function/Activity_checkActivity');
+  }
+});
+
+router.post('/removeActivity', async (req, res) => {
+  if (!req.session.user) {
+    res.redirect('/users');
+  } else {
+    try {
+      var body = req.body;
+      const parkId = await appointment_data.getParkIdByParkname(body.park);
+      const activity = body.activity
+      const Appointments = await activity_data.deleteActivity(parkId, activity);
+      res.render('function/Appointment_Created', { result: `You have removed ${body.activity} for ${body.park}!`, title: "Deleted" });
+    } catch (e) {
+      res.status(404).render('function/Appointment_Error', { error: e, title: "Error" });
+    }
+  }
+});
 module.exports = router;

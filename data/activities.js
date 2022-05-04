@@ -19,6 +19,14 @@ module.exports = {
     func.checkNumber(numberOfCourts);
     func.checkNumber(maxPeople);
 
+    // Checking the current activity was created or not:
+    
+    const checkActivityCollection = await parks();
+    const checkavalibleActivity = await checkActivityCollection.findOne({ "activities.parkId": parkId, "activities.name": name});
+    if (checkavalibleActivity != null) {
+      throw 'This activity has been created before, you can cancel it and try to create it again!'
+    }
+
     const newId = ObjectId();
     let newActivity = {
       _id: newId,
@@ -36,27 +44,27 @@ module.exports = {
     if (!updateInfo.matchedCount && !updateInfo.modifiedCount) throw 'Could not add an activity';
     return newActivity;
   },
-  async removeActivity(activityId) {
 
-    checkActivityId(activityId);
+  async deleteActivity(parkId, name) {
+    if (!parkId || !name) throw 'please provide all inputs for act';
+    if (!ObjectId.isValid(parkId)) throw 'invalid park ID';
+    if (typeof name !== 'string' || name.trim().length === 0) throw 'name of activity must be a string and it could not be empty';
 
-    const parkCollection = await parks();
-    const deletionInfo = await parkCollection.updateOne({
-      activities: {
-        $elemMatch: {
-          _id: ObjectId(activityId)
-        }
-      }
-    }, {
-      $pull: {
-        activities: {
-          _id: ObjectId(activityId)
-        }
-      }
-    });
+    // Checking the current activity was created or not:
 
-    if (deletionInfo.modifiedCount === 0) throw `Could not delete park with activityId of ${activityId}`;
-    return `activityId: ${activityId}, deleted: true`;
+    const checkActivityCollection = await parks();
+    const checkavalibleActivity = await checkActivityCollection.findOne({ "_id": parkId, "activities.name": name});
+    if (checkavalibleActivity == null) {
+      throw 'This activity does not exist, you do not need to remove it!'
+    }
+
+    // Removing a particular activity for this park:
+
+    const removeActivityCollection = await parks();
+    removeActivityCollection.updateOne(
+      { "_id": ObjectId(parkId) },
+      { $pull: { activities: { name: name } } }
+    );
   },
   async updateActivity(activityId, parkId, name, numberOfCourts, maxPeople, appointments, comments) {
     // if (typeof activityId !== 'string') throw 'paramaters must be string';
