@@ -32,13 +32,13 @@ router.route("/search").post(async (req, res) => {
   }
 });
 
-router.route("/:id").get(async (req, res) => {
-  try {
-    const parks = await data.getParkById(req.params.id);
-    res.render("function/SinglePark", { parks: parks });
-  } catch (error) {
-    res.status(500).json({ error: error });
-  }
-});
+// router.route("/:id").get(async (req, res) => {
+//   try {
+//     const parks = await data.getParkById(req.params.id);
+//     res.render("function/SinglePark", { parks: parks });
+//   } catch (error) {
+//     res.status(500).json({ error: error });
+//   }
+// });
 
 module.exports = router;

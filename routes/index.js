@@ -13,6 +13,7 @@ const constructorMethod = (app) => {
   app.use('/parks', parks);
   app.use('/appointments', appointments);
   app.use('/parks/activities', activities);
+  app.use('/parks/activities/management', activities);
   // app.use('/notification', notification);
 
   app.all('*', (req, res) => {
