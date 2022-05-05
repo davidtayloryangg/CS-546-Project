@@ -14,18 +14,22 @@
         </div>
         <div class="signup">
             <label for="email">Email Address:</label>
-            <input type="text" name="email" id="email" class="textInput"/>
+            <input type="text" name="email" id="email" class="textInput" onchange="checkEmail()"/>
         </div>
         <div class="signup">
             <label for="Password">Password:</label>
             <input type="password" name="password" id="password" class="textInput"/>
         </div>
+        <p id="inputError"></p>
         <div>
             <button type="submit" class="button">Sign Up</button>
         </div>
     </form>
+
     {{#if error}}
 	    <p >{{error}}</p>
 	  {{/if}}
     <a href="/users/login" class="txt"> Already have an account? Click here to log-in </a>
 </div>
+
+<script src="/public/checkFunction.js"> </script>
