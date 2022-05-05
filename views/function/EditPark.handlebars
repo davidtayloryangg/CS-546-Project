@@ -3,6 +3,8 @@
     <br>
     <form action="/parks/id/{{parks._id}}/edit" method="post">
         <input class="input" type="text" name="id" value="{{parks._id}}" hidden="true"></input>
+        <p class = warning>WARNING!</p>
+        <p class = warning>You Can Update Everything Except The Park Name!</p>
         <div class="field">
             <label class="label">Park Name:  </label>
             <input class="input" type="text" name="name" value="{{parks.name}}">

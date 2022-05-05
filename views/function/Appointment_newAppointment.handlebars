@@ -5,52 +5,32 @@
 </header>
 
 <div >
-    <form action="/appointments/creatNewAppointment" method="POST" id="login-form">
+    <form action="/appointments/newAppointment" method="POST" id="login-form">
         <div class="login">
-            <label for="year">activity:</label>
-            <select value="{{operation}}" name="activity">
-                <option value="Tennis">Tennis</option>
-                <option value="Basketball">Basketball</option>
-                <option value="Jog">Jog</option>
-                <option value="Soccer">Soccer</option>
-                <option value="Baseball">Baseball</option>
-                <option value="Skate">Skate</option>
-                <option value="Yoga">Yoga</option>
-                <option value="Rugby">Rugby</option>
+            <label for="park">Park:</label>
+            <select id="park" name="park">
+                {{#each parks}}
+                <option value={{this.name}}>{{this.name}}</option>
+                {{/each}}
             </select>
         </div>
         <div class="login">
-            <label for="park">park:</label>
-            <select value="{{operation}}" name="park">
-                <option value="Columbus Park">Columbus Park</option>
-                <option value="Church Square Park">Church Square Park</option>
-                <option value="Madison Park">Madison Park</option>
-                <option value="Sinatra Park">Sinatra Park</option>
-                <option value="Stevens Park">Stevens Park</option>
-                <option value="Castle Point Skatepark">Castle Point Skatepark</option>
-                <option value="Pier C Park">Pier C Park</option>
-                <option value="1600 Park">1600 Park</option>
+            <label for="activity">Activity:</label>
+            <select id="activity" name="activity">
+                {{#each activities}}
+                <option value={{this.name}}>{{this.name}}</option>
+                {{/each}}
             </select>
         </div>
-        <div class="login">
-            <label for="year">year:</label>
-            <input type="text" name="year" class="textInput"/>
-        </div>
-        <div class="login">
-            <label for="month">month:</label>
-            <input type="text" name="month" class="textInput"/>
-        </div>
-        <div class="login">
-            <label for="day">day:</label>
-            <input type="text" name="day" class="textInput"/>
-        </div>
-        <div class="login">
-            <label for="hour">hour:</label>
-            <input type="text" name="hour" class="textInput"/>
-        </div>
-        <div class="login">
-            <label for="minute">minute:</label>
-            <input type="text" name="minute" class="textInput"/>
+        <div class="date">
+            <p>Month:</p>
+            <input type="text" id="month" name="month" placeholder="please input the future date"/> 
+            <p>Day:</p>
+            <input type="text" id="day" name="day" placeholder="please input the future date"/>
+            <p>Year:</p>
+            <input type="text" id="year" name="year" placeholder="please input the future date"/> 
+            <p>Time:</p>
+            <input type="text" id="hour" name="hour" placeholder="can only input an integer"/>
         </div>
 
         <div>

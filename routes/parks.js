@@ -76,7 +76,6 @@ router
   .post(async (req, res) => {
     try {
       const updatedParkInfo = req.body;
-      console.log(updatedParkInfo);
       const { id, name, openTime, closeTime, location } = updatedParkInfo;
       const updatedPark = await data.updatePark(
         id,
@@ -102,10 +101,8 @@ router
   })
   .post(async (req, res) => {
     try {
-      // console.log(req.body);
       const newParkInfo = req.body;
       const { name, openTime, closeTime, location } = newParkInfo;
-      // console.log(name, openTime, closeTime, location);
       const newParkId = await data.createPark(
         name,
         openTime,
@@ -202,6 +199,34 @@ router.post('/createnewActivity', async (req, res) => {
       const maxPeople = body.maxPeople;
       const Appointments = await activity_data.createActivity(parkId, activity, numberOfCourts, maxPeople);
       res.render('function/Appointment_Created', { result: `You have created ${body.activity} for ${body.park}!`, title: "Created" });
+    } catch (e) {
+      res.status(404).render('function/Appointment_Error', { error: e, title: "Error" });
+    }
+  }
+});
+
+// Warning!!! 
+// Something really bad would happen if you insit on deleting the activity!!!!
+
+// Removing an activity:
+router.get('/checkActivity', async (req, res) => {
+  if (!req.session.user) {
+    res.redirect('/users');
+  } else {
+    res.render('function/Activity_checkActivity');
+  }
+});
+
+router.post('/removeActivity', async (req, res) => {
+  if (!req.session.user) {
+    res.redirect('/users');
+  } else {
+    try {
+      var body = req.body;
+      const parkId = await appointment_data.getParkIdByParkname(body.park);
+      const activity = body.activity
+      const Appointments = await activity_data.deleteActivity(parkId, activity);
+      res.render('function/Appointment_Created', { result: `You have removed ${body.activity} for ${body.park}!`, title: "Deleted" });
     } catch (e) {
       res.status(404).render('function/Appointment_Error', { error: e, title: "Error" });
     }

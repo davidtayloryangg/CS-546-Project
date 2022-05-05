@@ -1,0 +1,42 @@
+<header>
+    <h1>
+        REMOVE AN ACTIVITY
+    </h1>
+</header>
+
+<div >
+    <form action="/parks/removeActivity" method="POST" id="login-form">
+        <div class="login">
+            <label for="park">park:</label>
+            <select value="{{operation}}" name="park">
+                <option value="Columbus Park">Columbus Park</option>
+                <option value="Church Square Park">Church Square Park</option>
+                <option value="Madison Park">Madison Park</option>
+                <option value="Sinatra Park">Sinatra Park</option>
+                <option value="Stevens Park">Stevens Park</option>
+                <option value="Castle Point Skatepark">Castle Point Skatepark</option>
+                <option value="Pier C Park">Pier C Park</option>
+                <option value="1600 Park">1600 Park</option>
+            </select>
+        </div>
+        <div class="login">
+            <label for="year">activity:</label>
+            <select value="{{operation}}" name="activity">
+                <option value="Tennis">Tennis</option>
+                <option value="Basketball">Basketball</option>
+                <option value="Jog">Jog</option>
+                <option value="Soccer">Soccer</option>
+                <option value="Baseball">Baseball</option>
+                <option value="Skate">Skate</option>
+                <option value="Yoga">Yoga</option>
+                <option value="Rugby">Rugby</option>
+            </select>
+        </div>
+        <div>
+            <button type="submit" class="button">Delete</button>
+        </div>
+    </form>
+    {{#if error}}
+	    <p >{{error}}</p>
+	  {{/if}}
+</div>

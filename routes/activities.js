@@ -3,6 +3,7 @@ const router = express.Router();
 const data = require('../data/activities');
 const parkdata = require('../data/parks');
 const userdata = require('../data/users')
+const reviewdata=require('../data/reviews')
 router
   .route('/')
   .get(async (req, res) => {
@@ -51,12 +52,22 @@ router
     try {
       const activity = await data.get(req.params.id)
       const park = await parkdata.getParkById(activity.parkId)
+      let user;
+      let reviews=[];
+      for(let review of activity.reviews){
+        user=await userdata.getUserById(review.userId)
+        reviews.push({
+          userId:user._id,
+          username:user.firstname+user.lastname,
+          userReview: review.userReview,
+        })
+      }
       let singleactivity = {
         activityId: req.params.id,
         parkId: park._id,
         activityname: activity.name,
         parkname: park.name,
-        comments: activity.comments
+        reviews: reviews
       }
       res.render("function/SingleActivity", { activity: singleactivity });
     } catch (error) {
@@ -72,21 +83,10 @@ router
     if (!req.session.user) res.redirect('/users/login');
     else {
       try {
-        const { activityId, star, Comment } = req.body
-        const activity = await data.get(activityId)
-        const user = await userdata.getUserByEmail(req.session.user.email)
-        let myday = new Date()
-        let date = (myday.getMonth() + 1).toString() + "/" + (myday.getDate()).toString() + "/" + (myday.getFullYear())
-        let newcomment = {
-          username: user.firstname + " " + user.lastname,
-          userid: user._id.toString(),
-          star: Number(star),
-          comment: Comment,
-          reviews: [],
-          time: date
-        }
-        activity.comments.push(newcomment)
-        await data.updateActivity(activityId, activity.parkId, activity.name, activity.numberOfCourts, activity.maxPeople, activity.appointments, activity.comments)
+        const { activityId,  Review } = req.body
+        //const activity = await data.get(activityId)
+        //const user = await userdata.getUserByEmail(req.session.user.email)
+        await reviewdata.createReview(req.session.user.userId.toString(), activityId, Review)
         res.redirect('/activities/' + req.params.id)
       } catch (error) {
         res.status(500).json({ error: error.message });

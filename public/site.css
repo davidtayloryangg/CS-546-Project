@@ -1,8 +1,14 @@
 .appointment_list{
   font-size:1.5em;
 	padding:0.5em 0 0;
-  color: greenyellow; 
+  color:#0b17f3
 	/* text-transform:uppercase; */
+}
+
+.warning{
+  font-size:1.5em;
+	padding:0.5em 0 0;
+  color: red
 }
 
 *{
@@ -97,6 +103,7 @@ p{
 	line-height:2em;
 	padding-bottom:1em;
   font-weight:bold;
+  color:#0b17f3
 }
 
 
@@ -329,7 +336,7 @@ ul li{
 }
 .star-rating-num{
   text-align: left;
-  color: #fcfcfc;
+  color: #4CAF50;
 }
 .star-rating {
   unicode-bidi: bidi-override;

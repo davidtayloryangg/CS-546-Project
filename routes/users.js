@@ -3,6 +3,7 @@ const router = express.Router();
 const userData = require('../data/users');
 const parkData = require('../data/parks');
 const activityData = require('../data/activities');
+const appointmentData=require('../data/appointments')
 
 
 
@@ -74,22 +75,21 @@ router.get('/profile', async (req, res) => {
     let park;
     let activity;
     let date;
-    let time;
     let appointment;
     let appointments = []
     for (let i = 0; i < user.appointments.length; i++) {
-      park = await parkData.getParkById(user.appointments[i].parkId.toString())
-      activity = await activityData.get(user.appointments[i].activityId.toString())
-      date = user.appointments[i].month + "/" + user.appointments[i].day + "/" + user.appointments[i].year
-      time = user.appointments[i].hour + ":" + user.appointments[i].minute
-      appointment = {
+      appointment=await appointmentData.getAppointmentById(user.appointments[i].toString())
+      park=await parkData.getParkById(appointment.parkId.toString())
+      activity=await activityData.get(appointment.activityId.toString())
+      date = appointment.month + "/" + appointment.day + "/" + appointment.year
+      appointmentinfo = {
         park: park.name,
         activity: activity.name,
         date: date,
-        time: time,
-        status: user.appointments[i].status
+        time: appointment.hour,
+        status: appointment.status
       }
-      appointments.push(appointment)
+      appointments.push(appointmentinfo)
     };
     let userinfo = {
       id: user._id.toString(),
@@ -123,30 +123,10 @@ router.post('/profile', async (req, res) => {
       const description = body.description;
       const updated = await userData.modifyUserProfile(id, email, gender, city, state, age, description);
       if (updated) {
-        res.render('function/UserProfile', { user: body, edit: false })
+        res.redirect("/users/profile")
       }
     } else {
       const user = await userData.getUserById(body.id)
-      let park;
-      let activity;
-      let date;
-      let time;
-      let appointment;
-      let appointments = []
-      for (let i = 0; i < user.appointments.length; i++) {
-        park = await parkData.getParkById(user.appointments[i].parkId.toString())
-        activity = await activityData.get(user.appointments[i].activityId.toString())
-        date = user.appointments[i].month + "/" + user.appointments[i].day + "/" + user.appointments[i].year
-        time = user.appointments[i].hour + ":" + user.appointments[i].minute
-        appointment = {
-          park: park.name,
-          activity: activity.name,
-          date: date,
-          time: time,
-          status: user.appointments[i].status
-        }
-        appointments.push(appointment)
-      };
       let userinfo = {
         id: body.id,
         firstname: user.firstname,
@@ -158,7 +138,7 @@ router.post('/profile', async (req, res) => {
         age: user.age,
         description: user.description,
         favorites: user.favorites,
-        appointments: appointments
+        appointments: user.appointments
       }
       res.render('function/UserProfile', { user: userinfo, edit: true })
     }
