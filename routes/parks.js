@@ -10,10 +10,16 @@ const appointment_data = require("../data/appointments");
 router.route("/").get(async (req, res) => {
   try {
     const parks = await data.getAllParks();
+    for (let park of parks) {
+      park.rating = (park.averageRating / 5) * 100;
+    }
     var isAdmin = false;
     if (req.session.user && req.session.user.permission === "admin")
       isAdmin = true;
-    res.render("function/Park List", { parks: parks, isAdmin: isAdmin });
+    res.render("function/Park List", {
+      parks: parks,
+      isAdmin: isAdmin,
+    });
   } catch (error) {
     res.status(500).json({ error: error });
   }

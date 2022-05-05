@@ -2,6 +2,9 @@
     <h1>Parks</h1>
 
     <ul>
+    {{!-- {{#each ratings}}
+        <p>{{rating}}</p>
+    {{/each}} --}}
     {{#each parks}}
         <li>
             <div class="parkCard">
@@ -10,7 +13,7 @@
                     <h2>{{name}}</h2>
                     <div class="star-rating-num">({{averageRating}})
                         <div class="star-rating">
-                            <div class="star-rating-top" style="width:{{averageRating}}">
+                            <div class="star-rating-top" style="width:{{rating}}%">
                                 <span>★</span>
                                 <span>★</span>
                                 <span>★</span>
