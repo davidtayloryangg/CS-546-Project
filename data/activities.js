@@ -2,7 +2,7 @@
 const mongoCollections = require('../config/mongoCollections');
 const parks = mongoCollections.parks;
 const { ObjectId } = require('mongodb');
-const { getParkById, getAllParks} = require('./parks')
+const { getParkById, getAllParks } = require('./parks')
 const func = require('./functions');
 
 function checkActivityId(activityId) {
@@ -13,7 +13,7 @@ function checkActivityId(activityId) {
 }
 
 module.exports = {
-  async createActivity(parkId, name, numberOfCourts, maxPeople,limit) {
+  async createActivity(parkId, name, numberOfCourts, maxPeople, limit) {
     if (!parkId || !name || !numberOfCourts || !maxPeople) throw 'please provide all inputs for act';
     if (!ObjectId.isValid(parkId)) throw 'invalid park ID';
     func.checkNumber(numberOfCourts);
@@ -21,9 +21,9 @@ module.exports = {
     func.checkNumber(limit)
 
     // Checking the current activity was created or not:
-    
+
     const checkActivityCollection = await parks();
-    const checkavalibleActivity = await checkActivityCollection.findOne({ "activities.parkId": parkId, "activities.name": name});
+    const checkavalibleActivity = await checkActivityCollection.findOne({ "activities.parkId": parkId, "activities.name": name });
     if (checkavalibleActivity != null) {
       throw 'This activity has been created before, you can cancel it and try to create it again!'
     }
@@ -35,7 +35,7 @@ module.exports = {
       name: name,
       numberOfCourts: numberOfCourts,
       maxPeople: maxPeople,
-      limit:limit,
+      limit: limit,
       appointments: [],
       reviews: []
     };
@@ -55,7 +55,7 @@ module.exports = {
     // Checking the current activity was created or not:
 
     const checkActivityCollection = await parks();
-    const checkavalibleActivity = await checkActivityCollection.findOne({ "_id": parkId, "activities.name": name});
+    const checkavalibleActivity = await checkActivityCollection.findOne({ "_id": parkId, "activities.name": name });
     if (checkavalibleActivity == null) {
       throw 'This activity does not exist, you do not need to remove it!'
     }
@@ -79,7 +79,7 @@ module.exports = {
       name: name,
       numberOfCourts: numberOfCourts,
       maxPeople: maxPeople,
-      limit:limit,
+      limit: limit,
       appointments: appointments,
       review: reviews
     };
@@ -148,12 +148,12 @@ module.exports = {
     return parkList;
     // console.log(parkList);
   },
-  async getAllactivities(){
-    const parklist=await getAllParks();
-    let activitylist=[]
+  async getAllactivities() {
+    const parklist = await getAllParks();
+    let activitylist = []
     parklist.forEach(element => {
-      for(let activity of element.activities){
-        if(!activitylist.includes(activity)) activitylist.push(activity)
+      for (let activity of element.activities) {
+        if (!activitylist.includes(activity)) activitylist.push(activity)
       }
     });
     return activitylist
