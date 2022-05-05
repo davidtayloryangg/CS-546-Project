@@ -556,16 +556,25 @@ ul.topnav li.right {float: right;}
 
 .ActList{
   border: none;
+  margin: 20px 50px;
+  padding: 20px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 0 5px #ccc;
+}
+.ActListContent {
+  margin-top: 10px;
+  display: flex;
 }
 .ActListLeft{
   width: 50%;
-  float: left;
+  text-align: left;
   
 }
 .ActListRight{
-  width: 50%;
-  float: right;
-  
+  text-align: left;
+  margin-left: 50px;
+  border-left: 1px #eee solid;
+  padding-left: 20px;
 }
 
 /* For single park */

@@ -21,152 +21,199 @@
             <ul id="actSearchTxtList" class="actSearchTxtList"></ul>
         </div>
     </div>
-    <ul>
-    <div class="ActList">
-        <h2>tennis</h2>
-        <div class="ActListLeft">
-            <p>Description: Tennis is a racket sport that can be played individually against a single opponent (singles)
-                or between two teams of two players each (doubles). Each player uses a tennis racket that is strung with
-                cord to strike a hollow rubber ball covered with felt over or around a net and into the opponent's
-                court. The object of the game is to manoeuvre the ball in such a way that the opponent is not able to
-                play a valid return. The player who is unable to return the ball validly will not gain a point, while
-                the opposite player will.</p>
-        </div>
-        <div class="ActListRight">
-            <p>Number of Count: 1</p>
-            <p>Max People: 10</p>
-            {{#each tennis}}
-            <p>Offered by: <a href="activities/{{_id}}">{{name}}</a></p>
-            {{/each}}
-        </div>
-    </div>
-    <div class="ActList">
-        <h2>Basketball</h2>
-        <div class="ActListLeft">
-            <p>Description: Basketball is a team sport in which two teams, most commonly of five players each, opposing
-                one another on a rectangular court, compete with the primary objective of shooting a basketball
-                (approximately 9.4 inches (24 cm) in diameter) through the defender's hoop (a basket 18 inches (46 cm)
-                in diameter mounted 10 feet (3.048 m) high to a backboard at each end of the court, while preventing the
-                opposing team from shooting through their own hoop. A field goal is worth two points, unless made from
-                behind the three-point line, when it is worth three. After a foul, timed play stops and the player
-                fouled or designated to shoot a technical foul is given one, two or three one-point free throws. The
-                team with the most points at the end of the game wins, but if regulation play expires with the score
-                tied, an additional period of play (overtime) is mandated.</p>
-        </div>
-        <div class="ActListRight">
-            <p>Number of Count: 1</p>
-            <p>Max People: 30</p>
-            {{#each Basketball}}
-            <p>Offered by: <a href="activities/{{_id}}">{{name}}</a></p>
-            {{/each}}
-        </div>
-    </div>
-    <div class="ActList">
-        <h2>Jog</h2>
-        <div class="ActListLeft">
-            <p>Description: Jogging is a form of trotting or running at a slow or leisurely pace. The main intention is
-                to increase physical fitness with less stress on the body than from faster running but more than
-                walking, or to maintain a steady speed for longer periods of time. Performed over long distances, it is a form of
-                aerobic endurance training. </p>
-        </div>
-        <div class="ActListRight">
-            <p>Number of Count: 1</p>
-            <p>Max People: 40</p>
-            {{#each Jog}}
-            <p>Offered by: <a href="activities/{{_id}}">{{name}}</a></p>
-            {{/each}}
-        </div>
-    </div>
-    <div class="ActList">
-        <h2>Soccer</h2>
-        <div class="ActListLeft">
-            <p>Description: Association football, more commonly known as simply football or soccer,[a] is a team sport
-                played with a spherical ball between two teams of 11 players. It is played by approximately 250 million
-                players in over 200 countries and dependencies, making it the world's most popular sport. The game is
-                played on a rectangular field called a pitch with a goal at each end. The objective of the game is to
-                score more goals than the opposition by moving the ball beyond the goal line into the opposing goal, usually
-                within a time frame of 90 or more minutes.</p>
-        </div>
-        <div class="ActListRight">
-            <p>Number of Count: 1</p>
-            <p>Max People: 22</p>
-            {{#each Soccer}}
-            <p>Offered by: <a href="activities/{{_id}}">{{name}}</a></p>
-            {{/each}}
-        </div>
-    </div>
-    <div class="ActList">
-        <h2>Baseball</h2>
-        <div class="ActListLeft">
-            <p>Description: Baseball is a bat-and-ball game played between two opposing teams, of nine players each,
-                that take turns batting and fielding. The game proceeds when a player on the fielding team, called the
-                pitcher, throws a ball which a player on the batting team tries to hit with a bat. The objective of the
-                offensive team (batting team) is to hit the ball into the field of play, allowing its players to run the bases,
-                having them advance counter-clockwise around four bases to score what are called "runs". The objective
-                of the defensive team (fielding team) is to prevent batters from becoming runners, and to prevent runners'
-                advance around the bases.[2] A run is scored when a runner legally advances around the bases in order
-                and touches home plate (the place where the player started as a batter). The team that scores the most runs
-                by the end of the game is the winner.</p>
-        </div>
-        <div class="ActListRight">
-            <p>Number of Count: 1</p>
-            <p>Max People: 14</p>
-            {{#each Baseball}}
-            <p>Offered by: <a href="activities/{{_id}}">{{name}}</a></p>
-            {{/each}}
-        </div>
-    </div>
+    <div>
+        <div class="ActList">
+            <h2>tennis</h2>
+            <div class="ActListContent">
+                <div class="ActListLeft">
+                    <p>Description: Tennis is a racket sport that can be played individually against a single opponent
+                        (singles)
+                        or between two teams of two players each (doubles). Each player uses a tennis racket that is
+                        strung with
+                        cord to strike a hollow rubber ball covered with felt over or around a net and into the
+                        opponent's
+                        court. The object of the game is to manoeuvre the ball in such a way that the opponent is not
+                        able to
+                        play a valid return. The player who is unable to return the ball validly will not gain a point,
+                        while
+                        the opposite player will.</p>
+                </div>
+                <div class="ActListRight">
+                    <p>Number of Count: 1</p>
+                    <p>Max People: 10</p>
+                    {{#each tennis}}
+                    <p>Offered by: <a href="/activities/{{activityId}}">{{name}}</a></p>
+                    {{/each}}
+                </div>
+            </div>
 
-    <div class="ActList">
-        <h2>Skate</h2>
-        <div class="ActListLeft">
-            <p>Description: Skating involves any sports or recreational activity which consists of traveling on surfaces
-                or on ice using skates.</p>
         </div>
-        <div class="ActListRight">
-            <p>Number of Count: 1</p>
-            <p>Max People: 15</p>
-            {{#each Skate}}
-            <p>Offered by: <a href="activities/{{_id}}">{{name}}</a></p>
-            {{/each}}
+        <div class="ActList">
+            <h2>Basketball</h2>
+            <div class="ActListContent">
+                <div class="ActListLeft">
+                    <p>Description: Basketball is a team sport in which two teams, most commonly of five players each,
+                        opposing
+                        one another on a rectangular court, compete with the primary objective of shooting a basketball
+                        (approximately 9.4 inches (24 cm) in diameter) through the defender's hoop (a basket 18 inches
+                        (46 cm)
+                        in diameter mounted 10 feet (3.048 m) high to a backboard at each end of the court, while
+                        preventing the
+                        opposing team from shooting through their own hoop. A field goal is worth two points, unless
+                        made from
+                        behind the three-point line, when it is worth three. After a foul, timed play stops and the
+                        player
+                        fouled or designated to shoot a technical foul is given one, two or three one-point free throws.
+                        The
+                        team with the most points at the end of the game wins, but if regulation play expires with the
+                        score
+                        tied, an additional period of play (overtime) is mandated.</p>
+                </div>
+                <div class="ActListRight">
+                    <p>Number of Count: 1</p>
+                    <p>Max People: 30</p>
+                    {{#each Basketball}}
+                    <p>Offered by: <a href="/activities/{{activityId}}">{{name}}</a></p>
+                    {{/each}}
+                </div>
+            </div>
         </div>
-    </div>
-
-    <div class="ActList">
-        <h2>Yoga</h2>
-        <div class="ActListLeft">
-            <p>Description: Yoga as exercise is a physical activity consisting mainly of postures, often connected by
-                flowing sequences, sometimes accompanied by breathing exercises, and frequently ending with relaxation
-                lying down or meditation. Yoga in this form has become familiar across the world, especially in America and
-                Europe. It is derived from medieval Haṭha yoga, which made use of similar postures, but it is generally
-                simply called "yoga". Academics have given yoga as exercise a variety of names, including modern
-                postural yoga and transnational anglophone yoga.</p>
+        <div class="ActList">
+            <h2>Jog</h2>
+            <div class="ActListContent">
+                <div class="ActListLeft">
+                    <p>Description: Jogging is a form of trotting or running at a slow or leisurely pace. The main
+                        intention is
+                        to increase physical fitness with less stress on the body than from faster running but more than
+                        walking, or to maintain a steady speed for longer periods of time. Performed over long
+                        distances, it is a form of
+                        aerobic endurance training. </p>
+                </div>
+                <div class="ActListRight">
+                    <p>Number of Count: 1</p>
+                    <p>Max People: 40</p>
+                    {{#each Jog}}
+                    <p>Offered by: <a href="/activities/{{activityId}}">{{name}}</a></p>
+                    {{/each}}
+                </div>
+            </div>
         </div>
-        <div class="ActListRight">
-            <p>Number of Count: 2</p>
-            <p>Max People: 4</p>
-            {{#each Yoga}}
-            <p>Offered by: <a href="activities/{{_id}}">{{name}}</a></p>
-            {{/each}}
+        <div class="ActList">
+            <h2>Soccer</h2>
+            <div class="ActListContent">
+                <div class="ActListLeft">
+                    <p>Description: Association football, more commonly known as simply football or soccer,[a] is a team
+                        sport
+                        played with a spherical ball between two teams of 11 players. It is played by approximately 250
+                        million
+                        players in over 200 countries and dependencies, making it the world's most popular sport. The
+                        game is
+                        played on a rectangular field called a pitch with a goal at each end. The objective of the game
+                        is to
+                        score more goals than the opposition by moving the ball beyond the goal line into the opposing
+                        goal, usually
+                        within a time frame of 90 or more minutes.</p>
+                </div>
+                <div class="ActListRight">
+                    <p>Number of Count: 1</p>
+                    <p>Max People: 22</p>
+                    {{#each Soccer}}
+                    <p>Offered by: <a href="/activities/{{activityId}}">{{name}}</a></p>
+                    {{/each}}
+                </div>
+            </div>
         </div>
-    </div>
-
-    <div class="ActList">
-        <h2>Rugby</h2>
-        <div class="ActListLeft">
-            <p>Description: Rugby football is a collective name for the family of team sports of rugby union and rugby
-                league, as well as the earlier forms of football from which both games, as well as Australian rules
-                football and gridiron football, evolved.</p>
+        <div class="ActList">
+            <h2>Baseball</h2>
+            <div class="ActListContent">
+                <div class="ActListLeft">
+                    <p>Description: Baseball is a bat-and-ball game played between two opposing teams, of nine players
+                        each,
+                        that take turns batting and fielding. The game proceeds when a player on the fielding team,
+                        called the
+                        pitcher, throws a ball which a player on the batting team tries to hit with a bat. The objective
+                        of the
+                        offensive team (batting team) is to hit the ball into the field of play, allowing its players to
+                        run the bases,
+                        having them advance counter-clockwise around four bases to score what are called "runs". The
+                        objective
+                        of the defensive team (fielding team) is to prevent batters from becoming runners, and to
+                        prevent runners'
+                        advance around the bases.[2] A run is scored when a runner legally advances around the bases in
+                        order
+                        and touches home plate (the place where the player started as a batter). The team that scores
+                        the most runs
+                        by the end of the game is the winner.</p>
+                </div>
+                <div class="ActListRight">
+                    <p>Number of Count: 1</p>
+                    <p>Max People: 14</p>
+                    {{#each Baseball}}
+                    <p>Offered by: <a href="/activities/{{activityId}}">{{name}}</a></p>
+                    {{/each}}
+                </div>
+            </div>
         </div>
-        <div class="ActListRight">
-            <p>Number of Count: 4</p>
-            <p>Max People: 16</p>
-            {{#each Rugby}}
-            <p>Offered by: <a href="activities/{{_id}}">{{name}}</a></p>
-            {{/each}}
+        <div class="ActList">
+            <h2>Skate</h2>
+            <div class="ActListContent">
+                <div class="ActListLeft">
+                    <p>Description: Skating involves any sports or recreational activity which consists of traveling on
+                        surfaces
+                        or on ice using skates.</p>
+                </div>
+                <div class="ActListRight">
+                    <p>Number of Count: 1</p>
+                    <p>Max People: 15</p>
+                    {{#each Skate}}
+                    <p>Offered by: <a href="/activities/{{activityId}}">{{name}}</a></p>
+                    {{/each}}
+                </div>
+            </div>
         </div>
-    </div>
-    
+        <div class="ActList">
+            <h2>Yoga</h2>
+            <div class="ActListContent">
+                <div class="ActListLeft">
+                    <p>Description: Yoga as exercise is a physical activity consisting mainly of postures, often
+                        connected by
+                        flowing sequences, sometimes accompanied by breathing exercises, and frequently ending with
+                        relaxation
+                        lying down or meditation. Yoga in this form has become familiar across the world, especially in
+                        America and
+                        Europe. It is derived from medieval Haṭha yoga, which made use of similar postures, but it is
+                        generally
+                        simply called "yoga". Academics have given yoga as exercise a variety of names, including modern
+                        postural yoga and transnational anglophone yoga.</p>
+                </div>
+                <div class="ActListRight">
+                    <p>Number of Count: 2</p>
+                    <p>Max People: 4</p>
+                    {{#each Yoga}}
+                    <p>Offered by: <a href="/activities/{{activityId}}">{{name}}</a></p>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+        <div class="ActList">
+            <h2>Rugby</h2>
+            <div class="ActListContent">
+                <div class="ActListLeft">
+                    <p>Description: Rugby football is a collective name for the family of team sports of rugby union and
+                        rugby
+                        league, as well as the earlier forms of football from which both games, as well as Australian
+                        rules
+                        football and gridiron football, evolved.</p>
+                </div>
+                <div class="ActListRight">
+                    <p>Number of Count: 4</p>
+                    <p>Max People: 16</p>
+                    {{#each Rugby}}
+                    <p>Offered by: <a href="/activities/{{activityId}}">{{name}}</a></p>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
     </div>
     {{#if isAdmin}}
     <div class="newActDiv">
@@ -178,7 +225,7 @@
     </div>
     {{/if}}
 
-    
+
 
 
 

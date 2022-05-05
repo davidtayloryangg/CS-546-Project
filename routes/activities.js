@@ -10,14 +10,15 @@ router
       var isAdmin = false;
       if (req.session.user && req.session.user.permission === "admin")
         isAdmin = true;
-      const tennis = await data.getAllParksByActivityName("Tennis");
-      const Basketball = await data.getAllParksByActivityName("Basketball");
-      const Jog = await data.getAllParksByActivityName("Jog");
-      const Soccer = await data.getAllParksByActivityName("Soccer");
-      const Baseball = await data.getAllParksByActivityName("Baseball");
-      const Skate = await data.getAllParksByActivityName("Skate");
-      const Yoga = await data.getAllParksByActivityName("Yoga");
-      const Rugby = await data.getAllParksByActivityName("Rugby");
+
+      const tennis = setActitityIdInPark("Tennis", await data.getAllParksByActivityName("Tennis"));
+      const Basketball = setActitityIdInPark("Basketball", await data.getAllParksByActivityName("Basketball"));
+      const Jog = setActitityIdInPark("Jog", await data.getAllParksByActivityName("Jog"));
+      const Soccer = setActitityIdInPark("Soccer", await data.getAllParksByActivityName("Soccer"));
+      const Baseball = setActitityIdInPark("Baseball", await data.getAllParksByActivityName("Baseball"));
+      const Skate = setActitityIdInPark("Skate", await data.getAllParksByActivityName("Skate"));
+      const Yoga = setActitityIdInPark("Yoga", await data.getAllParksByActivityName("Yoga"));
+      const Rugby = setActitityIdInPark("Rugby", await data.getAllParksByActivityName("Rugby"));
 
       res.render('function/Activity', { tennis, Basketball, Jog, Soccer, Baseball, Skate, Yoga, Rugby, isAdmin: isAdmin });
     } catch (e) {
@@ -93,5 +94,16 @@ router
     }
   });
 
+function setActitityIdInPark(activityName, parkList) {
+  for (let p of parkList) {
+    for (let a of p.activities) {
+      if (a.name.indexOf(activityName) !== -1) {
+        p.activityId = a._id;
+        break;
+      }
+    }
+  }
+  return parkList;
+}
 
 module.exports = router;
