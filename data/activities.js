@@ -2,7 +2,7 @@
 const mongoCollections = require('../config/mongoCollections');
 const parks = mongoCollections.parks;
 const { ObjectId } = require('mongodb');
-const { getParkById } = require('./parks')
+const { getParkById, getAllParks} = require('./parks')
 const func = require('./functions');
 
 function checkActivityId(activityId) {
@@ -13,11 +13,12 @@ function checkActivityId(activityId) {
 }
 
 module.exports = {
-  async createActivity(parkId, name, numberOfCourts, maxPeople) {
+  async createActivity(parkId, name, numberOfCourts, maxPeople,limit) {
     if (!parkId || !name || !numberOfCourts || !maxPeople) throw 'please provide all inputs for act';
     if (!ObjectId.isValid(parkId)) throw 'invalid park ID';
     func.checkNumber(numberOfCourts);
     func.checkNumber(maxPeople);
+    func.checkNumber(limit)
 
     // Checking the current activity was created or not:
     
@@ -34,8 +35,9 @@ module.exports = {
       name: name,
       numberOfCourts: numberOfCourts,
       maxPeople: maxPeople,
+      limit:limit,
       appointments: [],
-      comments: []
+      reviews: []
     };
     const parkCollection = await parks();
     const updateInfo = await parkCollection.updateOne({ _id: ObjectId(parkId) },
@@ -66,7 +68,7 @@ module.exports = {
       { $pull: { activities: { name: name } } }
     );
   },
-  async updateActivity(activityId, parkId, name, numberOfCourts, maxPeople, appointments, comments) {
+  async updateActivity(activityId, parkId, name, numberOfCourts, maxPeople, limit, appointments, reviews) {
     // if (typeof activityId !== 'string') throw 'paramaters must be string';
     // if (activityId.trim().length === 0) throw 'paramater cannot be an empty string or string with just spaces';
     // if (!ObjectId.isValid(id)) throw 'Invalid Object ID';
@@ -77,8 +79,9 @@ module.exports = {
       name: name,
       numberOfCourts: numberOfCourts,
       maxPeople: maxPeople,
+      limit:limit,
       appointments: appointments,
-      comments: comments
+      review: reviews
     };
     let park = await getParkById(parkId)
     let index = park.activities.findIndex(element => element._id.toString() == (activityId))
@@ -106,7 +109,6 @@ module.exports = {
   },
   async get(activityId) {
     checkActivityId(activityId);
-
     const parkCollection = await parks();
     const park = await parkCollection.findOne({
       activities: {
@@ -145,7 +147,16 @@ module.exports = {
     if (!parkList) throw 'could not get park list';
     return parkList;
     // console.log(parkList);
-  }
-
+  },
+  async getAllactivities(){
+    const parklist=await getAllParks();
+    let activitylist=[]
+    parklist.forEach(element => {
+      for(let activity of element.activities){
+        if(!activitylist.includes(activity)) activitylist.push(activity)
+      }
+    });
+    return activitylist
+  },
 
 }

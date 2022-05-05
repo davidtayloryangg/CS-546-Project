@@ -58,10 +58,19 @@
       {{#each user.appointments}}
          <div class="card" style="width: 18rem;">
             <div class="card-body">
-              <h5 class="card-text">{{this.date}}/{{this.time}}</h5>
-              <h5 class="card-title">{{this.status}}</h5>
+              <p>Date:</p>
+              <h5 class="card-text">{{this.date}}</h5>
+              <p>Time:</p>
+              <h5 class="card-text">{{this.time}}</h5>
+              <p>Place:</p>
               <h6 class="card-subtitle mb-2 text-muted">{{this.park}}</h6>
               <h6 class="card-subtitle mb-2 text-muted">{{this.activity}}</h6>
+              <p>Status:</p>
+              {{#if this.status}}
+              <h5 class="card-title">Matched</h5>
+              {{else}}
+              <h5 class="card-title">Not Matched</h5>
+              {{/if}}
               <h6 class="card-subtitle mb-2 text-muted">------------------------------</h6>
             </div>
          </div>
