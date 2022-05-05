@@ -183,7 +183,8 @@ router.get('/newActivity', async (req, res) => {
   if (!req.session.user) {
     res.redirect('/users');
   } else {
-    res.render('function/Activity_newActivity');
+    let ParkList = await data.getAllParks();
+    res.render('function/Activity_newActivity', {ParkList: ParkList});
   }
 });
 
@@ -193,7 +194,8 @@ router.post('/createnewActivity', async (req, res) => {
   } else {
     try {
       var body = req.body;
-      const parkId = await appointment_data.getParkIdByParkname(body.park);
+      const getpark = await data.getParksByName(body.park);
+      const parkId = getpark[0]._id;
       const activity = body.activity
       const numberOfCourts = body.numberOfCourts;
       const maxPeople = body.maxPeople;
