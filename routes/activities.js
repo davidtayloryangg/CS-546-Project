@@ -82,7 +82,6 @@ router
         const { activityId,  Review } = req.body
         //const activity = await data.get(activityId)
         //const user = await userdata.getUserByEmail(req.session.user.email)
-        console.log(req.session.user)
         await reviewdata.createReview(req.session.user.userId.toString(), activityId, Review)
         res.redirect('/activities/' + req.params.id)
       } catch (error) {

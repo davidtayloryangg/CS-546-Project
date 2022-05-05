@@ -81,14 +81,14 @@ module.exports = {
     let appointmentId;
     const activity=await activitydata.get(activityId) 
   
-    let appointment = await appointmentCollection.find({ parkId:parkId,activityId:activityId,year:year,day:day,hour:hour}).toArray();
+    let appointment = await appointmentCollection.find({parkId:ObjectId(parkId),activityId:ObjectId(activityId),year:year,day:day,hour:hour}).toArray();
     if(appointment.length!=0){
       if(appointment.find(x=>x.user.includes(ObjectId(userId)))) {throw "you can't submit the same appointment"}
       else {
-        let matchedappointment=appointment.find(element=>element.user.length<activity.limit)
+        let matchedappointment=appointment.find(element=>element.user.length<Number(activity.limit))
         if(matchedappointment) {
         matchedappointment.user.push(ObjectId(userId))
-        if(matchedappointment.user.length==appointmentlimit) matchedappointment.status=true
+        if(matchedappointment.user.length==Number(activity.limit)) matchedappointment.status=true
         let updateInfo = await appointmentCollection.updateOne(
           { _id: ObjectId(matchedappointment._id) },
           { $set: matchedappointment }
@@ -108,7 +108,7 @@ module.exports = {
       }else{
         if(appointment.length==Number(activity.maxPeople)/Number(activity.limit)) throw"The number of activity's appointment is max, you can't make an appointment"
         let status=false;
-        if(activity.limit==1) status=true
+        if(Number(activity.limit)==1) status=true
         let newAppointment = {
           parkId:ObjectId(parkId),
           activityId:ObjectId(activityId),
@@ -135,7 +135,7 @@ module.exports = {
     }
   }else{
     let status=false;
-    if(activity.limit==1) status=true
+    if(Number(activity.limit==1)) status=true
     let newAppointment = {
       parkId:ObjectId(parkId),
       activityId:ObjectId(activityId),

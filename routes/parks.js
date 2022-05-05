@@ -76,7 +76,6 @@ router
   .post(async (req, res) => {
     try {
       const updatedParkInfo = req.body;
-      console.log(updatedParkInfo);
       const { id, name, openTime, closeTime, location } = updatedParkInfo;
       const updatedPark = await data.updatePark(
         id,
@@ -102,10 +101,8 @@ router
   })
   .post(async (req, res) => {
     try {
-      // console.log(req.body);
       const newParkInfo = req.body;
       const { name, openTime, closeTime, location } = newParkInfo;
-      // console.log(name, openTime, closeTime, location);
       const newParkId = await data.createPark(
         name,
         openTime,
