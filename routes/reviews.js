@@ -4,9 +4,10 @@ const data = require('../data/reviews');
 const func = require('../data/functions');
 
 router
-  .route('/users/reviews')
+  .route('/')
   .get(async (req, res) => {
     try {
+      if (!req.session.user) res.redirect('/users');
       const reviews = await data.getAllReviews();
       res.json(reviews);
     } catch (e) {
@@ -15,15 +16,17 @@ router
   })
   .post(async (req, res) => {
     let reviewInfo = req.body;
-    if (!reviewInfo.userId  || !reviewInfo.userReview) throw 'please provide all inputs';
-    if (!func.checkId(reviewInfo.userId)  || !func.checkString(reviewInfo.userReview))
+    if (!reviewInfo.userReview) throw 'please provide all inputs';
+    if (!func.checkString(reviewInfo.userReview))
       res.status(400).json({ error: 'invalid inputs' });
     try {
       const review = await data.createReview(
-        reviewInfo.userId,
+        req.session.user._id,
+        reviewInfo.activitityId,
         reviewInfo.userReview
       );
-      res.status(200).json(review);
+      res.redirect('/activities/'+reviewInfo.activityId)
+
     } catch (e) {
       res.status(400).json(e);
     }
