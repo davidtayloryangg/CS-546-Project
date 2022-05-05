@@ -4,6 +4,8 @@ const data = require('../data/activities');
 const parkdata = require('../data/parks');
 const userdata = require('../data/users')
 const reviewdata=require('../data/reviews')
+var xss = require("xss");
+
 router
   .route('/')
   .get(async (req, res) => {
@@ -21,9 +23,9 @@ router
       const Yoga = setActitityIdInPark("Yoga", await data.getAllParksByActivityName("Yoga"));
       const Rugby = setActitityIdInPark("Rugby", await data.getAllParksByActivityName("Rugby"));
 
-      res.render('function/Activity', { tennis, Basketball, Jog, Soccer, Baseball, Skate, Yoga, Rugby, isAdmin: isAdmin });
+      res.status(200).render('function/Activity', { tennis, Basketball, Jog, Soccer, Baseball, Skate, Yoga, Rugby, isAdmin: isAdmin });
     } catch (e) {
-      res.status(500).json(e);
+      res.status(404).json(e);
     }
   })
   .post(async (req, res) => {
@@ -32,18 +34,25 @@ router
     try {
       if (!activityInfo.parkId || !activityInfo.name || !activityInfo.numberOfCourts || !activityInfo.maxPeople || !activityInfo.appointmens || !activityInfo.comments || !activityInfo.reviews)
         throw 'please provide all inputs for act';
+        const parkId = xss(activityInfo.parkId);
+        const name = xss(activityInfo.name);
+        const numberOfCourts = xss(numberOfCourts);
+        const maxPeople = xss(maxPeople);
+        const appointmens = xss(appointmens);
+        const comments = xss(comments);
+        const reviews = xss(reviews);
       const activity = await data.createActivity(
-        activityInfo.parkId,
-        activityInfo.name,
-        activityInfo.numberOfCourts,
-        activityInfo.maxPeople,
-        activityInfo.appointmens,
-        activityInfo.comments,
-        activityInfo.reviews
+        parkId,
+        name,
+        numberOfCourts,
+        maxPeople,
+        appointmens,
+        comments,
+        reviews
       );
       res.status(200).json(activity);
     } catch (e) {
-      res.status(400).json(e);
+      res.status(500).json(e);
     }
   });
 router
@@ -69,9 +78,9 @@ router
         parkname: park.name,
         reviews: reviews
       }
-      res.render("function/SingleActivity", { activity: singleactivity });
+      res.status(200).render("function/SingleActivity", { activity: singleactivity });
     } catch (error) {
-      res.status(500).json({ error: error });
+      res.status(404).json({ error: error });
     }
   });
 
@@ -83,11 +92,14 @@ router
     if (!req.session.user) res.redirect('/users/login');
     else {
       try {
-        const { activityId,  Review } = req.body
+        if (!req.body.activityId || !req.body.Review) throw "Please provide all input for createReview!"
+        // const { activityId,  Review } = req.body
+        const activityId = xss(req.body.activityId);
+        const Review = xss(req.body.Review);
         //const activity = await data.get(activityId)
         //const user = await userdata.getUserByEmail(req.session.user.email)
         await reviewdata.createReview(req.session.user.userId.toString(), activityId, Review)
-        res.redirect('/activities/' + req.params.id)
+        res.status(200).redirect('/activities/' + req.params.id)
       } catch (error) {
         res.status(500).json({ error: error.message });
       }

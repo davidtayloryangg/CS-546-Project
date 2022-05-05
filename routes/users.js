@@ -3,25 +3,27 @@ const router = express.Router();
 const userData = require('../data/users');
 const parkData = require('../data/parks');
 const activityData = require('../data/activities');
-const appointmentData=require('../data/appointments')
+const appointmentData=require('../data/appointments');
+var xss = require("xss");
 
 
 
 router.get('/', async (req, res) => {
-  if (req.session.user) res.redirect('/users/profile');
-  else res.redirect('/users/login');
+  if (req.session.user) res.status(400).redirect('/users/profile');
+  else res.status(200).redirect('/users/login');
 });
 
 router.get('/login', async (req, res) => {
-  if (req.session.user) res.redirect('/users/profile');
-  else res.render('function/Login')
+  if (req.session.user) res.status(400).redirect('/users/profile');
+  else res.status(200).render('function/Login')
 })
 
 router.post('/login', async (req, res) => {
-  var body = req.body;
-  const email = body.email;
-  const password = body.password;
   try {
+    var body = req.body;
+    if (!body.email || !body.password) throw "Please provide all input for login!"
+    const email = xss(body.email);
+    const password = xss(body.password);
     if (!email)
       throw "must provide email";
     if (!password)
@@ -38,31 +40,32 @@ router.post('/login', async (req, res) => {
       req.session.user = user;
     }
     else res.status(400).json({ error: "Didn't provide a valid username and/or password" })
-    res.redirect('/users/profile');
+    res.status(200).redirect('/users/profile');
   } catch (e) {
-    res.status(400).render('function/Login', { error: e });
+    res.status(500).render('function/Login', { error: e });
   }
 });
 
 router.get('/signup', async (req, res) => {
-  if (req.session.user) res.redirect('/users');
-  else res.render('function/Signup')
+  if (req.session.user) res.status(400).redirect('/users');
+  else res.status(200).render('function/Signup')
 });
 
 router.post('/signup', async (req, res) => {
-  var body = req.body;
-  const firstname = body.firstname;
-  const lastname = body.lastname;
-  const email = body.email;
-  const password = body.password;
   try {
-    if (!firstname || !lastname || !email || !password)
-      throw "must provide all inputs";
+    var body = req.body;
+    if (!body.firstname || !body.lastname || !body.email || !body.password) throw "Please provide all input for createUser!";
+    const firstname = xss(body.firstname);
+    const lastname = xss(body.lastname);
+    const email = xss(body.email);
+    const password = xss(body.password);
+    // if (!firstname || !lastname || !email || !password)
+    //   throw "must provide all inputs";
     let x = await userData.createUser(firstname, lastname, email, password)
-    if (x) res.redirect('/users/login')
+    if (x) res.status(200).redirect('/users/login')
     else res.status(500).json({ error: "Internal Server Error" })
   } catch (e) {
-    res.status(400).render('function/Signup', { error: e });
+    res.status(500).render('function/Signup', { error: e });
   }
 });
 
@@ -104,31 +107,33 @@ router.get('/profile', async (req, res) => {
       favorites: user.favorites,
       appointments: appointments
     }
-    res.render('function/UserProfile', { user: userinfo, edit: false });
+    res.status(200).render('function/UserProfile', { user: userinfo, edit: false });
   } else {
-    res.redirect('/users/login')
+    res.status(500).redirect('/users/login')
   }
 });
 
 router.post('/profile', async (req, res) => {
   if (req.session && req.session.user) {
     var body = req.body;
+    // if (!body.id || !body.email || !body.gender || !body.city || !body.state || !body.age || !body.description) throw "Please provide all input for modifyUserProfile!";
     if (Object.keys(body).length != 1) {
-      const id = body.id;
-      const email = body.email;
-      const gender = body.gender;
-      const city = body.city;
-      const state = body.state;
-      const age = body.age;
-      const description = body.description;
+      const id = xss(body.id);
+      const email = xss(body.email);
+      const gender = xss(body.gender);
+      const city = xss(body.city);
+      const state = xss(body.state);
+      const age = xss(body.age);
+      const description = xss(body.description);
       const updated = await userData.modifyUserProfile(id, email, gender, city, state, age, description);
       if (updated) {
-        res.redirect("/users/profile")
+        res.status(200).redirect("/users/profile")
       }
     } else {
       const user = await userData.getUserById(body.id)
+      const bodyid = xss(body.id);
       let userinfo = {
-        id: body.id,
+        id: bodyid,
         firstname: user.firstname,
         lastname: user.lastname,
         email: user.email,
@@ -140,16 +145,16 @@ router.post('/profile', async (req, res) => {
         favorites: user.favorites,
         appointments: user.appointments
       }
-      res.render('function/UserProfile', { user: userinfo, edit: true })
+      res.status(200).render('function/UserProfile', { user: userinfo, edit: true })
     }
   } else {
-    res.redirect('/users/login')
+    res.status(400).redirect('/users/login')
   }
 });
 
 router.get('/logout', async (req, res) => {
   req.session.destroy();
-  res.redirect("/users/login")
+  res.status(200).redirect("/users/login")
 });
 
 module.exports = router;

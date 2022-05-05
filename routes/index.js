@@ -5,6 +5,7 @@ const parks = require("./parks");
 const activities = require("./activities");
 const comment = require("./comments");
 const reviews=require("./reviews")
+var xss = require("xss");
 
 const constructorMethod = (app) => {
   // app.uses go here

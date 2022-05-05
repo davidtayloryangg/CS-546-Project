@@ -14,7 +14,7 @@ function checkActivityId(activityId) {
 
 module.exports = {
   async createActivity(parkId, name, numberOfCourts, maxPeople, limit) {
-    if (!parkId || !name || !numberOfCourts || !maxPeople) throw 'please provide all inputs for act';
+    if (!parkId || !name || !numberOfCourts || !maxPeople || !limit) throw 'please provide all inputs for act';
     if (!ObjectId.isValid(parkId)) throw 'invalid park ID';
     func.checkNumber(numberOfCourts);
     func.checkNumber(maxPeople);
