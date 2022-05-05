@@ -7,7 +7,7 @@
         <div class="parkInfo">
             <div class=":star-rating-num">({{parks.averageRating}})
                 <div class="star-rating">
-                    <div class="star-rating-top" style="width:{{parks.averageRating}}">
+                    <div class="star-rating-top" style="width:{{rating}}%">
                         <span>★</span>
                         <span>★</span>
                         <span>★</span>
@@ -21,7 +21,7 @@
                         <span>★</span>
                         <span>★</span>
                     </div>
-                    <p>({{parks.averageRating}})</p>
+                    {{!-- <p>({{parks.averageRating}})</p> --}}
                 </div>
             </div>
             <p>Open Time: {{parks.openTime}}</p>

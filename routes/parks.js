@@ -1,25 +1,23 @@
 const express = require("express");
 const router = express.Router();
 const data = require("../data/parks");
-const activitydata = require("../data/activities")
+const activitydata = require("../data/activities");
 const userdata = require("../data/users");
 const commentdata = require("../data/comments");
-const activity_data = require('../data/activities');
-const appointment_data = require('../data/appointments');
+const activity_data = require("../data/activities");
+const appointment_data = require("../data/appointments");
 
-router
-  .route("/")
-  .get(async (req, res) => {
-    try {
-      const parks = await data.getAllParks();
-      var isAdmin = false;
-      if (req.session.user && req.session.user.permission === "admin")
-        isAdmin = true;
-      res.render("function/Park List", { parks: parks, isAdmin: isAdmin });
-    } catch (error) {
-      res.status(500).json({ error: error });
-    }
-  })
+router.route("/").get(async (req, res) => {
+  try {
+    const parks = await data.getAllParks();
+    var isAdmin = false;
+    if (req.session.user && req.session.user.permission === "admin")
+      isAdmin = true;
+    res.render("function/Park List", { parks: parks, isAdmin: isAdmin });
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
+});
 
 router.route("/ParksOrderByRating").get(async (req, res) => {
   try {
@@ -42,8 +40,12 @@ router.route("/search").post(async (req, res) => {
   try {
     const info = req.body;
     let searchdata;
-    if ('parkname' in info) searchdata = await data.getParksByName(info.parkname);
-    else searchdata = await activitydata.getAllParksByActivityName(info.activityname);
+    if ("parkname" in info)
+      searchdata = await data.getParksByName(info.parkname);
+    else
+      searchdata = await activitydata.getAllParksByActivityName(
+        info.activityname
+      );
     res.json(searchdata);
   } catch (e) {
     res.status(500).json(e);
@@ -53,7 +55,8 @@ router.route("/search").post(async (req, res) => {
 router.route("/id/:id").get(async (req, res) => {
   try {
     const parks = await data.getParkById(req.params.id);
-    res.render("function/SinglePark", { parks: parks });
+    const rating = (parks.averageRating / 5) * 100;
+    res.render("function/SinglePark", { parks: parks, rating: rating });
   } catch (error) {
     res.status(500).json({ error: error });
   }
@@ -135,8 +138,8 @@ router
           comment: element.parkComment,
           timestamp: element.timestamp,
           commentId: element._id,
-          reply: element.reply
-        }
+          reply: element.reply,
+        };
         userList.push(user);
       }
       res.json(userList);
@@ -150,27 +153,13 @@ router
         const userInfo = req.session.user;
         const info = req.body;
         const parkId = req.params.id;
-        const comment = await commentdata.createComment(parkId, userInfo.userId, info.newCommentRating, info.newCommentTxt);
+        const comment = await commentdata.createComment(
+          parkId,
+          userInfo.userId,
+          info.newCommentRating,
+          info.newCommentTxt
+        );
         res.json(comment);
-      } catch (error) {
-        res.status(500).json({ error: error });
-      }
-    }
-    else res.render('function/Login', { error: "Log in to comment parks!!!" });
-  });
-
-router
-  .route("/id/comments/reply/:id")
-  .post(async (req, res) => {
-    if (req.session.user) {
-      try {
-        const userInfo = req.session.user;
-        const info = req.body;
-        const commentId = req.params.id;
-        const replyToUser = await commentdata.getUserByCommentId(commentId);
-        const comment = "@" + replyToUser.firstname + replyToUser.lastname + " " + info.newCommentTxt;
-        const updated = await commentdata.replyComment(commentId, userInfo.userId, comment);
-        res.json(updated);
       } catch (error) {
         res.status(500).json({ error: error });
       }
@@ -178,57 +167,97 @@ router
       res.render("function/Login", { error: "Log in to comment parks!!!" });
   });
 
+router.route("/id/comments/reply/:id").post(async (req, res) => {
+  if (req.session.user) {
+    try {
+      const userInfo = req.session.user;
+      const info = req.body;
+      const commentId = req.params.id;
+      const replyToUser = await commentdata.getUserByCommentId(commentId);
+      const comment =
+        "@" +
+        replyToUser.firstname +
+        replyToUser.lastname +
+        " " +
+        info.newCommentTxt;
+      const updated = await commentdata.replyComment(
+        commentId,
+        userInfo.userId,
+        comment
+      );
+      res.json(updated);
+    } catch (error) {
+      res.status(500).json({ error: error });
+    }
+  } else res.render("function/Login", { error: "Log in to comment parks!!!" });
+});
+
 // Creating new activity:
-router.get('/newActivity', async (req, res) => {
+router.get("/newActivity", async (req, res) => {
   if (!req.session.user) {
-    res.redirect('/users');
+    res.redirect("/users");
   } else {
-    res.render('function/Activity_newActivity');
+    res.render("function/Activity_newActivity");
   }
 });
 
-router.post('/createnewActivity', async (req, res) => {
+router.post("/createnewActivity", async (req, res) => {
   if (!req.session.user) {
-    res.redirect('/users');
+    res.redirect("/users");
   } else {
     try {
       var body = req.body;
       const parkId = await appointment_data.getParkIdByParkname(body.park);
-      const activity = body.activity
+      const activity = body.activity;
       const numberOfCourts = body.numberOfCourts;
       const maxPeople = body.maxPeople;
-      const Appointments = await activity_data.createActivity(parkId, activity, numberOfCourts, maxPeople);
-      res.render('function/Appointment_Created', { result: `You have created ${body.activity} for ${body.park}!`, title: "Created" });
+      const Appointments = await activity_data.createActivity(
+        parkId,
+        activity,
+        numberOfCourts,
+        maxPeople
+      );
+      res.render("function/Appointment_Created", {
+        result: `You have created ${body.activity} for ${body.park}!`,
+        title: "Created",
+      });
     } catch (e) {
-      res.status(404).render('function/Appointment_Error', { error: e, title: "Error" });
+      res
+        .status(404)
+        .render("function/Appointment_Error", { error: e, title: "Error" });
     }
   }
 });
 
-// Warning!!! 
+// Warning!!!
 // Something really bad would happen if you insit on deleting the activity!!!!
 
 // Removing an activity:
-router.get('/checkActivity', async (req, res) => {
+router.get("/checkActivity", async (req, res) => {
   if (!req.session.user) {
-    res.redirect('/users');
+    res.redirect("/users");
   } else {
-    res.render('function/Activity_checkActivity');
+    res.render("function/Activity_checkActivity");
   }
 });
 
-router.post('/removeActivity', async (req, res) => {
+router.post("/removeActivity", async (req, res) => {
   if (!req.session.user) {
-    res.redirect('/users');
+    res.redirect("/users");
   } else {
     try {
       var body = req.body;
       const parkId = await appointment_data.getParkIdByParkname(body.park);
-      const activity = body.activity
+      const activity = body.activity;
       const Appointments = await activity_data.deleteActivity(parkId, activity);
-      res.render('function/Appointment_Created', { result: `You have removed ${body.activity} for ${body.park}!`, title: "Deleted" });
+      res.render("function/Appointment_Created", {
+        result: `You have removed ${body.activity} for ${body.park}!`,
+        title: "Deleted",
+      });
     } catch (e) {
-      res.status(404).render('function/Appointment_Error', { error: e, title: "Error" });
+      res
+        .status(404)
+        .render("function/Appointment_Error", { error: e, title: "Error" });
     }
   }
 });
