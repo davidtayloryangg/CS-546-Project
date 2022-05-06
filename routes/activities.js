@@ -28,33 +28,7 @@ router
       res.status(404).json(e);
     }
   })
-  .post(async (req, res) => {
-    let activityInfo = req.body;
 
-    try {
-      if (!activityInfo.parkId || !activityInfo.name || !activityInfo.numberOfCourts || !activityInfo.maxPeople || !activityInfo.appointmens || !activityInfo.comments || !activityInfo.reviews)
-        throw 'please provide all inputs for act';
-        const parkId = xss(activityInfo.parkId);
-        const name = xss(activityInfo.name);
-        const numberOfCourts = xss(numberOfCourts);
-        const maxPeople = xss(maxPeople);
-        const appointmens = xss(appointmens);
-        const comments = xss(comments);
-        const reviews = xss(reviews);
-      const activity = await data.createActivity(
-        parkId,
-        name,
-        numberOfCourts,
-        maxPeople,
-        appointmens,
-        comments,
-        reviews
-      );
-      res.status(200).json(activity);
-    } catch (e) {
-      res.status(500).json(e);
-    }
-  });
 router
   .route("/:id")
   .get(async (req, res) => {

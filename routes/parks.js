@@ -4,7 +4,6 @@ const data = require("../data/parks");
 const activitydata = require("../data/activities")
 const userdata = require("../data/users");
 const commentdata = require("../data/comments");
-const activity_data = require('../data/activities');
 const appointment_data = require('../data/appointments');
 var xss = require("xss");
 
@@ -224,7 +223,7 @@ router.post('/createnewActivity', async (req, res) => {
       const numberOfCourts = xss(body.numberOfCourts);
       const maxPeople = xss(body.maxPeople);
       const limit = xss(body.limit);
-      const Appointments = await activity_data.createActivity(parkId, activity, numberOfCourts, maxPeople, limit);
+      const Appointments = await activitydata.createActivity(parkId, activity, numberOfCourts, maxPeople, limit);
       res.status(200).render('function/Appointment_Created', { result: `You have created ${body.activity} for ${body.park}!`, title: "Created" });
     } catch (e) {
       res.status(500).render('function/Appointment_Error', { error: e, title: "Error" });
@@ -252,7 +251,7 @@ router.post('/removeActivity', async (req, res) => {
       var body = req.body;
       const parkId = await appointment_data.getParkIdByParkname(body.park);
       const activity = body.activity
-      const Appointments = await activity_data.deleteActivity(parkId, activity);
+      const Appointments = await activitydata.deleteActivity(parkId, activity);
       res.status(200).render('function/Appointment_Created', { result: `You have removed ${body.activity} for ${body.park}!`, title: "Deleted" });
     } catch (e) {
       res.status(500).render('function/Appointment_Error', { error: e, title: "Error" });

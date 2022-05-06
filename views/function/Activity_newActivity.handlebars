@@ -4,6 +4,7 @@
     </h1>
 </header>
 
+
 <div >
     <form action="/parks/createnewActivity" method="POST" id="login-form">
         <div class="login">
@@ -12,7 +13,7 @@
                 {{#each ParkList}}
                 <option value={{this.name}}>{{this.name}}</option>
                 {{/each}}
-            </select>
+            </select> 
         </div>
         <div class="login">
             <label for="activity">activity:</label>
@@ -27,7 +28,7 @@
             <input type="text" name="maxPeople" class="textInput"/>
         </div>
         <div class="login">
-            <label for="limit">limit:</label>
+            <label for="limit">limit:</label> 
             <input type="text" name="limit" class="textInput"/>
         </div>
         <div>
