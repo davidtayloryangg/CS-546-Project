@@ -1,14 +1,14 @@
-const { ObjectId } = require('mongodb');
-const bcrypt = require('bcrypt');
-const mongoCollections = require('../config/mongoCollections');
+const { ObjectId } = require("mongodb");
+const bcrypt = require("bcrypt");
+const mongoCollections = require("../config/mongoCollections");
 const users = mongoCollections.users;
 const parks = mongoCollections.parks;
-const func = require('./functions');
+const func = require("./functions");
 
 module.exports = {
   async createUser(firstname, lastname, email, password) {
     if (!firstname || !lastname || !email || !password)
-      throw 'Please provide firstname, lastname, email address and password';
+      throw "Please provide firstname, lastname, email address and password";
     func.checkUserName(firstname);
     func.checkUserName(lastname);
     func.checkEmail(email);
@@ -16,7 +16,7 @@ module.exports = {
 
     const userCollection = await users();
     const user = await userCollection.findOne({ email: email.toLowerCase() });
-    if (user !== null) throw 'this email has been registered!';
+    if (user !== null) throw "this email has been registered!";
 
     const saltRounds = 16;
     const hash = await bcrypt.hash(password, saltRounds);
@@ -26,40 +26,41 @@ module.exports = {
       firstname: firstname,
       lastname: lastname,
       email: email.toLowerCase(),
-      gender: '',
-      city: '',
-      state: '',
+      gender: "",
+      city: "",
+      state: "",
       age: 0,
-      description: '',
+      description: "",
       hashedPassword: hash,
       permission: "basic",
       reviews: [],
       appointments: [],
-      favorites: []
+      favorites: [],
     };
     const insertInfo = await userCollection.insertOne(newUser);
-    if (!insertInfo.acknowledged || !insertInfo.insertedId) throw 'Could not add user';
+    if (!insertInfo.acknowledged || !insertInfo.insertedId)
+      throw "Could not add user";
     newUser = await userCollection.findOne(newUser);
     return newUser;
   },
 
   async checkUser(email, password) {
-    if (!email || !password) throw 'Please provide email address and password';
+    if (!email || !password) throw "Please provide email address and password";
     func.checkEmail(email);
     func.checkPassword(password);
     const userCollection = await users();
     const user = await userCollection.findOne({ email: email.toLowerCase() });
-    if (user === null) throw 'Either the email address or password is invalid';
+    if (user === null) throw "Either the email address or password is invalid";
     let comparePassword = bcrypt.compare(password, user.hashedPassword);
     if (comparePassword) return user;
-    else throw 'Either the username or password is invalid';
+    else throw "Either the username or password is invalid";
   },
 
   async modifyUserProfile(id, email, gender, city, state, age, description) {
-    if (arguments.length != 7) throw 'the number of parameter is false';
-    if (!id) throw 'You must provide an id to search for';
-    func.checkId(id)
-    func.checkEmail(email)
+    if (arguments.length != 7) throw "the number of parameter is false";
+    if (!id) throw "You must provide an id to search for";
+    func.checkId(id);
+    func.checkEmail(email);
     const userCollection = await users();
     let modifyuser = {
       email: email,
@@ -67,7 +68,7 @@ module.exports = {
       city: city,
       state: state,
       age: age,
-      description: description
+      description: description,
     };
 
     const updatedInfo = await userCollection.updateOne(
@@ -75,55 +76,79 @@ module.exports = {
       { $set: modifyuser }
     );
     if (!updatedInfo.matchedCount && !updatedInfo.modifiedCount) {
-      throw 'could not update user successfully';
+      throw "could not update user successfully";
     }
     return true;
   },
 
   async getUserById(id) {
-    func.checkId(id)
-    const userCollection = await users()
+    func.checkId(id);
+    const userCollection = await users();
     const user = await userCollection.findOne({ _id: ObjectId(id) });
-    if (user === null) throw 'No user with that id';
+    if (user === null) throw "No user with that id";
     user._id = user._id.toString();
     return user;
   },
 
   async getUserByEmail(email) {
-    const userCollection = await users()
+    const userCollection = await users();
     const user = await userCollection.findOne({ email: email });
-    if (user === null) throw 'No user with that email';
+    if (user === null) throw "No user with that email";
     user._id = user._id.toString();
     return user;
   },
 
   async addfavorite(userId, parkId) {
-    const userCollection = await users()
-    const parkCollection = await parks()
-    const user = await userCollection.findOne({ _id: ObjectId(userId) })
-    const park = await parkCollection.findOne({ _id: ObjectId(parkId) })
-    let newfavorite = { parkId: parkId, parkname: park.name }
-    user.favorites.push(newfavorite)
+    const userCollection = await users();
+    const parkCollection = await parks();
+    const user = await userCollection.findOne({ _id: ObjectId(userId) });
+    const park = await parkCollection.findOne({ _id: ObjectId(parkId) });
+    let newfavorite = { parkId: parkId, parkname: park.name };
+    user.favorites.push(newfavorite);
     const updateInfo = await userCollection.updateOne(
       { _id: ObjectId(userId) },
       {
         $set: {
-          favorites: user.favorites
-        }
+          favorites: user.favorites,
+        },
       }
-    )
+    );
     if (!updateInfo.matchedCount && !updateInfo.modifiedCount) {
-      throw 'could not update user successfully';
+      throw "could not update user successfully";
     }
-    const user1 = await userCollection.findOne({ _id: ObjectId(userId) })
+    const user1 = await userCollection.findOne({ _id: ObjectId(userId) });
     return true;
   },
+
+  async removefavorite(userId, parkId) {
+    const userCollection = await users();
+    const user = await userCollection.findOne({ _id: ObjectId(userId) });
+    // console.log(`user favorites: ${user.favorites}`);
+    const favorites = user.favorites.filter((park) => {
+      return park.parkId != parkId;
+    });
+    // console.log(`favorites: ${favorites}`);
+    const updateInfo = await userCollection.updateOne(
+      { _id: ObjectId(userId) },
+      {
+        $set: {
+          favorites: favorites,
+        },
+      }
+    );
+    // console.log("passed");
+    if (!updateInfo.matchedCount && !updateInfo.modifiedCount) {
+      throw "Could not delete favorite";
+    }
+    return true;
+  },
+
   async updateUserPermission(id) {
-    if (!id) throw 'please provide user id to update permission';
-    if (!ObjectId.isValid(id)) throw 'invalid user ID';
+    if (!id) throw "please provide user id to update permission";
+    if (!ObjectId.isValid(id)) throw "invalid user ID";
 
     let userUpdateInfo = {
-      permission: "admin"
+      permission: "admin",
     };
     const userCollection = await users();
     const updateInfo = await userCollection.updateOne(
@@ -131,8 +156,7 @@ module.exports = {
       { $set: userUpdateInfo }
     );
     if (!updateInfo.matchedCount && !updateInfo.modifiedCount)
-      throw 'Update user permission failed';
+      throw "Update user permission failed";
     return true;
   },
-
-}
+};

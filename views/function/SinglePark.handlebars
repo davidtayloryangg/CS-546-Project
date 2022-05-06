@@ -4,9 +4,9 @@
     <div class="singlePark">
         <img src="{{parks.imgUrl}}" onerror="this.src='https://blog.nscsports.org/wp-content/uploads/2014/10/default-img.gif'" alt="{{parks.name}}" class="parkImg">
         {{#if favorite}}
-            <a class="button" href="/parks/id/{{parks._id}}">Unfavorite</a>
+            <a class="button" href="/users/unfavorite/{{parks._id}}">Unfavorite</a>
         {{else}}
-            <a class="button" href="/parks/id/{{parks._id}}">Favorite</a>
+            <a class="button" href="/users/favorite/{{parks._id}}">Favorite</a>
         {{/if}}
         <div class="parkInfo">
             <div class=":star-rating-num">({{parks.averageRating}})
@@ -88,4 +88,5 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
       crossorigin="anonymous"></script>
 <script type="module" src="/public/ajaxComment.js"></script>
+<script type="module" src="/public/favorite.js"></script>
 </body>
