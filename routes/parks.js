@@ -249,8 +249,9 @@ router.post('/removeActivity', async (req, res) => {
   } else {
     try {
       var body = req.body;
-      const parkId = await appointment_data.getParkIdByParkname(body.park);
-      const activity = body.activity
+      const bodypark = xss(body.park);
+      const parkId = await appointment_data.getParkIdByParkname(bodypark);
+      const activity = xss(body.activity);
       const Appointments = await activitydata.deleteActivity(parkId, activity);
       res.status(200).render('function/Appointment_Created', { result: `You have removed ${body.activity} for ${body.park}!`, title: "Deleted" });
     } catch (e) {
