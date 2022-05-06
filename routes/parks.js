@@ -62,7 +62,17 @@ router.route("/id/:id").get(async (req, res) => {
   try {
     const parks = await data.getParkById(req.params.id);
     const rating = (parks.averageRating / 5) * 100;
-    res.render("function/SinglePark", { parks: parks, rating: rating });
+    console.log(req.session);
+    if (req.session.user) {
+      const user = await userdata.getUserById(req.session.user.userId);
+      console.log(user);
+      res.render("function/SinglePark", {
+        parks: parks,
+        rating: rating,
+      });
+    } else {
+      res.render("function/SinglePark", { parks: parks, rating: rating });
+    }
   } catch (error) {
     res.status(500).json({ error: error });
   }
