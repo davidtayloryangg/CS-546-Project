@@ -8,9 +8,9 @@
     <form action="/users/profile" method="POST" id="profileform">
       {{#if edit}}
       <input type="text" id="userId" name="id" value="{{user.id}}" hidden/> 
-      <p> Firstname </p>
+      <p> First Name </p>
       <input type="text" id="userfirstname" name="firstname" value="{{user.firstname}}" />
-      <p> Lastname </p>
+      <p> Last Name </p>
       <input type="text" id="userlastname" name="lastname" value="{{user.lastname}}" size="30"/>
       <p> Email Address </p>
       <input type="text" id="useremail" name="email" value="{{user.email}}" size="30"/>
@@ -28,11 +28,25 @@
         <button type="submit" class="button" ><span>Submit</span> </button>
       </div>
       {{else}}
+      <div  class="profileContainer" id="profileContainer">
+        <h3>Details</h3>
+        <div class="profileInfo"> 
+          <span style="font-weight: 1000"> First Name :</span> {{user.firstname}} <br>
+          <span style="font-weight: 1000"> Last Name :</span> {{user.lastname}} <br>
+          <span style="font-weight: 1000"> Email Address :</span> {{user.email}} <br>
+          <span style="font-weight: 1000"> Gender :</span> {{user.gender}} <br>
+          <span style="font-weight: 1000"> City :</span> {{user.city}} <br>
+          <span style="font-weight: 1000"> State : </span> {{user.state}} <br>
+          <span style="font-weight: 1000"> Age :</span> {{user.age}} <br>
+        </div>
+        <h4>Description</h4>
+        <div class="profileInfo">
+          <span style="font-weight: 1000"></span> {{user.description}} <br>
+        </div>
+      </div>
       <input type="text" id="userId" name="id" value="{{user.id}}" hidden/>
-      <p> Firstname </p>
-      <p>{{user.firstname}}<p>
-      <p> Lastname </p>
-      <p>{{user.lastname}}</p>
+      <p> Name </p>
+      <p>{{user.firstname}} {{user.lastname}}<p>
       <p> Email Address </p>
       <p>{{user.email}}</p>
       <p> Gender </p>
