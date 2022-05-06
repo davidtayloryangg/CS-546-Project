@@ -65,14 +65,26 @@ router.route("/search").post(async (req, res) => {
 router.route("/id/:id").get(async (req, res) => {
   try {
     const parks = await data.getParkById(req.params.id);
+    console.log(parks);
     const rating = (parks.averageRating / 5) * 100;
     console.log(req.session);
     if (req.session.user) {
       const user = await userdata.getUserById(req.session.user.userId);
-      console.log(user);
+      // console.log(user);
+      const favorites = user.favorites;
+      console.log(parks._id);
+      console.log(favorites);
+      let isFav = false;
+      for (let favorite of favorites) {
+        console.log(favorite.parkId);
+        if (favorite.parkId.toString() === parks._id.toString()) {
+          isFav = true;
+        }
+      }
       res.render("function/SinglePark", {
         parks: parks,
         rating: rating,
+        favorite: isFav,
       });
     } else {
       res.render("function/SinglePark", { parks: parks, rating: rating });

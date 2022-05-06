@@ -3,7 +3,11 @@
     <h1 id="singleParkId" hidden>{{parks._id}}</h1>
     <div class="singlePark">
         <img src="{{parks.imgUrl}}" onerror="this.src='https://blog.nscsports.org/wp-content/uploads/2014/10/default-img.gif'" alt="{{parks.name}}" class="parkImg">
-        <a class="button" href="/parks/id/{{parks._id}}">Favorite</a>
+        {{#if favorite}}
+            <a class="button" href="/parks/id/{{parks._id}}">Unfavorite</a>
+        {{else}}
+            <a class="button" href="/parks/id/{{parks._id}}">Favorite</a>
+        {{/if}}
         <div class="parkInfo">
             <div class=":star-rating-num">({{parks.averageRating}})
                 <div class="star-rating">
