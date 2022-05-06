@@ -236,7 +236,6 @@ async function test() {
   );
   console.log("------------create activities successfully------------");
 
-
   console.log("------------Init Appointments------------");
   const appointment1 = await appointments.createAppointment(
     user1._id.toString(),
@@ -245,19 +244,59 @@ async function test() {
     "2022",
     "6",
     "16",
-    "12",
+    "12"
   );
   console.log("------------create appointments successfully------------");
 
   console.log("------------Init Comments------------");
-  const comment1 = await comments.createComment(churchSquare._id, user3._id, 3.5, "I love it!");
-  const comment2 = await comments.createComment(columbus._id, user3._id, 4.6, "amazing!");
-  const comment3 = await comments.createComment(madison._id, user3._id, 3.9, "free to play");
-  const comment4 = await comments.createComment(sinatra._id, user3._id, 4.55, "nice view!");
-  const comment5 = await comments.createComment(stevens._id, user3._id, 4.8, "amazing!");
-  const comment6 = await comments.createComment(CP._id, user3._id, 4.75, "god!");
-  const comment7 = await comments.createComment(PC._id, user3._id, 4.91, "nice park!");
-  const comment8 = await comments.createComment(PA._id, user3._id, 4.2, "amazing!");
+  const comment1 = await comments.createComment(
+    churchSquare._id,
+    user3._id,
+    3.5,
+    "I love it!"
+  );
+  const comment2 = await comments.createComment(
+    columbus._id,
+    user3._id,
+    4.6,
+    "amazing!"
+  );
+  const comment3 = await comments.createComment(
+    madison._id,
+    user3._id,
+    3.9,
+    "free to play"
+  );
+  const comment4 = await comments.createComment(
+    sinatra._id,
+    user3._id,
+    4.55,
+    "nice view!"
+  );
+  const comment5 = await comments.createComment(
+    stevens._id,
+    user3._id,
+    4.8,
+    "amazing!"
+  );
+  const comment6 = await comments.createComment(
+    CP._id,
+    user3._id,
+    4.75,
+    "god!"
+  );
+  const comment7 = await comments.createComment(
+    PC._id,
+    user3._id,
+    4.91,
+    "nice park!"
+  );
+  const comment8 = await comments.createComment(
+    PA._id,
+    user3._id,
+    4.2,
+    "amazing!"
+  );
   await comments.replyComment(comment1._id, user4._id, "say it again????");
   await comments.replyComment(comment2._id, user4._id, "say it again????");
   await comments.replyComment(comment3._id, user4._id, "say it again????");
@@ -277,7 +316,10 @@ async function test() {
   console.log("------------create reviews successfully------------");
 
   console.log("------------add favorite park---------------------");
-  await users.addfavorite(user1._id, columbus._id)
+  await users.addfavorite(user1._id, columbus._id);
+  await users.addfavorite(user2._id, columbus._id);
+  await users.addfavorite(user3._id, columbus._id);
+  await users.addfavorite(user4._id, columbus._id);
 
   console.log("------------test------------");
 

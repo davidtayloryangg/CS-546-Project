@@ -3,11 +3,15 @@
     <h1 id="singleParkId" hidden>{{parks._id}}</h1>
     <div class="singlePark">
         <img src="{{parks.imgUrl}}" onerror="this.src='https://blog.nscsports.org/wp-content/uploads/2014/10/default-img.gif'" alt="{{parks.name}}" class="parkImg">
-        
+        {{#if favorite}}
+            <a class="button" href="/users/unfavorite/{{parks._id}}">Unfavorite</a>
+        {{else}}
+            <a class="button" href="/users/favorite/{{parks._id}}">Favorite</a>
+        {{/if}}
         <div class="parkInfo">
             <div class=":star-rating-num">({{parks.averageRating}})
                 <div class="star-rating">
-                    <div class="star-rating-top" style="width:{{parks.averageRating}}">
+                    <div class="star-rating-top" style="width:{{rating}}%">
                         <span>★</span>
                         <span>★</span>
                         <span>★</span>
@@ -21,7 +25,7 @@
                         <span>★</span>
                         <span>★</span>
                     </div>
-                    <p>({{parks.averageRating}})</p>
+                    {{!-- <p>({{parks.averageRating}})</p> --}}
                 </div>
             </div>
             <p>Open Time: {{parks.openTime}}</p>
@@ -84,4 +88,5 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
       crossorigin="anonymous"></script>
 <script type="module" src="/public/ajaxComment.js"></script>
+<script type="module" src="/public/favorite.js"></script>
 </body>
