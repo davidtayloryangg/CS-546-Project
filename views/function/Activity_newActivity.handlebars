@@ -4,33 +4,20 @@
     </h1>
 </header>
 
+
 <div >
     <form action="/parks/createnewActivity" method="POST" id="login-form">
         <div class="login">
-            <label for="park">park:</label>
-            <select value="{{operation}}" name="park">
-                <option value="Columbus Park">Columbus Park</option>
-                <option value="Church Square Park">Church Square Park</option>
-                <option value="Madison Park">Madison Park</option>
-                <option value="Sinatra Park">Sinatra Park</option>
-                <option value="Stevens Park">Stevens Park</option>
-                <option value="Castle Point Skatepark">Castle Point Skatepark</option>
-                <option value="Pier C Park">Pier C Park</option>
-                <option value="1600 Park">1600 Park</option>
-            </select>
+            <label for="park">Park:</label>
+            <select id="park" name="park">
+                {{#each ParkList}}
+                <option value={{this.name}}>{{this.name}}</option>
+                {{/each}}
+            </select> 
         </div>
         <div class="login">
-            <label for="year">activity:</label>
-            <select value="{{operation}}" name="activity">
-                <option value="Tennis">Tennis</option>
-                <option value="Basketball">Basketball</option>
-                <option value="Jog">Jog</option>
-                <option value="Soccer">Soccer</option>
-                <option value="Baseball">Baseball</option>
-                <option value="Skate">Skate</option>
-                <option value="Yoga">Yoga</option>
-                <option value="Rugby">Rugby</option>
-            </select>
+            <label for="activity">activity:</label>
+            <input type="text" name="activity" class="textInput"/>
         </div>
         <div class="login">
             <label for="numberOfCourts">numberOfCourts:</label>
@@ -39,6 +26,10 @@
         <div class="login">
             <label for="maxPeople">maxPeople:</label>
             <input type="text" name="maxPeople" class="textInput"/>
+        </div>
+        <div class="login">
+            <label for="limit">limit:</label> 
+            <input type="text" name="limit" class="textInput"/>
         </div>
         <div>
             <button type="submit" class="button">Create</button>
