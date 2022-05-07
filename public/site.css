@@ -561,25 +561,34 @@ ul.topnav li.right {float: right;}
   display: table-cell;
 }
 
+.ActListDiv{
+  margin: 5% 10% 10% 10%;
+}
 .ActList{
-  border: none;
-  margin: 20px 50px;
+  border-radius: 20px;
   padding: 20px;
   background-color: rgb(255, 255, 255);
   box-shadow: 0 0 5px #ccc;
 }
 .ActListContent {
   margin-top: 10px;
-  display: flex;
+  width: 100%;
+  display: inline-block;
+}
+.ActListContent h2{
+  width: 100%;
 }
 .ActListLeft{
-  width: 50%;
+  margin-top: 30px;
+  width: 49%;
   text-align: left;
-  
+  float: left;
 }
 .ActListRight{
+  margin-top: 30px;
+  width: 50%;
   text-align: left;
-  margin-left: 50px;
+  margin-left: 50%;
   border-left: 1px #eee solid;
   padding-left: 20px;
 }

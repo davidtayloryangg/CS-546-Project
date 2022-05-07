@@ -14,16 +14,8 @@ router
       if (req.session.user && req.session.user.permission === "admin")
         isAdmin = true;
 
-      const tennis = setActitityIdInPark("Tennis", await data.getAllParksByActivityName("Tennis"));
-      const Basketball = setActitityIdInPark("Basketball", await data.getAllParksByActivityName("Basketball"));
-      const Jog = setActitityIdInPark("Jog", await data.getAllParksByActivityName("Jog"));
-      const Soccer = setActitityIdInPark("Soccer", await data.getAllParksByActivityName("Soccer"));
-      const Baseball = setActitityIdInPark("Baseball", await data.getAllParksByActivityName("Baseball"));
-      const Skate = setActitityIdInPark("Skate", await data.getAllParksByActivityName("Skate"));
-      const Yoga = setActitityIdInPark("Yoga", await data.getAllParksByActivityName("Yoga"));
-      const Rugby = setActitityIdInPark("Rugby", await data.getAllParksByActivityName("Rugby"));
-
-      res.status(200).render('function/Activity', { tennis, Basketball, Jog, Soccer, Baseball, Skate, Yoga, Rugby, isAdmin: isAdmin });
+      const actList = await data.getAllactivities();
+      res.status(200).render('function/Activity', { actList, isAdmin });
     } catch (e) {
       res.status(404).json(e);
     }
@@ -49,6 +41,8 @@ router
         activityId: req.params.id,
         parkId: park._id,
         activityname: activity.name,
+        numberOfCourts: activity.numberOfCourts,
+        maxPeople: activity.maxPeople,
         parkname: park.name,
         reviews: reviews
       }

@@ -36,6 +36,7 @@ module.exports = {
       numberOfCourts: numberOfCourts,
       maxPeople: maxPeople,
       limit: limit,
+      description : "",
       appointments: [],
       reviews: []
     };
@@ -158,5 +159,19 @@ module.exports = {
     });
     return activitylist
   },
+  async updateActivityDescription(id, des) {
+    if (!id || !des) throw 'please provide all inputs to update act des';
+    if (!ObjectId.isValid(id)) throw 'invalid act ID';
+
+    description = des.toString();
+    const parkCollection = await parks();
+    const updateInfo = await parkCollection.updateOne(
+      { "activities._id": ObjectId(id) },
+      { $set: { "activities.$.description": description } }
+    );
+    if (!updateInfo.matchedCount && !updateInfo.modifiedCount)
+      throw 'Update act des failed';
+    return true;
+  }
 
 }
