@@ -131,7 +131,7 @@ router.post("/profile", async (req, res) => {
   if (req.session && req.session.user) {
     try {
       var body = req.body;
-      // if (!body.id || !body.email || !body.gender || !body.city || !body.state || !body.age || !body.description) throw "Please provide all input for modifyUserProfile!";
+      if (!body.id || !body.email || !body.gender || !body.city || !body.state || !body.age || !body.description) throw "Please provide all input for modifyUserProfile!";
       if (Object.keys(body).length != 1) {
         const id = xss(body.id);
         const email = xss(body.email);
