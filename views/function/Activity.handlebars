@@ -1,15 +1,7 @@
-<html>
-<header>
-    <title>
-        Activity
-    </title>
-</header>
-
-<body>
     <h1>activities</h1>
 
     <div>
-        <form action="##" id="actSearchForm">
+        <form action="/parks/search" method="POST" id="actSearchForm">
             <input type="text" class="search" name="activityname" id="actSearchTxt"
                 placeholder="Search activity, please input activity name" />
             <button type="submit" class="button" id="actSearch"><span>Search</span></button>
@@ -23,24 +15,19 @@
     </div>
     <div class="ActListDiv">
         <div class="ActList">
-            <ul>
             {{#each actList}}
-            
                 <div class="ActListContent">
-                    <li>
-                        <h2>{{name}}</h2>
-                        <div class="ActListLeft">
-                            <p>Description: {{this.description}}</p>
-                        </div>
-                        <div class="ActListRight">
-                            <p>Number of Count: {{this.numberOfCourts}}</p>
-                            <p>Max People: {{this.maxPeople}}</p>
-                            <p>Offered by: <a href="/activities/{{this._id}}">{{name}}</a></p>
-                        </div>
-                    </li>
+                    <h2>{{name}}</h2>
+                    <div class="ActListLeft">
+                        <p>Description: {{this.description}}</p>
+                    </div>
+                    <div class="ActListRight">
+                        {{#each this.idandpark}}
+                        <p>Offered by: <a href="/activities/{{this._id}}">{{this.parkname}}</a></p>
+                        {{/each}}
+                    </div>
                 </div>
             {{/each}}
-            </ul>
 
         </div>
         
@@ -55,15 +42,9 @@
     </div>
     {{/if}}
 
-
-
-
-
-</body>
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
       crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
       crossorigin="anonymous"></script>
 <script src="/public/ajaxActivity.js"></script>
 
-</html>

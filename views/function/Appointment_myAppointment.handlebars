@@ -4,42 +4,36 @@
     </h1>
 </header>
 
-<main>
-    <article>
-        <dl>
-            <dd>
-                <ul>
-                    {{#if data}}
-                    {{#each data}}
-                    <li class = {{this.appointmentId}}>
-                        Date:{{this.date}}
-                        <br />
-                        Time:{{this.time}}
-                        <br/>
-                        Park:{{this.parkname}}
-                        <br/>
-                        Activity:{{this.activityname}}
-                        <br/>
-                        {{#if this.status}}
-                        Status: Matched
-                        {{else}}
-                        Status: Not Matched
-                        {{/if}}
-                        {{#if this.cancel}}
-                        <form action="/appointments/cancelAppointment" method="post" id="login-form">
-                            <div class="login">
-                                <input type="hidden" name = "appointmentId" value = {{this.appointmentId}}>
-                                <button type="submit" class="button">Cancel</button>
-                            </div>
-                        </form>
-                        {{/if}}
-                    </li>
-                    {{/each}}
-                    {{else}}
-                    <p>You don't have appointment</p>
-                    {{/if}}
-                </ul>
-            </dd>
-        </dl>
+<article>
+    <ul>
+    {{#if data}}
+    {{#each data}}
+    <li class = {{this.appointmentId}}>
+        Date:{{this.date}}
+        <br />
+        Time:{{this.time}}
+        <br/>
+        Park:{{this.parkname}}
+        <br/>
+        Activity:{{this.activityname}}
+        <br/>
+        {{#if this.status}}
+        Status: Matched
+        {{else}}
+        Status: Not Matched
+        {{/if}}
+        {{#if this.cancel}}
+        <form action="/appointments/cancelAppointment" method="post" id={{this.appointmentId}}>
+            <div class="login">
+            <input type="hidden" name = "appointmentId" value = {{this.appointmentId}}>
+            <button type="submit" class="button">Cancel</button>
+            </div>
+        </form>
+        {{/if}}
+        </li>
+        {{/each}}
+        {{else}}
+        <p>You don't have appointment</p>
+        {{/if}}
+        </ul>
     </article>
-</main>

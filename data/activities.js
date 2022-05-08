@@ -157,14 +157,24 @@ module.exports = {
     if (arguments.length != 0) throw 'the number of parameter is wrong';
 
     const parklist = await getAllParks();
-    let activitylist = []
-    parklist.forEach(element => {
-      for (let activity of element.activities) {
-        if (!activitylist.includes(activity)) activitylist.push(activity)
-      }
+    let activitylist = {};
+    let name;
+    parklist.forEach(park => {
+      park.activities.forEach(activity=>{
+        name=activity.name
+        if(name in activitylist) 
+        {
+          activitylist[name].idandpark.push({_id:activity._id.toString(),parkname:park.name})
+      }else{
+        activitylist[name]={}
+        activitylist[name].description=activity.description,
+        activitylist[name].idandpark=[{_id:activity._id.toString(),parkname:park.name}]
+        }
+      })
     });
     return activitylist
   },
+
   async updateActivityDescription(id, des) {
     if (!id || !des) throw 'please provide all inputs to update act des';
     if (arguments.length != 2) throw 'the number of parameter is wrong';

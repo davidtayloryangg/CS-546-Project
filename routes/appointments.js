@@ -77,7 +77,7 @@ router.get('/newAppointment', async (req, res) => {
   } else {
     let parks=await parkdata.getAllParks()
     let activities=await activitydata.getAllactivities()
-    res.status(200).render('function/Appointment_newAppointment',{parks:parks,activities:activities});
+    res.status(200).render('function/Appointment_newAppointment',{parks:parks,activities:Object.keys(activities)});
   }
 });
 

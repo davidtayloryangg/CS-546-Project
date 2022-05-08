@@ -1,55 +1,50 @@
 <!--- Body goes here --->
-<body>
-    <main>
-        <article>
-            <h1 class="main-title">Search Park</h1>
-            <form action="##" method="POST" id="searchForm">
-                <input type="text" class="search" name="parkname" id="homeSearchTxt" placeholder="Please input park name"/>
-                <button type="submit" class="button" id="homeSearch"><span>Search</span></button>
-            </form>
-        </article>
-        <div class="homeLink" id="homeLink">
-          <div class="homeRecommendationLink" id="orderByRating">
-            ORDER BY RATING
-          </div>
-          <div class="homePopularLink" id="orderByLikes">
-            ORDER BY LIKES
-          </div>
-        </div>
-        <br/>
+<article>
+  <h1 class="main-title">Search Park</h1>
+  <form action="/search" method="POST" id="searchForm">
+    <input type="text" class="search" name="parkname" id="homeSearchTxt" placeholder="Please input park name"/>
+    <button type="submit" class="button" id="homeSearch"><span>Search</span></button>
+  </form>
+  <div class="homeLink" id="homeLink">
+    <div class="homeRecommendationLink" id="orderByRating">
+      ORDER BY RATING
+    </div>
+    <div class="homePopularLink" id="orderByLikes">
+      ORDER BY LIKES
+    </div>
+  </div>
+  <br/>
 
-        <div class="homeRecommendationDiv" id="homeRecommendationDiv">
-          <div class="homeRecommendationImg"> 
-            <ul id="homeRecommendationImgList" class="homeRecommendationImgList"></ul>
-          </div>
-          <div class="homeRecommendationTxt">
-            <ul id="homeRecommendationTxtList" class="homeRecommendationTxtList"></ul>
-          </div>
-        </div>
+  <div class="homeRecommendationDiv" id="homeRecommendationDiv">
+    <div class="homeRecommendationImg"> 
+      <ul id="homeRecommendationImgList" class="homeRecommendationImgList"></ul>
+    </div>
+    <div class="homeRecommendationTxt">
+      <ul id="homeRecommendationTxtList" class="homeRecommendationTxtList"></ul>
+    </div>
+  </div>
 
-        <div class="homePopularDiv" id="homePopularDiv">
-          <div class="homePopularImg"> 
-            <ul id="homePopularImgList" class="homePopularImgList"></ul>
-          </div>
-          <div class="homePopularTxt">
-            <ul id="homePopularTxtList" class="homePopularTxtList"></ul>
-          </div>
-        </div>
+  <div class="homePopularDiv" id="homePopularDiv">
+    <div class="homePopularImg"> 
+      <ul id="homePopularImgList" class="homePopularImgList"></ul>
+    </div>
+    <div class="homePopularTxt">
+      <ul id="homePopularTxtList" class="homePopularTxtList"></ul>
+    </div>
+  </div>
 
-        <div class="homeSearchDiv" id="homeSearchDiv">
-          <div class="homeSearchImg"> 
-            <ul id="homeSearchImgList" class="homeSearchImgList"></ul>
-          </div>
-          <div class="homeSearchTxt">
-            <ul id="homeSearchTxtList" class="homeSearchTxtList"></ul>
-          </div>
-        </div>
-
-    </main> 
-</body>
+  <div class="homeSearchDiv" id="homeSearchDiv">
+    <div class="homeSearchImg"> 
+      <ul id="homeSearchImgList" class="homeSearchImgList"></ul>
+    </div>
+    <div class="homeSearchTxt">
+      <ul id="homeSearchTxtList" class="homeSearchTxtList"></ul>
+    </div>
+  </div>
 
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
       crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
       crossorigin="anonymous"></script>
 <script src="/public/ajaxHome.js"></script>
+</article>

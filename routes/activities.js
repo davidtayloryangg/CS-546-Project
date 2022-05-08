@@ -13,8 +13,16 @@ router
       var isAdmin = false;
       if (req.session.user && req.session.user.permission === "admin")
         isAdmin = true;
-
-      const actList = await data.getAllactivities();
+      let actList=[];
+      const activities = await data.getAllactivities();
+      for(let i in activities){
+      actList.push({
+        name:i,
+        description:activities[i].description,
+        idandpark:activities[i].idandpark
+      })
+    }
+    
       res.status(200).render('function/Activity', { actList, isAdmin });
     } catch (e) {
       res.status(404).json(e);

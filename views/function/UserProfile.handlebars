@@ -1,4 +1,3 @@
-<body>
   <div class="userProfileTitle">
     <h1>Welcome!!! {{user.firstname}} {{user.lastname}}</h1>
     <h2>Your Public Profile</h2>
@@ -15,15 +14,15 @@
       <p> Email Address </p>
       <input type="text" id="email" name="email" value="{{user.email}}" onchange="checkEmail()"/>
       <p> Gender </p>
-      <input type="text" id="userModify" name="gender" value="{{user.gender}}"/>
+      <input type="text" id="gender" name="gender" value="{{user.gender}}"/>
       <p> City </p>
-      <input type="text" id="userModify" name="city" value="{{user.city}}"/>
+      <input type="text" id="city" name="city" value="{{user.city}}"/>
       <p> State </p>
-      <input type="text" id="userModify" name="state" value="{{user.state}}"/>
+      <input type="text" id="state" name="state" value="{{user.state}}"/>
       <p> Age </p>
-      <input type="text" id="userage" name="age" value="{{user.age}}" onchange="checkNumber()"/>
+      <input type="text" id="age" name="age" value="{{user.age}}" onchange="checkNumber()"/>
       <p> Description </p>
-      <input type="text" id="userModify" name="description" value="{{user.description}}"/>
+      <input type="text" id="description" name="description" value="{{user.description}}"/>
       <p id="inputError"></p>
       <div class="userProfileButton">
         <button type="submit" class="button" ><span>Submit</span> </button>
@@ -87,7 +86,6 @@
     </form>
   </div>
   
-</body>
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
       crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
