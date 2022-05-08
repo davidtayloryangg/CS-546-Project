@@ -299,7 +299,7 @@ router.post("/createnewActivity", async (req, res) => {
         maxPeople,
         limit
       );
-      res.status(200).render("function/Appointment_Created", {
+      res.status(200).render("function/Activity_created", {
         result: `You have created ${body.activity} for ${body.park}!`,
         title: "Created",
       });
