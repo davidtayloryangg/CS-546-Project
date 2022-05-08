@@ -1,28 +1,37 @@
-<body>
-    <h1>{{activity.parkname}}</h1>
-    <h2>{{activity.activityname}}</h1>
-    <h3>Number of Count: {{activity.numberOfCourts}}</h3>
-    <h3>Max People: {{activity.maxPeople}}</h3> 
-    <input type="text" id="star" name="star" hidden /> 
-    <div class="createReview">
-        <div class="reviewContent">
-                <form action="#" method="POST" id="newReviewForm">
-                    <input type="text" id="activityId" name="activityId" value="{{activity.activityId}}" hidden/>
-                    <input type="text" id="Review" name="Review" placeholder="Leave a friendly comment!">
-                    <button type="submit" class="button" id="button"> Comment </button>
-                </form>
-        </div>
+<h1>{{activity.parkname}}</h1>
+<h2>{{activity.activityname}}</h2>
+<h3>Number of Count: {{activity.numberOfCourts}}</h3>
+<h3>Max People: {{activity.maxPeople}}</h3> 
+<div class="activityAppointment">
+    <h4>Current Appointments: </h4>
+    {{#each activity.appointment}}
+    <div class="appointmentCard">
+        <p>Data and Time: 
+            <span>{{this.month}}, {{this.day}}, {{this.year}}  {{this.hour}}:00</span>
+        </p>
+    </div>
+    {{/each}}
     </div>
 
     <hr>
 
-    <div class="activityComment">
-        {{#each activity.reviews}}
-            <ul id="commentsList" class="commentsList">
-            <p>{{this.username}}</p>
-            <p>{{this.userReview}}</p>
-            </ul>
-            <br />
-        {{/each}}
-     </div>
-</body>
+<input type="text" id="star" name="star" hidden /> 
+<div class="createReview">
+    <div class="reviewContent">
+            <form action="#" method="POST" id="newReviewForm">
+                <input type="text" id="activityId" name="activityId" value="{{activity.activityId}}" hidden/>
+                <input type="text" id="Review" name="Review" placeholder="Leave a friendly comment!">
+                <button type="submit" class="button" id="button"> Comment </button>
+            </form>
+    </div>
+</div>
+
+<hr>
+
+<div class="activityComment">
+    {{#each activity.reviews}}
+        <p>{{this.username}} :</p>
+        <p>{{this.userReview}}</p>
+        <br />
+    {{/each}}
+    </div>
