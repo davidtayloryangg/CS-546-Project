@@ -7,8 +7,9 @@ const { ObjectId } = require('mongodb');
 module.exports = {
   async createReview(userId, activityId, userReview) {
     if (!userId || !userReview) throw 'please provide all inputs for review';
+    if (arguments.length != 3) throw 'the number of parameter is wrong';
     if (!ObjectId.isValid(userId)) throw 'invalid user ID';
-    
+
     const newId = ObjectId();
     let newReview = {
       reviewId: newId,
@@ -35,6 +36,7 @@ module.exports = {
   },
   async removeReview(reviewId) {
     if (!reviewId) throw 'please provide review id';
+    if (arguments.length != 1) throw 'the number of parameter is wrong';
     if (!ObjectId.isValid(reviewId)) throw 'invalid review ID';
 
     const userCollection = await users();
@@ -50,6 +52,7 @@ module.exports = {
   },
   async getAllReviews(userId) {
     if (!userId) throw 'please provide user id';
+    if (arguments.length != 1) throw 'the number of parameter is wrong';
     if (!ObjectId.isValid(userId)) throw 'invalid user ID';
 
     const userCollection = await parks();
@@ -59,6 +62,7 @@ module.exports = {
   },
   async replyReview(reviewId, userReview) {
     if (!reviewId || !userReview) throw 'please provide review id and review';
+    if (arguments.length != 2) throw 'the number of parameter is wrong';
     if (!ObjectId.isValid(reviewId)) throw 'invalid review ID';
 
     const newId = ObjectId();

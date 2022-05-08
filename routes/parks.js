@@ -260,31 +260,6 @@ router.route("/id/comments/reply/:id").post(async (req, res) => {
       .render("function/Login", { error: "Log in to comment parks!!!" });
 });
 
-router.route("/id/comments/reply/:id").post(async (req, res) => {
-  if (req.session.user) {
-    try {
-      const userInfo = req.session.user;
-      const info = req.body;
-      const commentId = req.params.id;
-      const replyToUser = await commentdata.getUserByCommentId(commentId);
-      const comment =
-        "@" +
-        replyToUser.firstname +
-        replyToUser.lastname +
-        " " +
-        info.newCommentTxt;
-      const updated = await commentdata.replyComment(
-        commentId,
-        userInfo.userId,
-        comment
-      );
-      res.json(updated);
-    } catch (error) {
-      res.status(500).json({ error: error });
-    }
-  } else res.render("function/Login", { error: "Log in to comment parks!!!" });
-});
-
 // Creating new activity:
 router.get("/newActivity", async (req, res) => {
   if (!req.session.user) {
