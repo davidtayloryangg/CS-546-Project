@@ -11,9 +11,16 @@ function checkUserName(string) {
     throw "not a string";
   }
 }
+
 function checkEmail(string) {
-  if (!string.includes('.') || !string.lastIndexOf('.') > (string.length - 3) || !string.indexOf('.') === 0 || string.indexOf('@') === 0 || string.indexOf('@') === -1)
-    throw 'invalid email address';
+  var reg = /^\w+((.\w+)|(-\w+))@[A-Za-z0-9]+((.|-)[A-Za-z0-9]+).[A-Za-z0-9]+$/;
+  if (string.trim() === "") {
+    throw "Error: Email must be not empty";
+  } else if (!reg.test(string.trim())) {
+    throw "Error: invalid email format"
+  } else {
+    return true;
+  }
 }
 function checkPassword(string) {
   if (typeof string === 'string' || string instanceof String) {

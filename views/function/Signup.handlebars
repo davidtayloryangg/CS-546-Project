@@ -6,11 +6,11 @@
     <form action="/users/signup" method="POST" id="signup-form">
         <div class="signup">
             <label for="firstname">First Name:</label>
-            <input type="text" name="firstname" id="firstname" class="textInput"/>
+            <input type="text" name="firstname" id="firstname" class="textInput" onchange="checkFirstname()"/>
         </div>
         <div class="signup">
             <label for="lastname">Last Name:</label>
-            <input type="text" name="lastname" id="lastname" class="textInput"/>
+            <input type="text" name="lastname" id="lastname" class="textInput" onchange="checkLastname()"/>
         </div>
         <div class="signup">
             <label for="email">Email Address:</label>
@@ -18,7 +18,7 @@
         </div>
         <div class="signup">
             <label for="Password">Password:</label>
-            <input type="password" name="password" id="password" class="textInput"/>
+            <input type="password" name="password" id="password" class="textInput" onchange="checkPassword()"/>
         </div>
         <p id="inputError"></p>
         <div>
@@ -32,4 +32,8 @@
     <a href="/users/login" class="txt"> Already have an account? Click here to log-in </a>
 </div>
 
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+      crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+      crossorigin="anonymous"></script>
 <script src="/public/checkFunction.js"> </script>

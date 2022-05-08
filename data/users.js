@@ -9,6 +9,7 @@ module.exports = {
   async createUser(firstname, lastname, email, password) {
     if (!firstname || !lastname || !email || !password)
       throw "Please provide firstname, lastname, email address and password";
+    if (arguments.length != 4) throw 'the number of parameter is wrong';
     func.checkUserName(firstname);
     func.checkUserName(lastname);
     func.checkEmail(email);
@@ -46,6 +47,7 @@ module.exports = {
 
   async checkUser(email, password) {
     if (!email || !password) throw "Please provide email address and password";
+    if (arguments.length != 2) throw 'the number of parameter is wrong';
     func.checkEmail(email);
     func.checkPassword(password);
     const userCollection = await users();
@@ -57,10 +59,20 @@ module.exports = {
   },
 
   async modifyUserProfile(id, email, gender, city, state, age, description) {
-    if (arguments.length != 7) throw "the number of parameter is false";
-    if (!id) throw "You must provide an id to search for";
-    func.checkId(id);
-    func.checkEmail(email);
+    if (!id || !email || !gender || !city || !state || !age || !description)
+      throw "must provide all parameters for modify user profile";
+    if (arguments.length != 7) throw 'the number of parameter is wrong';
+    if (!ObjectId.isValid(id)) throw 'invalid user ID';
+    if (!id) throw 'You must provide an id to search for';
+    func.checkId(id)
+    func.checkEmail(email)
+    func.checkString(gender)
+    func.checkString(city)
+    func.checkString(state)
+    func.checkNumber(age)
+    if (age < 0) throw "age must be positive"
+    func.checkString(description)
+
     const userCollection = await users();
     let modifyuser = {
       email: email,
@@ -83,6 +95,7 @@ module.exports = {
 
   async getUserById(id) {
     func.checkId(id);
+    if (arguments.length != 1) throw 'the number of parameter is wrong';
     const userCollection = await users();
     const user = await userCollection.findOne({ _id: ObjectId(id) });
     if (user === null) throw "No user with that id";
@@ -91,6 +104,8 @@ module.exports = {
   },
 
   async getUserByEmail(email) {
+    if (!email) throw "must provid email for getting a user"
+    if (arguments.length != 1) throw 'the number of parameter is wrong';
     const userCollection = await users();
     const user = await userCollection.findOne({ email: email });
     if (user === null) throw "No user with that email";
@@ -99,6 +114,8 @@ module.exports = {
   },
 
   async addfavorite(userId, parkId) {
+    if (!userId || !parkId) throw "must provide all input for add favorite"
+    if (arguments.length != 2) throw 'the number of parameter is wrong';
     const userCollection = await users();
     const parkCollection = await parks();
     const user = await userCollection.findOne({ _id: ObjectId(userId) });
@@ -121,6 +138,8 @@ module.exports = {
   },
 
   async removefavorite(userId, parkId) {
+    if (!userId || !parkId) throw "must provide all input for add favorite"
+    if (arguments.length != 2) throw 'the number of parameter is wrong';
     const userCollection = await users();
     const user = await userCollection.findOne({ _id: ObjectId(userId) });
     // console.log(`user favorites: ${user.favorites}`);
@@ -145,6 +164,7 @@ module.exports = {
 
   async updateUserPermission(id) {
     if (!id) throw "please provide user id to update permission";
+    if (arguments.length != 1) throw 'the number of parameter is wrong';
     if (!ObjectId.isValid(id)) throw "invalid user ID";
 
     let userUpdateInfo = {

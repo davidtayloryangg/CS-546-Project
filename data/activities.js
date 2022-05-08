@@ -15,6 +15,7 @@ function checkActivityId(activityId) {
 module.exports = {
   async createActivity(parkId, name, numberOfCourts, maxPeople, limit) {
     if (!parkId || !name || !numberOfCourts || !maxPeople || !limit) throw 'please provide all inputs for act';
+    if (arguments.length != 5) throw 'the number of parameter is wrong';
     if (!ObjectId.isValid(parkId)) throw 'invalid park ID';
     func.checkNumber(numberOfCourts);
     func.checkNumber(maxPeople);
@@ -36,7 +37,7 @@ module.exports = {
       numberOfCourts: numberOfCourts,
       maxPeople: maxPeople,
       limit: limit,
-      description : "",
+      description: "",
       appointments: [],
       reviews: []
     };
@@ -50,6 +51,7 @@ module.exports = {
 
   async deleteActivity(parkId, name) {
     if (!parkId || !name) throw 'please provide all inputs for act';
+    if (arguments.length != 2) throw 'the number of parameter is wrong';
     if (!ObjectId.isValid(parkId)) throw 'invalid park ID';
     if (typeof name !== 'string' || name.trim().length === 0) throw 'name of activity must be a string and it could not be empty';
 
@@ -69,10 +71,11 @@ module.exports = {
       { $pull: { activities: { name: name } } }
     );
   },
-  async updateActivity(activityId, parkId, name, numberOfCourts, maxPeople, limit, appointments, reviews) {
-    // if (typeof activityId !== 'string') throw 'paramaters must be string';
-    // if (activityId.trim().length === 0) throw 'paramater cannot be an empty string or string with just spaces';
-    // if (!ObjectId.isValid(id)) throw 'Invalid Object ID';
+  async updateActivity(activityId, parkId, name, numberOfCourts, maxPeople, limit) {
+    if (!activityId || !parkId || !name || !numberOfCourts || !maxPeople || !limit) throw 'please provide all inputs for act';
+    if (arguments.length != 6) throw 'the number of parameter is wrong';
+    if (!ObjectId.isValid(activityId)) throw 'Invalid Object ID';
+    if (!ObjectId.isValid(parkId)) throw 'Invalid Object ID';
     const parkCollection = await parks();
     const updateactivities = {
       _id: ObjectId(activityId),
@@ -81,8 +84,6 @@ module.exports = {
       numberOfCourts: numberOfCourts,
       maxPeople: maxPeople,
       limit: limit,
-      appointments: appointments,
-      review: reviews
     };
     let park = await getParkById(parkId)
     let index = park.activities.findIndex(element => element._id.toString() == (activityId))
@@ -110,6 +111,7 @@ module.exports = {
   },
   async get(activityId) {
     checkActivityId(activityId);
+    if (arguments.length != 1) throw 'the number of parameter is wrong';
     const parkCollection = await parks();
     const park = await parkCollection.findOne({
       activities: {
@@ -142,6 +144,8 @@ module.exports = {
   },
   async getAllParksByActivityName(activityName) {
     if (!activityName) throw 'please provide activity name';
+    if (arguments.length != 1) throw 'the number of parameter is wrong';
+
     const parkCollection = await parks();
     var reg = new RegExp(activityName, "i");
     const parkList = await parkCollection.find({ "activities.name": { $regex: reg } }).toArray();
@@ -150,6 +154,8 @@ module.exports = {
     // console.log(parkList);
   },
   async getAllactivities() {
+    if (arguments.length != 0) throw 'the number of parameter is wrong';
+
     const parklist = await getAllParks();
     let activitylist = []
     parklist.forEach(element => {
@@ -161,6 +167,7 @@ module.exports = {
   },
   async updateActivityDescription(id, des) {
     if (!id || !des) throw 'please provide all inputs to update act des';
+    if (arguments.length != 2) throw 'the number of parameter is wrong';
     if (!ObjectId.isValid(id)) throw 'invalid act ID';
 
     description = des.toString();

@@ -8,6 +8,7 @@ const { ObjectId } = require('mongodb');
 module.exports = {
   async createComment(parkId, userId, rating, parkComment) {
     if (!parkId || !userId || !rating || !parkComment) throw 'please provide all inputs for comment';
+    if (arguments.length != 4) throw 'the number of parameter is wrong';
     if (!ObjectId.isValid(parkId)) throw 'invalid park ID';
     if (!ObjectId.isValid(userId)) throw 'invalid user ID';
 
@@ -42,6 +43,7 @@ module.exports = {
   },
   async removeComment(commentId) {
     if (!commentId) throw 'please provide comment id';
+    if (arguments.length != 1) throw 'the number of parameter is wrong';
     if (!ObjectId.isValid(commentId)) throw 'invalid comment ID';
 
     const parkCollection = await parks();
@@ -66,6 +68,7 @@ module.exports = {
   },
   async getAllComments(parkId) {
     if (!parkId) throw 'please provide park id';
+    if (arguments.length != 1) throw 'the number of parameter is wrong';
     if (!ObjectId.isValid(parkId)) throw 'invalid park ID';
 
     const parkCollection = await parks();
@@ -76,6 +79,7 @@ module.exports = {
 
   async replyComment(commentId, userId, newUserComment) {
     if (!commentId || !userId || !newUserComment) throw 'please provide comment id and comment';
+    if (arguments.length != 3) throw 'the number of parameter is wrong';
     if (!ObjectId.isValid(commentId)) throw 'invalid comment ID';
     if (!ObjectId.isValid(userId)) throw 'invalid comment ID';
 
@@ -112,6 +116,7 @@ module.exports = {
 
   async getUserByCommentId(commentId) {
     if (!commentId) throw 'please provide comment id';
+    if (arguments.length != 1) throw 'the number of parameter is wrong';
     if (!ObjectId.isValid(commentId)) throw 'invalid comment ID';
 
     const parkCollection = await parks();

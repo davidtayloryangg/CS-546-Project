@@ -3,7 +3,7 @@ const router = express.Router();
 const data = require('../data/activities');
 const parkdata = require('../data/parks');
 const userdata = require('../data/users')
-const reviewdata=require('../data/reviews')
+const reviewdata = require('../data/reviews')
 var xss = require("xss");
 
 router
@@ -28,12 +28,12 @@ router
       const activity = await data.get(req.params.id)
       const park = await parkdata.getParkById(activity.parkId)
       let user;
-      let reviews=[];
-      for(let review of activity.reviews){
-        user=await userdata.getUserById(review.userId)
+      let reviews = [];
+      for (let review of activity.reviews) {
+        user = await userdata.getUserById(review.userId)
         reviews.push({
-          userId:user._id,
-          username:user.firstname+user.lastname,
+          userId: user._id,
+          username: user.firstname + user.lastname,
           userReview: review.userReview,
         })
       }
