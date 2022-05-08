@@ -4,7 +4,6 @@ const data = require("../data/parks");
 const activitydata = require("../data/activities");
 const userdata = require("../data/users");
 const commentdata = require("../data/comments");
-const activity_data = require("../data/activities");
 const appointment_data = require("../data/appointments");
 var xss = require("xss");
 
