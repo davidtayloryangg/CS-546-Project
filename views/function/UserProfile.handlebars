@@ -9,21 +9,22 @@
       {{#if edit}}
       <input type="text" id="userId" name="id" value="{{user.id}}" hidden/> 
       <p> Firstname </p>
-      <input type="text" id="userfirstname" name="firstname" value="{{user.firstname}}" />
+      <input type="text" id="userfirstname" name="firstname" value="{{user.firstname}}" disabled="disabled"/>
       <p> Lastname </p>
-      <input type="text" id="userlastname" name="lastname" value="{{user.lastname}}" size="30"/>
+      <input type="text" id="userlastname" name="lastname" value="{{user.lastname}}" disabled="disabled"/>
       <p> Email Address </p>
-      <input type="text" id="useremail" name="email" value="{{user.email}}" size="30"/>
+      <input type="text" id="email" name="email" value="{{user.email}}" onchange="checkEmail()"/>
       <p> Gender </p>
-      <input type="text" id="usergender" name="gender" value="{{user.gender}}" size="30"/>
+      <input type="text" id="userModify" name="gender" value="{{user.gender}}"/>
       <p> City </p>
-      <input type="text" id="usercity" name="city" value="{{user.city}}" size="30"/>
+      <input type="text" id="userModify" name="city" value="{{user.city}}"/>
       <p> State </p>
-      <input type="text" id="userstate" name="state" value="{{user.state}}" size="30"/>
+      <input type="text" id="userModify" name="state" value="{{user.state}}"/>
       <p> Age </p>
-      <input type="text" id="userage" name="age" value="{{user.age}}" size="30"/>
+      <input type="text" id="userage" name="age" value="{{user.age}}" onchange="checkNumber()"/>
       <p> Description </p>
-      <input type="text" id="userdescription" name="description" value="{{user.description}}" size="30"/>
+      <input type="text" id="userModify" name="description" value="{{user.description}}"/>
+      <p id="inputError"></p>
       <div class="userProfileButton">
         <button type="submit" class="button" ><span>Submit</span> </button>
       </div>
@@ -87,3 +88,8 @@
   </div>
   
 </body>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+      crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+      crossorigin="anonymous"></script>
+<script src="/public/checkFunction.js"> </script>

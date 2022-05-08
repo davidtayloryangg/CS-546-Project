@@ -4,8 +4,8 @@ const { ObjectId } = require('mongodb');
 
 module.exports = {
   async createPark(name, opentime, closetime, location) {
-    if (!name || !opentime || !closetime || !location)
-      throw 'please provide all inputs for park';
+    if (!name || !opentime || !closetime || !location) throw 'please provide all inputs for park';
+    if (arguments.length != 4) throw 'the number of parameter is wrong';
 
     const parkCollection = await parks();
     const park = await parkCollection.findOne({ name: name.toLowerCase() });
@@ -33,6 +33,7 @@ module.exports = {
   },
   async removePark(id) {
     if (!id) throw 'please provide park ID';
+    if (arguments.length != 1) throw 'the number of parameter is wrong';
     if (!ObjectId.isValid(id)) throw 'invalid park ID';
 
     const parkCollection = await parks();
@@ -42,6 +43,7 @@ module.exports = {
   },
   async updatePark(id, name, opentime, closetime, location) {
     if (!id || !name || !opentime || !closetime || !location) throw 'please provide all inputs to update park';
+    if (arguments.length != 5) throw 'the number of parameter is wrong';
     if (!ObjectId.isValid(id)) throw 'invalid park ID';
 
     // const newOpentime = new Date(opentime);
@@ -63,6 +65,7 @@ module.exports = {
   },
   async updateParkImg(id, url) {
     if (!id || !url) throw 'please provide all inputs to update img';
+    if (arguments.length != 2) throw 'the number of parameter is wrong';
     if (!ObjectId.isValid(id)) throw 'invalid park ID';
 
     let parkUpdateInfo = {
@@ -79,6 +82,7 @@ module.exports = {
   },
   async updateParkLikes(id, num) {
     if (!id || !num) throw 'please provide all inputs to update likes';
+    if (arguments.length != 2) throw 'the number of parameter is wrong';
     if (!ObjectId.isValid(id)) throw 'invalid park ID';
 
     const parkCollection = await parks();
@@ -91,6 +95,7 @@ module.exports = {
     return true;
   },
   async getAllParks() {
+    if (arguments.length != 0) throw 'the number of parameter is wrong';
     const parkCollection = await parks();
     const parkList = await parkCollection.find({}, {
     }).toArray();
@@ -98,6 +103,7 @@ module.exports = {
     return parkList;
   },
   async getParksOrderByRating() {
+    if (arguments.length != 0) throw 'the number of parameter is wrong';
     const parkCollection = await parks();
     const parkList = await parkCollection.find({}, {
     }).sort({ "averageRating": -1 }).toArray();
@@ -105,6 +111,7 @@ module.exports = {
     return parkList;
   },
   async getParksOrderByLikes() {
+    if (arguments.length != 0) throw 'the number of parameter is wrong';
     const parkCollection = await parks();
     const parkList = await parkCollection.find({}, {
     }).sort({ "likes": -1 }).toArray();
@@ -113,6 +120,7 @@ module.exports = {
   },
   async getParkById(id) {
     if (!id) throw 'please provide park ID';
+    if (arguments.length != 1) throw 'the number of parameter is wrong';
     if (!ObjectId.isValid(id)) throw 'invalid park ID';
 
     const parkCollection = await parks();
@@ -122,6 +130,7 @@ module.exports = {
   },
   async getParksByName(parkname) {
     if (!parkname) throw 'please provide park name';
+    if (arguments.length != 1) throw 'the number of parameter is wrong';
     const parkCollection = await parks();
     var reg = new RegExp(parkname, "i");
     const parkList = await parkCollection.find({ "name": { $regex: reg } }).toArray();
