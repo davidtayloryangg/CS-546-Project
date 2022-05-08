@@ -234,7 +234,7 @@ async function test() {
     "22",
     "1"
   );
-  await activities.updateActivityDescription(TennisColumbus._id, 
+  await activities.updateActivityDescription(TennisColumbus._id,
     `Tennis is a racket sport that can be played individually against a single opponent
   (singles)
   or between two teams of two players each (doubles). Each player uses a tennis racket that is
@@ -246,9 +246,9 @@ async function test() {
   play a valid return. The player who is unable to return the ball validly will not gain a point,
   while
   the opposite player will.`
-  
+
   )
-  await activities.updateActivityDescription(BasketballChurchSquare._id, 
+  await activities.updateActivityDescription(BasketballChurchSquare._id,
     `Basketball is a team sport in which two teams, most commonly of five players each,
     opposing
     one another on a rectangular court, compete with the primary objective of shooting a basketball
@@ -265,18 +265,56 @@ async function test() {
     team with the most points at the end of the game wins, but if regulation play expires with the
     score
     tied, an additional period of play (overtime) is mandated.`
-  
+
   )
-  await activities.updateActivityDescription(JogMadison._id, 
+  await activities.updateActivityDescription(BaseballStevens._id,
+    `Basketball is a team sport in which two teams, most commonly of five players each,
+    opposing
+    one another on a rectangular court, compete with the primary objective of shooting a basketball
+    (approximately 9.4 inches (24 cm) in diameter) through the defender's hoop (a basket 18 inches
+    (46 cm)
+    in diameter mounted 10 feet (3.048 m) high to a backboard at each end of the court, while
+    preventing the
+    opposing team from shooting through their own hoop. A field goal is worth two points, unless
+    made from
+    behind the three-point line, when it is worth three. After a foul, timed play stops and the
+    player
+    fouled or designated to shoot a technical foul is given one, two or three one-point free throws.
+    The
+    team with the most points at the end of the game wins, but if regulation play expires with the
+    score
+    tied, an additional period of play (overtime) is mandated.`
+
+  )
+  await activities.updateActivityDescription(BasketballChurch._id,
+    `Basketball is a team sport in which two teams, most commonly of five players each,
+    opposing
+    one another on a rectangular court, compete with the primary objective of shooting a basketball
+    (approximately 9.4 inches (24 cm) in diameter) through the defender's hoop (a basket 18 inches
+    (46 cm)
+    in diameter mounted 10 feet (3.048 m) high to a backboard at each end of the court, while
+    preventing the
+    opposing team from shooting through their own hoop. A field goal is worth two points, unless
+    made from
+    behind the three-point line, when it is worth three. After a foul, timed play stops and the
+    player
+    fouled or designated to shoot a technical foul is given one, two or three one-point free throws.
+    The
+    team with the most points at the end of the game wins, but if regulation play expires with the
+    score
+    tied, an additional period of play (overtime) is mandated.`
+
+  )
+  await activities.updateActivityDescription(JogMadison._id,
     `Jogging is a form of trotting or running at a slow or leisurely pace. The main
     intention is
     to increase physical fitness with less stress on the body than from faster running but more than
     walking, or to maintain a steady speed for longer periods of time. Performed over long
     distances, it is a form of
     aerobic endurance training.`
-  
+
   )
-  await activities.updateActivityDescription(SoccorSinatra._id, 
+  await activities.updateActivityDescription(SoccorSinatra._id,
     `Association football, more commonly known as simply football or soccer,[a] is a team
     sport
     played with a spherical ball between two teams of 11 players. It is played by approximately 250
@@ -288,9 +326,37 @@ async function test() {
     score more goals than the opposition by moving the ball beyond the goal line into the opposing
     goal, usually
     within a time frame of 90 or more minutes.`
-  
+
   )
-  await activities.updateActivityDescription(BaseballStevens._id, 
+  await activities.updateActivityDescription(soccer1600._id,
+    `Association football, more commonly known as simply football or soccer,[a] is a team
+    sport
+    played with a spherical ball between two teams of 11 players. It is played by approximately 250
+    million
+    players in over 200 countries and dependencies, making it the world's most popular sport. The
+    game is
+    played on a rectangular field called a pitch with a goal at each end. The objective of the game
+    is to
+    score more goals than the opposition by moving the ball beyond the goal line into the opposing
+    goal, usually
+    within a time frame of 90 or more minutes.`
+
+  )
+  await activities.updateActivityDescription(soccerSinatra._id,
+    `Association football, more commonly known as simply football or soccer,[a] is a team
+    sport
+    played with a spherical ball between two teams of 11 players. It is played by approximately 250
+    million
+    players in over 200 countries and dependencies, making it the world's most popular sport. The
+    game is
+    played on a rectangular field called a pitch with a goal at each end. The objective of the game
+    is to
+    score more goals than the opposition by moving the ball beyond the goal line into the opposing
+    goal, usually
+    within a time frame of 90 or more minutes.`
+
+  )
+  await activities.updateActivityDescription(BaseballStevens._id,
     `Baseball is a bat-and-ball game played between two opposing teams, of nine players
     each,
     that take turns batting and fielding. The game proceeds when a player on the fielding team,
@@ -308,16 +374,22 @@ async function test() {
     and touches home plate (the place where the player started as a batter). The team that scores
     the most runs
     by the end of the game is the winner.`
-  
+
   )
-  await activities.updateActivityDescription(SkateCP._id, 
+  await activities.updateActivityDescription(SkateCP._id,
     `Skating involves any sports or recreational activity which consists of traveling on
     surfaces
     or on ice using skates.`
-  
+
+  )
+  await activities.updateActivityDescription(skateCastlePoint._id,
+    `Skating involves any sports or recreational activity which consists of traveling on
+    surfaces
+    or on ice using skates.`
+
   )
 
-  await activities.updateActivityDescription(YogaPC._id, 
+  await activities.updateActivityDescription(YogaPC._id,
     `Yoga as exercise is a physical activity consisting mainly of postures, often
     connected by
     flowing sequences, sometimes accompanied by breathing exercises, and frequently ending with
@@ -328,16 +400,28 @@ async function test() {
     generally
     simply called "yoga". Academics have given yoga as exercise a variety of names, including modern
     postural yoga and transnational anglophone yoga.`
-  
+
   )
-  await activities.updateActivityDescription(RugbyPA._id, 
+  await activities.updateActivityDescription(RugbyPA._id,
     `Rugby football is a collective name for the family of team sports of rugby union and
     rugby
     league, as well as the earlier forms of football from which both games, as well as Australian
     rules
     football and gridiron football, evolved.`
   )
-  
+  await activities.updateActivityDescription(dogParkChurch._id,
+    `Dog parks have varying features, although they typically offer a 4' to 6' fence, separate double-gated entry and exit points, adequate drainage, benches for humans, shade for hot days, parking close to the site, water, pooper-scooper to pick up and dispose of animal waste in covered trash cans, and regular maintenance and cleaning of the grounds. Dog parks may also offer wheel-chair access, a pond for swimming and a separate enclosure for small dogs.`
+  )
+  await activities.updateActivityDescription(playgroundMadison._id,
+    `A playground, playpark, or play area is a place designed to provide an environment for children that facilitates play, typically outdoors. While a playground is usually designed for children, some are designed for other age groups, or people with disabilities. A playground might exclude children below a certain age.`
+  )
+  await activities.updateActivityDescription(playgroundPierC._id,
+    `A playground, playpark, or play area is a place designed to provide an environment for children that facilitates play, typically outdoors. While a playground is usually designed for children, some are designed for other age groups, or people with disabilities. A playground might exclude children below a certain age.`
+  )
+  // await activities.updateActivityDescription(sinatra._id,
+  //   `Association football, more commonly known as simply football or soccer,[a] is a team sport played with a spherical ball between two teams of 11 players. It is played by approximately 250 million players in over 200 countries and dependencies, making it the world's most popular sport. The game is played on a rectangular field called a pitch with a goal at each end. The objective of the game is to score more goals than the opposition by moving the ball beyond the goal line into the opposing goal, usually within a time frame of 90 or more minutes.` 
+  // )
+
   console.log("------------create activities successfully------------");
 
   console.log("------------Init Appointments------------");

@@ -74,16 +74,4 @@ router
     }
   });
 
-function setActitityIdInPark(activityName, parkList) {
-  for (let p of parkList) {
-    for (let a of p.activities) {
-      if (a.name.indexOf(activityName) !== -1) {
-        p.activityId = a._id;
-        break;
-      }
-    }
-  }
-  return parkList;
-}
-
 module.exports = router;
