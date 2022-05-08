@@ -56,10 +56,20 @@ module.exports = {
   },
 
   async modifyUserProfile(id, email, gender, city, state, age, description) {
+    if (!id || !email || !gender || !city || !state || !age || !description)
+      throw "must provide all parameters for modify user profile";
+    if (!ObjectId.isValid(id)) throw 'invalid user ID';
     if (arguments.length != 7) throw 'the number of parameter is false';
     if (!id) throw 'You must provide an id to search for';
     func.checkId(id)
     func.checkEmail(email)
+    func.checkString(gender)
+    func.checkString(city)
+    func.checkString(state)
+    func.checkNumber(age)
+    if (age < 0) throw "age must be positive"
+    func.checkString(description)
+
     const userCollection = await users();
     let modifyuser = {
       email: email,
