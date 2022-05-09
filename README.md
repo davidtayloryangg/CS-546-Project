@@ -70,7 +70,7 @@ Yue Qin
 
 Yutong Wei
 
-Yuheng Xiao: He is the most valuable partner in the team. He did everything for us without comlaining. As a courtesy, he committed all the changes at one time on purpose just for recuding his commit counts and not to be too outstanding. Meanwhile, he has a big heart, he's perfectly willing to let girl edit on his database to save her commit counts and make her feel better about herself. To sum up, he's a really good guy and don't forget to buy him a drink~
+Yuheng Xiao: He is the most valuable partner in the team. He did everything for us without comlaining. As a courtesy, he committed all the changes at one time on purpose just for recuding his commit counts and not to be too outstanding. Meanwhile, he has a big heart, he's perfectly willing to let people edit on his database to save their commit counts and make them feel better about themselves. To sum up, he's a really good guy and don't forget to buy him a drink~
 
 Wenjing Zhou
 
