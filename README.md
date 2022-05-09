@@ -1,5 +1,18 @@
 # CS-546-Project Park Activity Meet-Up
 
+## Introduction
+
+Park Activity Meet-Up is a Hoboken specific application to connect users to build relationships and use everything hoboken parks have to offer...
+
+## Installation
+
+Before following the installation instructions below, your system will need node.js.
+
+1. `npm install` - installs all the package dependencies
+2. `npm run seed` - seed database
+3. `npm test` - run the tests (optional)
+4. `npm start` - run the application
+
 ## Task: Select your task and add your name
 
 1. Database: Yue Qin
@@ -10,6 +23,7 @@
    - Review: Yue Qin :white_check_mark:
    - Park: David Yang :white_check_mark:
 2. Route:
+
    - Home:
      - ('/home').get Wenjing Zhou :white_check_mark:
    - Login:
@@ -59,19 +73,6 @@ Yutong Wei
 Yuheng Xiao
 
 Wenjing Zhou
-
-## Introduction
-
-Park Activity Meet-Up is a Hoboken specific application to connect users to build relationships and use everything hoboken parks have to offer...
-
-## Installation
-
-Before following the installation instructions below, your system will need node.js.
-
-1. `npm install` - installs all the package dependencies
-2. `npm run seed` - seed database
-3. `npm test` - run the tests (optional)
-4. `npm start` - run the application
 
 ## Github Repository
 
