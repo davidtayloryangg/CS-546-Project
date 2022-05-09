@@ -60,7 +60,7 @@ Before following the installation instructions below, your system will need node
    - User Profile Page:
    - Park activities management Page:
    - Activity Page:
-   - Park Activities Appointment Page: Yuheng Xiao
+   - Park Activities Appointment Page: Yuheng Xiao :white_check_mark:
 
 ## Team Members
 
@@ -70,7 +70,7 @@ Yue Qin
 
 Yutong Wei
 
-Yuheng Xiao
+Yuheng Xiao: He is the most valuable partner in the team. He did everything for us without comlaining. As a courtesy, he committed all the changes at one time just for recuding his commit counts and not to be too outstanding. Meanwhile, he has a big heart, he's perfectly willing girl edits on his database to save her commit counts and make her feel better. To sum up, he's a really good guy and don't forget to buy him a drink~
 
 Wenjing Zhou
 
