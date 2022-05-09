@@ -59,7 +59,7 @@ Before following the installation instructions below, your system will need node
    - Park List Page:
    - User Profile Page:
    - Park activities management Page:
-   - Activity Page:
+   - Activity Page: Yutong Wei :white_check_mark:
    - Park Activities Appointment Page: Yuheng Xiao :white_check_mark:
 
 ## Team Members
