@@ -63,6 +63,7 @@ router.route("/:id").get(async (req, res) => {
       numberOfCourts: activity.numberOfCourts,
       maxPeople: activity.maxPeople,
       parkname: park.name,
+      description: activity.description,
       reviews: reviews,
       appointment: currentAppointment,
     };

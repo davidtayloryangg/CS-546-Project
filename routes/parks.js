@@ -282,7 +282,8 @@ router.post("/createnewActivity", async (req, res) => {
         !body.activity ||
         !body.numberOfCourts ||
         !body.maxPeople ||
-        !body.limit
+        !body.limit ||
+        !body.description
       )
         throw "Please provide all the input for createActivity!";
       const bodypark = xss(body.park);
@@ -292,13 +293,15 @@ router.post("/createnewActivity", async (req, res) => {
       const numberOfCourts = xss(body.numberOfCourts);
       const maxPeople = xss(body.maxPeople);
       const limit = xss(body.limit);
-      const Appointments = await activitydata.createActivity(
+      const des = xss(body.description)
+      const act = await activitydata.createActivity(
         parkId,
         activity,
         numberOfCourts,
         maxPeople,
         limit
       );
+      const updated = await activitydata.updateActivityDescription(act._id, des);
       res.status(200).render("function/Activity_created", {
         result: `You have created ${body.activity} for ${body.park}!`,
         title: "Created",
