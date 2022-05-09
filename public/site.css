@@ -25,7 +25,7 @@ header{
 article{
 	margin:3em 0;
 	padding:20px;
-	text-shadow:0 2px 0 #f08080;
+	text-shadow:0 0.5px 0 #f08080;
 }
 
 figure{
