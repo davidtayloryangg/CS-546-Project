@@ -64,7 +64,7 @@ Before following the installation instructions below, your system will need node
 
 ## Team Members
 
-David Yang
+David Yang: parks page (database, routes, front end), single park page, edit park form, add new park form, favorite park feature. Refactoring
 
 Yue Qin
 
