@@ -72,8 +72,7 @@ Yutong Wei
 
 Yuheng Xiao: He is the most valuable partner in the team. He did everything for us without comlaining. As a courtesy, he committed all the changes at one time on purpose just for recuding his commit counts and not to be too outstanding. Meanwhile, he has a big heart, he's perfectly willing to let people edit on his appointment database and front-end to save their commit counts and make them feel better about themselves. To sum up, he's a really good guy and I'll not forget to buy him a drink~
 
-Wenjing Zhou
-
+Wenjing Zhou: Complete the user profile page; single activity page; some routes of activity; data and routes of user; data and routes of appointment; data and reviews of reviews; page of myappointment and create new appointment; page of about; html check; 
 ## Github Repository
 
 [https://github.com/davidtayloryangg/CS-546-Project]
