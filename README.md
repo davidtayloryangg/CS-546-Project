@@ -68,7 +68,7 @@ David Yang: parks page (database, routes, front end), single park page, edit par
 
 Yue Qin
 
-Yutong Wei
+Yutong Wei: In charge of activity section(database, routes, front end).
 
 Yuheng Xiao: In charge of the feature of creating new activities (database, routes, front end), adding error checking and XSS for each router.
 
